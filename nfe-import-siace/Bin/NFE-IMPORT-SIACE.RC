@@ -1,0 +1,2 @@
+FBCLIENTDLL DLLFILE ./fbclient.dll
+LIBMYSQLDLL DLLFILE ./libmysql.dll

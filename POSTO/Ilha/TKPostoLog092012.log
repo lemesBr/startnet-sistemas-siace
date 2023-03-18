@@ -1,0 +1,26 @@
+.LOG
+TKS Software
+TeleFax: +55(71)371-1818
+E-Mail : tks@e-net.com.br
+Site   : www.igara.com.br
+Arquivo de LOG - Auditoria
+ 
+04/09/2012 19:54:21 - Erro :: Servidor de banco de dados local indisponível
+04/09/2012 19:55:41 - Analisa_iRetorno_Bematech_Fi2: Arquivo BEMAFI32.INI não encontrado.
+04/09/2012 19:55:43 - Analisa_iRetorno_Bematech_Fi2: Arquivo BEMAFI32.INI não encontrado.
+04/09/2012 19:55:44 - ERRO NA IMPRESSAO DE CUPOM FISCAL - 1 Linhas de Log de Erro
+04/09/2012 19:55:44 - Abertura de Cupom - Bematech Fi2 - *CGC_CPF: 
+04/09/2012 19:55:44 - Cancela_Cupom_Bematech_Fi2: Problemas na Recepção de dados pelo ECF, Não foi possível cancelar Cupom Fiscal
+04/09/2012 19:57:12 - Erro :: Servidor de banco de dados local indisponível
+04/09/2012 19:58:10 - Erro :: Servidor de banco de dados local indisponível
+04/09/2012 19:58:12 - Erro :: Problemas ao tentar acessar Base de Dados
+                  - Msg  :: Erro ao tentar acessar Base de Dados. Verifique sua configuração.
+04/09/2012 19:58:39 - Erro :: Servidor de banco de dados local indisponível
+05/09/2012 07:21:43 - Analisa_iRetorno_Bematech_Fi2: Arquivo BEMAFI32.INI não encontrado.
+05/09/2012 07:21:47 - Analisa_iRetorno_Bematech_Fi2: Arquivo BEMAFI32.INI não encontrado.
+05/09/2012 07:21:48 - ERRO NA IMPRESSAO DE CUPOM FISCAL - 1 Linhas de Log de Erro
+05/09/2012 07:21:48 - Abertura de Cupom - Bematech Fi2 - *CGC_CPF: 
+05/09/2012 07:21:48 - Cancela_Cupom_Bematech_Fi2: Problemas na Recepção de dados pelo ECF, Não foi possível cancelar Cupom Fiscal
+05/09/2012 07:52:33 - Erro :: Servidor de banco de dados local indisponível
+05/09/2012 09:31:29 - Erro :: Impossível localizar arquivo de help em: C:\Siace\Siac-Enterprise\POSTO\Ilha\AJUDA TKPosto.chm
+06/09/2012 13:55:17 - Erro :: Impossível localizar arquivo de help em: C:\Siace\Siac-Enterprise\POSTO\Ilha\AJUDA TKPosto.chm

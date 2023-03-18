@@ -1,0 +1,748 @@
+object FormContaBancaria: TFormContaBancaria
+  Left = 367
+  Top = 269
+  BorderStyle = bsDialog
+  Caption = 'Cadastro de Conta Banc'#225'ria'
+  ClientHeight = 207
+  ClientWidth = 691
+  Color = clBtnFace
+  Constraints.MinHeight = 50
+  Constraints.MinWidth = 130
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  FormStyle = fsStayOnTop
+  KeyPreview = True
+  OldCreateOrder = False
+  Position = poDesktopCenter
+  Scaled = False
+  OnClose = FormClose
+  OnCloseQuery = FormCloseQuery
+  OnKeyDown = FormKeyDown
+  OnKeyPress = FormKeyPress
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Panel3: TPanel
+    Left = 0
+    Top = 153
+    Width = 691
+    Height = 54
+    Align = alBottom
+    BevelInner = bvRaised
+    BevelWidth = 2
+    Color = 15263976
+    TabOrder = 0
+    object btnNovo: TsBitBtn
+      Left = 109
+      Top = 7
+      Width = 90
+      Height = 40
+      Hint = 'Novo Registro'
+      Caption = '&Novo'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      Glyph.Data = {
+        36030000424D3603000000000000360000002800000010000000100000000100
+        1800000000000003000000000000000000000000000000000000FF00FFFF00FF
+        FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00
+        FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF529C6B10
+        6B10106B10529C6BFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF
+        FF00FFFF00FFFF00FFFF00FF4A8C4A7BD67321A539106B10FF00FFFF00FFFF00
+        FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF4A8C4A7B
+        D67321A539106B10FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF
+        FF00FFFF00FFFF00FFFF00FF4A8C4A7BD67321A539106B10FF00FFFF00FFFF00
+        FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF4A8C4A7B
+        D67321A539106B10FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF529C6B
+        106B10106B10106B10106B10106B107BD67321A539106B10106B10106B10106B
+        10106B10529C6BFF00FFFF00FF4A8C4A21A53921A53921A53921A53921A53921
+        A53921A53921A53921A53921A53921A53921A539106B10FF00FFFF00FF4A8C4A
+        7BD6737BD6737BD6737BD6737BD6737BD67321A5397BD6737BD6737BD6737BD6
+        737BD673106B10FF00FFFF00FF529C6B4A8C4A4A8C4A4A8C4A4A8C4A4A8C4A7B
+        D67321A539106B10106B10106B10106B10106B10529C6BFF00FFFF00FFFF00FF
+        FF00FFFF00FFFF00FFFF00FF4A8C4A7BD67321A539106B10FF00FFFF00FFFF00
+        FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF4A8C4A7B
+        D67321A539106B10FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF
+        FF00FFFF00FFFF00FFFF00FF4A8C4A7BD67321A539106B10FF00FFFF00FFFF00
+        FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF4A8C4A7B
+        D67321A539106B10FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF
+        FF00FFFF00FFFF00FFFF00FF529C6B4A8C4A4A8C4A529C6BFF00FFFF00FFFF00
+        FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
+        00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
+      ParentFont = False
+      TabOrder = 0
+      OnClick = btnNovoClick
+      SkinData.SkinSection = 'BUTTON'
+    end
+    object btnEditar: TsBitBtn
+      Left = 202
+      Top = 7
+      Width = 90
+      Height = 40
+      Hint = 'Editar Registro '
+      Caption = '&Editar'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      Glyph.Data = {
+        36030000424D3603000000000000360000002800000010000000100000000100
+        1800000000000003000000000000000000000000000000000000FF00FFFF00FF
+        FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00
+        FFFF00FFFF00FFFF00FFFF00FFC64A00C64A00C64A00C64A00C64A00C64A00C6
+        4A00C64A00C64A00C64A00C64A00C64A00C64A00C64A00C64A00FF00FFC64A00
+        FFFFFFFFFFFFFFFFF7FFF7E7FFEFCEFFE7B5395263CEC69CF7CE9CFFCE9CFFCE
+        9CFFCE9CFFCE9CC64A00FF00FFC64A00FFFFFFADB5B5ADB5B5ADB5B5ADB5B5AD
+        B5B53952630000009CB5C6ADB5B5ADB5B5ADB5B5FFCE9CC64A00FF00FFC64A00
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFF7FFF7E7395263000000000000FFCE9CF7CE
+        9CFFCE9CFFCE9CC64A00FF00FFC64A00FFFFFFADB5B5ADB5B5ADB5B5ADB5B5AD
+        B5B5395263FFEFD6D67321000000A5B5B5ADB5B5FFCE9CC64A00FF00FFC64A00
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF63848CFFEFD6D67321000000FFCE
+        9CFFCE9CFFCE9CC64A00FF00FFC64A00FFFFFFADB5B5ADB5B5ADB5B5ADB5B5AD
+        B5B5ADB5B5395263FFEFD6D673210000009CA5ADFFCE9CC64A00FF00FFC64A00
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF63848CFFEFD6D673210000
+        00FFCE9CFFCE9CC64A00FF00FFC64A00FFFFFFADB5B5ADB5B5ADB5B5ADB5B5AD
+        B5B5ADB5B5ADB5B5395263FFEFD6D67321000000FFCE9CC64A00FF00FFC64A00
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF63848CFFEFD6D673
+        21000008FFCE9CC64A00FF00FFC64A00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFF395263000000104AD6000000C64A00FF00FFC64A00
+        C64A00C64A00C64A00C64A00C64A00C64A00C64A00C64A00C64A008C5210104A
+        D6104AD6210010C64A00FF00FFFF00FFC64A00C64A00C64A00C64A00C64A00C6
+        4A00C64A00C64A00C64A00C64A00000084000084E7214AFF00FFFF00FFFF00FF
+        FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00
+        FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
+        00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
+      ParentFont = False
+      TabOrder = 1
+      OnClick = btnEditarClick
+      SkinData.SkinSection = 'BUTTON'
+    end
+    object btnCancelar: TsBitBtn
+      Left = 295
+      Top = 7
+      Width = 90
+      Height = 40
+      Hint = 'Cancelar Inser'#231#227'o / Altera'#231#227'o '
+      Caption = '&Cancelar'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      Glyph.Data = {
+        36030000424D3603000000000000360000002800000010000000100000000100
+        1800000000000003000000000000000000000000000000000000FF00FFFF00FF
+        FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00
+        FFFF00FF0000B50000B5FF00FF0000B50000B5FF00FFFF00FFFF00FFFF00FFFF
+        00FFFF00FFFF00FFFF00FFFF00FFFF00FF0000B50000B5FF00FFFF00FF0000B5
+        0000B50000B5FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF0000
+        B50000B5FF00FFFF00FFFF00FF0000B50000B50000B50000B5FF00FFFF00FFFF
+        00FFFF00FFFF00FFFF00FF0000B50000B5FF00FFFF00FFFF00FFFF00FFFF00FF
+        0000D60000BD0000B50000B5FF00FFFF00FFFF00FFFF00FF0000B50000B5FF00
+        FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF0000B50000B50000B5FF
+        00FF0000B50000B50000B5FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF
+        FF00FFFF00FFFF00FF0000B50000C60000C60000CE0000B5FF00FFFF00FFFF00
+        FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF0000C600
+        00C60000DEFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF
+        FF00FFFF00FFFF00FF0000B50000D60000CE0000DE0000EFFF00FFFF00FFFF00
+        FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF0000E70000DE0000D6FF
+        00FFFF00FF0000E70000EFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF
+        FF00FF0000FF0000DE0000EFFF00FFFF00FFFF00FFFF00FF0000FF0000F7FF00
+        FFFF00FFFF00FFFF00FFFF00FFFF00FF0000F70000F70000FFFF00FFFF00FFFF
+        00FFFF00FFFF00FFFF00FF0000F70000F7FF00FFFF00FFFF00FFFF00FF0000F7
+        0000F70000F7FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00
+        FF0000F7FF00FFFF00FF0000F70000F70000F7FF00FFFF00FFFF00FFFF00FFFF
+        00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF0000F70000F7
+        FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00
+        FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
+        00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
+      ParentFont = False
+      TabOrder = 2
+      OnClick = btnCancelarClick
+      SkinData.SkinSection = 'BUTTON'
+    end
+    object btnSalvar: TsBitBtn
+      Left = 388
+      Top = 7
+      Width = 90
+      Height = 40
+      Hint = 'Salvar Inser'#231#227'o / Altera'#231#227'o'
+      Caption = '&Salvar'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      Glyph.Data = {
+        36030000424D3603000000000000360000002800000010000000100000000100
+        1800000000000003000000000000000000000000000000000000FF00FFFF00FF
+        9C42399439398C3131947B7BB5BDB5BDBDBDC6BDBDBDBDB5B5BDBDA584848429
+        29842929943131FF00FFFF00FFAD5A52C64A4AC64A4AA54242846363AD8C8CDE
+        C6C6FFF7F7FFFFFFEFF7F7C69C9C7B1818841818B542429C3939FF00FFAD5A52
+        BD4A4AC64A4AA54242846363842929A55A5AE7D6D6FFFFF7FFFFFFCEA5A57B18
+        18841818AD42429C3939FF00FFAD5A52BD4A4AC64A4AA54242946B6B84212184
+        2121BDADADEFEFEFFFFFFFDEB5B57B1818841818AD42429C3939FF00FFAD5A52
+        BD4A4AC64A4AA542429C73738C29297B1818948484CED6CEFFFFFFDEBDBD7B18
+        187B1818AD39399C3939FF00FFAD5A52BD4A4AC64A4AAD4242B57373B57B7B9C
+        6B6B947373A58C8CDEBDBDD694948C21218C2121B542429C3939FF00FFAD5A52
+        BD4A4ABD4A4ABD4A4ABD4A4ABD4A4ABD4A4ABD4A4ABD4242BD4242BD4242BD4A
+        4ABD4A4AC64A4A943939FF00FFAD5A52A539319C4239B56B6BC68C8CCE9494CE
+        9494CE9494CE8C8CCE9494CE9494CE9C94C68484BD4A4A943939FF00FFAD5A52
+        9C3131DEBDBDFFF7F7F7F7EFF7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7FFFF
+        FFD6ADADB542429C3939FF00FFAD5A529C3131E7CECEFFFFFFF7EFEFF7EFEFF7
+        EFEFF7EFEFF7EFEFF7EFEFF7EFEFFFF7F7D6ADADB542429C3939FF00FFAD5A52
+        9C3131E7CEC6EFEFEFCECEC6CECECECECECECECECECECECECECECECECECEE7E7
+        E7D6ADADB542429C3939FF00FFAD5A529C3131E7CECEEFEFEFD6CECED6D6D6D6
+        D6D6D6D6D6D6D6D6D6D6D6D6CECEEFEFEFD6ADADB542429C3939FF00FFAD5A52
+        9C3131E7CECEF7F7EFDED6D6DEDED6DEDED6DEDED6DEDED6DEDED6DED6D6EFEF
+        EFD6ADADB542429C3939FF00FFAD5A529C3131E7CECEEFEFEFCECECECECECECE
+        CECECECECECECECECECECECECECEE7E7E7DEADADB542429C3939FF00FFAD5A52
+        9C3131E7CEC6FFFFFFFFEFEFFFEFEFFFEFEFFFEFEFFFEFEFFFEFEFFFEFEFFFFF
+        F7D6ADADB542429C3939FF00FFFF00FF943131BDA5A5C6CEC6C6C6C6C6C6C6C6
+        C6C6C6C6C6C6C6C6C6C6C6C6C6C6C6C6C6BD9C9C8C3131FF00FF}
+      ParentFont = False
+      TabOrder = 3
+      OnClick = btnSalvarClick
+      SkinData.SkinSection = 'BUTTON'
+    end
+    object btnExcluir: TsBitBtn
+      Left = 481
+      Top = 7
+      Width = 90
+      Height = 40
+      Hint = 'Excluir Registro'
+      Caption = 'E&xcluir'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      Glyph.Data = {
+        36030000424D3603000000000000360000002800000010000000100000000100
+        1800000000000003000000000000000000000000000000000000FF00FFFF00FF
+        FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00
+        FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFADAD9C9C9C849C9C849C
+        9C849C846B9C846BAD9C7BFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF
+        FF00FFEFDED6FFEFBDFFDEB5FFDEADFFDEB5FFEFBDFFF7CEFFDEB59C846BFF00
+        FFFF00FFFF00FFFF00FFFF00FFFF00FFEFDED6FFFFD6FFDEADFFD69CFFCE8C29
+        A529FFF7DEFFF7DEFFFFDEFFFFD69C846BFF00FFFF00FFFF00FFFF00FFFF00FF
+        DEB584FFDEA5FFF7CEFFD6A5FFCE8C29A529008400008400108C10BDEFB5FFFF
+        D69C846BFF00FFFF00FFFF00FFFF00FFF7B573F7AD6BFFBD84FFDEADFFF7BD29
+        A52900840039AD39EFFFEF29A529FFDEB5AD9C7BFF00FFFF00FFFF00FFEFDED6
+        FFB57BFFB57BFFB57BFFB57BFFD6A529A52929A529108C10D6EFCE73CE73BDCE
+        8CAD9C7BFF00FFFF00FFFF00FFEFD6B5FFCE8CFFCE8CFFCE8CFFCE8CFFDEBD6B
+        BD63FFF7DE5AB55A29A52929A529D6DEADCEBD9CFF00FFFF00FFFF00FFF7D6AD
+        FFD6A5FFD6A5FFD6A5FFD6A5FFDEAD39AD396BBD636BBD6B00840029A529FFDE
+        B5CEBD9CFF00FFFF00FFFF00FFFFDEADFFEFB5FFEFB5FFEFB5FFEFB5FFEFB5D6
+        EFB5108C1000840000840029A529FFEFCECEBD9CFF00FFFF00FFFF00FFFFDEAD
+        FFFFD6FFFFD6FFFFD6FFFFD6FFFFD6FFFFD6EFFFD6ADDEA5BDEFB529A529FFFF
+        DED6D6B5FF00FFFF00FFFF00FFFFCE9CFFFFD6FFFFD6FFFFD6FFFFD6FFF7CEFF
+        EFB5FFD6A5FFDEA5FFEFBDFFFFD6FFFFD6D6D6B5FF00FFFF00FFFF00FFFFDEBD
+        FFCE9CFFCE9CFFCE9CEFBD8CEFA55AEFA552EFA55AF7AD63F7AD63F7B573FFDE
+        ADD6D6B5FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
+        CE9CEFBD8CF7AD6BF7AD6BF7B573F7B573FFD69CFF00FFFF00FFFF00FFFF00FF
+        FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFFCE9CFFB57BFFB5
+        7BF7BD8CFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
+        00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
+      ParentFont = False
+      TabOrder = 4
+      OnClick = btnExcluirClick
+      SkinData.SkinSection = 'BUTTON'
+    end
+    object btnLocalizar: TsBitBtn
+      Left = 575
+      Top = 7
+      Width = 105
+      Height = 40
+      Hint = 'Localizar Registro'
+      Caption = '&Localizar F2'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      Glyph.Data = {
+        42020000424D4202000000000000420000002800000010000000100000000100
+        1000030000000002000000000000000000000000000000000000007C0000E003
+        00001F0000001F7C0D4EEB4D1F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C
+        1F7C1F7C1F7C1F7CCC724576EB511F7C1F7C1F7C836A836A836A836A836A836A
+        836A1F7C1F7C1F7C1F7CEA7E4676EC4D1F7C836A907F717F4F7B2B770977E876
+        E772836A1F7C1F7C1F7C1F7CEA7E466EED498A6216671767336F4E7B2A770977
+        E876836A1F7C1F7C1F7C1F7C1F7C0E7B964E5C5BFF6BFF6B9E6714674C7B2A7B
+        0977836A1F7C1F7C1F7C1F7C1F7C915E5E57DF63FF6FFF73FF7F7D6FD25E4C7B
+        4B7B836A1F7C1F7C1F7C1F7C1F7CBA4E5F537F57FF6FFF77FF7BFF6F1A5B6E7B
+        6D7B836A1F7C1F7C1F7C1F7C1F7CBA527F531E47DF67FF73FF73FF6F1A5B8F7F
+        8F7F836A1F7C1F7C1F7C1F7C1F7C72529D63BF673E4F7E5BFF67BE631463B07F
+        B07F836A1F7C1F7C1F7C1F7C1F7C1F7CB756BE6F9F5B5F537E571863917FB07F
+        B17F836A1F7C1F7C1F7C1F7C1F7C1F7C1F7C6C5A39635B67596BB67FB17FB07F
+        B17F836A1F7C1F7C1F7C1F7C1F7C1F7C1F7C836AF67FFB7FFB7FD77FB27FB07F
+        B17F836A1F7C1F7C1F7C1F7C1F7C1F7C1F7C836AD67FB77F957B727B6E7B6E7B
+        B07F836A1F7C1F7C1F7C1F7C1F7C1F7C1F7C836A2E772F774F774F772D772B77
+        2A77836A1F7C1F7C1F7C1F7C1F7C1F7C1F7C836A7277D77FD57FD47FD27FB17F
+        6E7B836A1F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C836A836A836A836A836A836A
+        836A1F7C1F7C}
+      ParentFont = False
+      TabOrder = 5
+      OnClick = btnLocalizarClick
+      SkinData.SkinSection = 'BUTTON'
+    end
+    object DBNavigator: TsDBNavigator
+      Left = 5
+      Top = 7
+      Width = 100
+      Height = 30
+      FullRepaint = False
+      TabOrder = 6
+      TabStop = True
+      OnClick = DBNavigatorClick
+      SkinData.SkinSection = 'TOOLBAR'
+      DataSource = DM.DTS_Conta_Bancaria
+      VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast]
+      Hints.Strings = (
+        'Primeiro Registro'
+        'Registro Anterior'
+        'Pr'#243'ximo Registro'
+        #218'ltimo Registro'
+        'Novo Rgistro'
+        'Excluir Registro'
+        'Edit record'
+        'Post edit'
+        'Cancel edit'
+        'Refresh data')
+    end
+  end
+  object pnldados: TPanel
+    Left = 0
+    Top = 0
+    Width = 691
+    Height = 153
+    Align = alClient
+    BevelOuter = bvNone
+    Color = 15263976
+    TabOrder = 1
+    object RxLabel1: TRxLabel
+      Left = 5
+      Top = 10
+      Width = 46
+      Height = 13
+      Caption = 'C'#243'digo:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clGray
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object RxLabel4: TRxLabel
+      Left = 5
+      Top = 100
+      Width = 98
+      Height = 13
+      Caption = 'Titular da Conta:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clGray
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object RxLabel2: TRxLabel
+      Left = 5
+      Top = 40
+      Width = 43
+      Height = 13
+      Caption = 'Banco:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clGray
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object RxLabel3: TRxLabel
+      Left = 5
+      Top = 70
+      Width = 53
+      Height = 13
+      Caption = 'Ag'#234'ncia:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clGray
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object RxLabel5: TRxLabel
+      Left = 206
+      Top = 70
+      Width = 76
+      Height = 13
+      Caption = 'N'#176' da Conta:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clGray
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object RxLabel6: TRxLabel
+      Left = 398
+      Top = 70
+      Width = 23
+      Height = 13
+      Caption = 'Dg:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clGray
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label8: TLabel
+      Left = 8
+      Top = 131
+      Width = 85
+      Height = 13
+      AutoSize = False
+      Caption = 'Conta:'
+      Transparent = True
+    end
+    object dbt_codigo: TDBEdit
+      Left = 104
+      Top = 10
+      Width = 90
+      Height = 20
+      TabStop = False
+      AutoSize = False
+      BevelInner = bvNone
+      BevelOuter = bvNone
+      BorderStyle = bsNone
+      Color = 15263976
+      DataField = 'CODIGO'
+      DataSource = DM.DTS_Conta_Bancaria
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      ReadOnly = True
+      TabOrder = 7
+    end
+    object suiDBRadioGroup1: TDBRadioGroup
+      Left = 459
+      Top = 10
+      Width = 219
+      Height = 111
+      Caption = 'Tipo de Conta'
+      DataField = 'TIPO'
+      DataSource = DM.DTS_Conta_Bancaria
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clBlack
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      Items.Strings = (
+        'Simples'
+        'Poupan'#231'a'
+        'Especial')
+      ParentFont = False
+      TabOrder = 6
+      TabStop = True
+      Values.Strings = (
+        'S'
+        'P'
+        'E')
+      OnEnter = suiDBRadioGroup1Enter
+      OnExit = suiDBRadioGroup1Exit
+    end
+    object db_nome: TDBEdit
+      Left = 104
+      Top = 100
+      Width = 347
+      Height = 21
+      CharCase = ecUpperCase
+      Color = clBtnFace
+      DataField = 'TITULAR'
+      DataSource = DM.DTS_Conta_Bancaria
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 4
+      OnEnter = db_nomeEnter
+      OnExit = db_nomeExit
+    end
+    object suiDBEdit1: TDBEdit
+      Left = 282
+      Top = 70
+      Width = 113
+      Height = 21
+      CharCase = ecUpperCase
+      Color = clBtnFace
+      DataField = 'CONTA'
+      DataSource = DM.DTS_Conta_Bancaria
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 2
+      OnEnter = suiDBEdit1Enter
+      OnExit = suiDBEdit1Exit
+    end
+    object suiDBLookupComboBox1: TDBLookupComboBox
+      Left = 104
+      Top = 40
+      Width = 347
+      Height = 21
+      Color = clBtnFace
+      DataField = 'BANCO'
+      DataSource = DM.DTS_Conta_Bancaria
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      KeyField = 'NOME'
+      ListField = 'NOME'
+      ListSource = DM.DTS_Bancos
+      ParentFont = False
+      TabOrder = 0
+      OnEnter = suiDBLookupComboBox1Enter
+      OnExit = suiDBLookupComboBox1Exit
+    end
+    object suiDBLookupComboBox2: TDBLookupComboBox
+      Left = 104
+      Top = 70
+      Width = 97
+      Height = 21
+      Color = clBtnFace
+      DataField = 'AGENCIA'
+      DataSource = DM.DTS_Conta_Bancaria
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      KeyField = 'NUM_AGENCIA'
+      ListField = 'NUM_AGENCIA'
+      ListFieldIndex = -1
+      ListSource = DM.DTS_Agencias
+      ParentFont = False
+      TabOrder = 1
+      OnEnter = suiDBLookupComboBox2Enter
+      OnExit = suiDBLookupComboBox2Exit
+    end
+    object DBEdit1: TDBEdit
+      Left = 420
+      Top = 70
+      Width = 29
+      Height = 21
+      CharCase = ecUpperCase
+      Color = clBtnFace
+      DataField = 'DIGITO'
+      DataSource = DM.DTS_Conta_Bancaria
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 3
+      OnEnter = suiDBEdit1Enter
+      OnExit = suiDBEdit1Exit
+    end
+    object blocregiao: TBitBtn
+      Left = 176
+      Top = 128
+      Width = 25
+      Height = 21
+      Glyph.Data = {
+        36030000424D3603000000000000360000002800000010000000100000000100
+        18000000000000030000C40E0000C40E00000000000000000000FFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFCFDFEE7EEF4FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFAFBFD6494BA2166
+        9C80A8C5FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFAFCFD6E9BC1548CBB88B4DC175E96FFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFBFCFD7AA3C96396C49CC0E36598
+        C63070A4FFFFFFFFFFFFFFFFFFFFFFFFFFFEFEE8CEB9DAB292D2A57FCFA07BD1
+        A684ADA09874A1CBAACAE775A3CD3F7AAEDEE8F1FFFFFFFFFFFFFFFFFFFFFEFE
+        E8C9AFE7C8ADF4E0CCF6E4D2F6E4D0F2DCC7DEB99BC6A79085ADD44F86BAE1EA
+        F3FFFFFFFFFFFFFFFFFFFFFFFFF1DBC7ECCFB6F7E7D8F4DDC7F2D7BCF2D5BAF3
+        DAC1F6E3D1DEBA9C9F9694E3ECF5FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEDCDB1
+        F6E6D6F5E0CBF3DAC1F3D9BFF2D7BCF2D6BAF3DAC1F2DDC8D1A787FFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFEFCDAEF8EBDEF4DEC7F4DCC5F3DBC2F3D9C0F2
+        D8BDF2D6BCF7E5D2D2A57FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF3D2B4
+        F8ECE0F5E0CBF4DEC8F4DDC6F3DBC3F3DAC1F3D9BFF7E6D5D6AA86FFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFF7DBC0F8EADDF6E6D5F5E0CBF4DFC9F4DDC7F4
+        DCC4F5E0CAF4E1CFDEB898FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFBE9D7
+        F7E1CBF9EDE2F6E6D5F5E1CDF5E0CAF5E2CFF8E9DCEBCEB4EBD3BEFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFAE3CDF8E1CCF9EBDDF8EDE1F8ECE1F7
+        E8D9EFD4BCECCFB6FFFEFEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFBEAD9F9DCC2F5D5B8F3D2B4F2D3B7F4E0CDFFFFFEFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
+      TabOrder = 8
+      OnClick = blocregiaoClick
+    end
+    object econta1: TEdit
+      Left = 104
+      Top = 128
+      Width = 70
+      Height = 21
+      Color = clBtnFace
+      TabOrder = 9
+      OnEnter = econta1Enter
+      OnExit = econta1Exit
+    end
+    object enomeconta: TEdit
+      Left = 205
+      Top = 128
+      Width = 473
+      Height = 21
+      Color = clBtnFace
+      Enabled = False
+      TabOrder = 10
+    end
+    object econta: TDBEdit
+      Left = 104
+      Top = 128
+      Width = 70
+      Height = 21
+      CharCase = ecUpperCase
+      Color = clBtnFace
+      DataField = 'COD_PLANO'
+      DataSource = DM.DTS_Conta_Bancaria
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 5
+      OnEnter = econtaEnter
+      OnExit = econta1Exit
+      OnKeyPress = econtaKeyPress
+    end
+  end
+  object MsgErro: TsuiMessageDialog
+    Position = poScreenCenter
+    Caption = 'Erro !!!'
+    UIStyle = DeepBlue
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    CaptionFont.Charset = DEFAULT_CHARSET
+    CaptionFont.Color = clWhite
+    CaptionFont.Height = -11
+    CaptionFont.Name = 'Tahoma'
+    CaptionFont.Style = [fsBold]
+    ButtonCursor = crHandPoint
+    ButtonCount = 1
+    Button1Caption = 'OK'
+    Button2Caption = 'Cancel'
+    Button3Caption = 'Cancel'
+    Button1ModalResult = 1
+    Button2ModalResult = 2
+    Button3ModalResult = 2
+    IconType = suiStop
+    Text = 'Ocorreu um Erro! Tente Novamente!'
+    Left = 466
+    Top = 3
+  end
+  object MsgAtencao: TsuiMessageDialog
+    Position = poScreenCenter
+    Caption = 'Aten'#231#227'o !!!'
+    UIStyle = DeepBlue
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    CaptionFont.Charset = DEFAULT_CHARSET
+    CaptionFont.Color = clWhite
+    CaptionFont.Height = -11
+    CaptionFont.Name = 'Tahoma'
+    CaptionFont.Style = [fsBold]
+    ButtonCursor = crHandPoint
+    ButtonCount = 1
+    Button1Caption = 'OK'
+    Button2Caption = 'Cancel'
+    Button3Caption = 'Cancel'
+    Button1ModalResult = 1
+    Button2ModalResult = 0
+    Button3ModalResult = 0
+    IconType = suiWarning
+    Text = 'Antes de sair voc'#234' deve salvar ou cancelar!'
+    Left = 494
+    Top = 3
+  end
+  object MsgConfirmacao: TsuiMessageDialog
+    Position = poScreenCenter
+    Caption = 'Confirma'#231#227'o !!!'
+    UIStyle = DeepBlue
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    CaptionFont.Charset = DEFAULT_CHARSET
+    CaptionFont.Color = clWhite
+    CaptionFont.Height = -11
+    CaptionFont.Name = 'Tahoma'
+    CaptionFont.Style = [fsBold]
+    ButtonCursor = crHandPoint
+    ButtonCount = 2
+    Button1Caption = 'Sim'
+    Button2Caption = 'N'#227'o'
+    Button3Caption = 'Cancel'
+    Button1ModalResult = 6
+    Button2ModalResult = 7
+    Button3ModalResult = 2
+    IconType = suiHelp
+    Text = 'Confirma Exclus'#227'o?'
+    Left = 522
+    Top = 3
+  end
+  object MsgInformacao: TsuiMessageDialog
+    Position = poScreenCenter
+    Caption = 'Informa'#231#227'o !!!'
+    UIStyle = DeepBlue
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    CaptionFont.Charset = DEFAULT_CHARSET
+    CaptionFont.Color = clWhite
+    CaptionFont.Height = -11
+    CaptionFont.Name = 'Tahoma'
+    CaptionFont.Style = [fsBold]
+    ButtonCursor = crHandPoint
+    ButtonCount = 1
+    Button1Caption = 'OK'
+    Button2Caption = 'Cancel'
+    Button3Caption = 'Cancel'
+    Button1ModalResult = 1
+    Button2ModalResult = 2
+    Button3ModalResult = 2
+    IconType = suiInformation
+    Text = 'Hello world!'
+    Left = 550
+    Top = 3
+  end
+end

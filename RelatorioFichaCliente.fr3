@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TfrxReport Version="5.2.3" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.Buttons="4095" PreviewOptions.Zoom="1" PrintOptions.Printer="Default" PrintOptions.PrintOnSheet="0" ReportOptions.CreateDate="42500,9779856366" ReportOptions.Description.Text="" ReportOptions.LastChange="42594,6600694329" ScriptLanguage="PascalScript" ScriptText.Text="begin&#13;&#10;&#13;&#10;end.">
+  <Datasets>
+    <item DataSet="qrRel" DataSetName="qrRel"/>
+    <item DataSet="qrRelContato" DataSetName="qrRelContato"/>
+    <item DataSet="qrRelDetalheProf" DataSetName="qrRelDetalheProf"/>
+    <item DataSet="qrRelReferencia" DataSetName="qrRelReferencia"/>
+  </Datasets>
+  <TfrxDataPage Name="Data" Height="1000" Left="0" Top="0" Width="1000"/>
+  <TfrxReportPage Name="Page1" PaperWidth="210" PaperHeight="297" PaperSize="9" LeftMargin="10" RightMargin="10" TopMargin="10" BottomMargin="10" ColumnWidth="0" ColumnPositions.Text="" HGuides.Text="" VGuides.Text="">
+    <TfrxDetailData Name="DetailData2" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="49,13389" Left="0" Top="827,71707" Width="718,1107" ColumnWidth="0" ColumnGap="0" DataSet="qrRelReferencia" DataSetName="qrRelReferencia" RowCount="0">
+      <TfrxGradientView Name="Gradient75" Left="367,953" Top="18,48816945" Width="187,46456693" Height="18,89765" Visibility="3" EndColor="-1" Style="gsHorizontal" Frame.Color="-4144960" Color="16777215"/>
+      <TfrxMemoView Name="Memo87" Left="374,17347" Top="18,35436" Width="173,85838" Height="18,89765" Font.Charset="1" Font.Color="-16777195" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="[qrRelReferencia.&#34;TIPO&#34;]"/>
+      <TfrxGradientView Name="Gradient73" Left="0,13385827" Top="18,48816945" Width="186,33071354" Height="18,89765" Visibility="3" EndColor="-1" Style="gsHorizontal" Frame.Color="-4144960" Color="16777215"/>
+      <TfrxGradientView Name="Gradient74" Left="179,75603" Top="18,48816945" Width="187,46456693" Height="18,89765" Visibility="3" EndColor="-1" Style="gsHorizontal" Frame.Color="-4144960" Color="16777215"/>
+      <TfrxGradientView Name="Gradient76" Left="0" Top="0,45671" Width="190,86580244" Height="18,14173228" Visibility="3" BeginColor="-2302756" EndColor="-2302756" Style="gsHorizontal" Frame.Color="-4144960" Color="14474460"/>
+      <TfrxGradientView Name="Gradient77" Left="180,11039" Top="0,45671" Width="187,08627244" Height="18,14173228" Visibility="3" BeginColor="-2302756" EndColor="-2302756" Style="gsHorizontal" Frame.Color="-4144960" Color="14474460"/>
+      <TfrxGradientView Name="Gradient78" Left="368,30736" Top="0,45671" Width="187,08627244" Height="18,14173228" Visibility="3" BeginColor="-2302756" EndColor="-2302756" Style="gsHorizontal" Frame.Color="-4144960" Color="14474460"/>
+      <TfrxGradientView Name="Gradient79" Left="556,37044" Top="0,67718" Width="159,874015748031" Height="18,14173228" Visibility="3" BeginColor="-2302756" EndColor="-2302756" Style="gsHorizontal" Frame.Color="-4144960" Color="14474460"/>
+      <TfrxGradientView Name="Gradient80" Left="556,14997" Top="18,48816945" Width="159,11811024" Height="18,89765" Visibility="3" EndColor="-1" Style="gsHorizontal" Frame.Color="-4144960" Color="16777215"/>
+      <TfrxMemoView Name="Memo85" Left="4,55906" Top="18,35436" Width="359,05535" Height="18,89765" Font.Charset="1" Font.Color="-16777195" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="[qrRelReferencia.&#34;NOME&#34;]"/>
+      <TfrxMemoView Name="Memo88" Left="562,14997" Top="19,13389" Width="151,1812" Height="18,89765" Font.Charset="1" Font.Color="-16777195" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="[qrRelReferencia.&#34;TELEFONE&#34;]"/>
+      <TfrxMemoView Name="Memo97" Left="4,77953" Top="0" Width="355,27582" Height="18,89765" Font.Charset="1" Font.Color="-16777193" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="Nome Referência"/>
+      <TfrxMemoView Name="Memo99" Left="374,30736" Top="0" Width="173,85838" Height="18,89765" Font.Charset="1" Font.Color="-16777193" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="Tipo"/>
+      <TfrxMemoView Name="Memo100" Left="562,37044" Top="0,22047" Width="139,84261" Height="18,89765" Font.Charset="1" Font.Color="-16777193" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="Telefone"/>
+      <TfrxMemoView Name="Memo102" Left="0" Top="0" Width="716,22047244" Height="37,7953" Font.Charset="1" Font.Color="-16777195" Font.Height="-13" Font.Name="Calibri" Font.Style="1" Frame.Color="8421504" Frame.Typ="15" ParentFont="False" Text="">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+    </TfrxDetailData>
+    <TfrxReportTitle Name="ReportTitle1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="91,33859" Left="0" Top="18,89765" Width="718,1107">
+      <TfrxGradientView Name="Gradient1" Left="10,11812" Top="45,45671" Width="517,79561" Height="3,77953" BeginColor="-4144960" EndColor="-4144960" Style="gsHorizontal" Color="12632256"/>
+      <TfrxMemoView Name="Memo1" Left="12,11812" Top="21,11812" Width="514,01608" Height="18,89765" Font.Charset="1" Font.Color="-16777195" Font.Height="-13" Font.Name="Calibri" Font.Style="1" ParentFont="False" Text="Clientes - Ficha Técnica"/>
+      <TfrxMemoView Name="Memo2" Left="11,33859" Top="51,57483" Width="514,01608" Height="18,89765" Font.Charset="1" Font.Color="-16777195" Font.Height="-13" Font.Name="Calibri" Font.Style="1" ParentFont="False" Text="[Date] [Time] ">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxPictureView Name="Picture1" Left="627,40198" Top="6" Width="80" Height="80" AutoSize="True" Center="True" DataField="LOGO" DataSet="qrRel" DataSetName="qrRel" HightQuality="False" Transparent="False" TransparentColor="-1"/>
+    </TfrxReportTitle>
+    <TfrxPageFooter Name="PageFooter1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="22,67718" Left="0" Top="1062,04793" Width="718,1107">
+      <TfrxMemoView Name="Memo22" Left="550,25232" Top="0,55906" Width="166,29932" Height="18,89765" Font.Charset="1" Font.Color="536870911" Font.Height="-13" Font.Name="Calibri" Font.Style="0" HAlign="haRight" ParentFont="False" Text="Página [Page#] de [TotalPages#]"/>
+    </TfrxPageFooter>
+    <TfrxDetailData Name="DetailData1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="86,92919" Left="0" Top="665,19728" Width="718,1107" ColumnWidth="0" ColumnGap="0" DataSet="qrRelDetalheProf" DataSetName="qrRelDetalheProf" RowCount="0">
+      <TfrxGradientView Name="Gradient57" Left="0,13385827" Top="18,48816945" Width="178,77165354" Height="18,89765" Visibility="3" EndColor="-1" Style="gsHorizontal" Frame.Color="-4144960" Color="16777215"/>
+      <TfrxGradientView Name="Gradient58" Left="179,75603" Top="18,48816945" Width="187,46456693" Height="18,89765" Visibility="3" EndColor="-1" Style="gsHorizontal" Frame.Color="-4144960" Color="16777215"/>
+      <TfrxGradientView Name="Gradient59" Left="367,953" Top="18,48816945" Width="187,46456693" Height="18,89765" Visibility="3" EndColor="-1" Style="gsHorizontal" Frame.Color="-4144960" Color="16777215"/>
+      <TfrxGradientView Name="Gradient60" Left="-0,22047" Top="0,45671" Width="179,52721244" Height="18,14173228" Visibility="3" BeginColor="-2302756" EndColor="-2302756" Style="gsHorizontal" Frame.Color="-4144960" Color="14474460"/>
+      <TfrxGradientView Name="Gradient61" Left="180,11039" Top="0,45671" Width="187,08627244" Height="18,14173228" Visibility="3" BeginColor="-2302756" EndColor="-2302756" Style="gsHorizontal" Frame.Color="-4144960" Color="14474460"/>
+      <TfrxGradientView Name="Gradient62" Left="368,30736" Top="0,45671" Width="187,08627244" Height="18,14173228" Visibility="3" BeginColor="-2302756" EndColor="-2302756" Style="gsHorizontal" Frame.Color="-4144960" Color="14474460"/>
+      <TfrxGradientView Name="Gradient63" Left="556,37044" Top="0,67718" Width="159,874015748031" Height="18,14173228" Visibility="3" BeginColor="-2302756" EndColor="-2302756" Style="gsHorizontal" Frame.Color="-4144960" Color="14474460"/>
+      <TfrxGradientView Name="Gradient64" Left="556,14997" Top="18,48816945" Width="159,11811024" Height="18,89765" Visibility="3" EndColor="-1" Style="gsHorizontal" Frame.Color="-4144960" Color="16777215"/>
+      <TfrxMemoView Name="Memo71" Left="4,55906" Top="18,35436" Width="166,29932" Height="18,89765" Font.Charset="1" Font.Color="-16777195" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="[qrRelDetalheProf.&#34;PROFISSAO&#34;]"/>
+      <TfrxMemoView Name="Memo72" Left="185,9765" Top="18,35436" Width="173,85838" Height="18,89765" Font.Charset="1" Font.Color="-16777195" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="[qrRelDetalheProf.&#34;NATUREZA&#34;]"/>
+      <TfrxMemoView Name="Memo73" Left="374,17347" Top="18,35436" Width="173,85838" Height="18,89765" Font.Charset="1" Font.Color="-16777195" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="[qrRelDetalheProf.&#34;NIVEL&#34;]"/>
+      <TfrxMemoView Name="Memo74" Left="562,14997" Top="19,13389" Width="151,1812" Height="18,89765" Font.Charset="1" Font.Color="-16777195" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="[qrRelDetalheProf.&#34;EMPREGADOR&#34;]"/>
+      <TfrxGradientView Name="Gradient65" Left="-0,08661173" Top="55,84252945" Width="178,77165354" Height="18,89765" Visibility="3" EndColor="-1" Style="gsHorizontal" Frame.Color="-4144960" Color="16777215"/>
+      <TfrxGradientView Name="Gradient66" Left="179,53556" Top="55,84252945" Width="187,46456693" Height="18,89765" Visibility="3" EndColor="-1" Style="gsHorizontal" Frame.Color="-4144960" Color="16777215"/>
+      <TfrxGradientView Name="Gradient67" Left="367,73253" Top="55,84252945" Width="187,46456693" Height="18,89765" Visibility="3" EndColor="-1" Style="gsHorizontal" Frame.Color="-4144960" Color="16777215"/>
+      <TfrxGradientView Name="Gradient68" Left="1,13385827" Top="37,81107" Width="178,01574803" Height="18,14173228" Visibility="3" BeginColor="-2302756" EndColor="-2302756" Style="gsHorizontal" Frame.Color="-4144960" Color="14474460"/>
+      <TfrxMemoView Name="Memo75" Left="4,55906" Top="36,81107" Width="166,29932" Height="18,89765" Font.Charset="1" Font.Color="-16777193" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="Admissão"/>
+      <TfrxGradientView Name="Gradient69" Left="179,88992" Top="37,81107" Width="187,08627244" Height="18,14173228" Visibility="3" BeginColor="-2302756" EndColor="-2302756" Style="gsHorizontal" Frame.Color="-4144960" Color="14474460"/>
+      <TfrxMemoView Name="Memo76" Left="185,88992" Top="36,81107" Width="173,85838" Height="18,89765" Font.Charset="1" Font.Color="-16777193" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="Profissão"/>
+      <TfrxGradientView Name="Gradient70" Left="368,08689" Top="37,81107" Width="187,08627244" Height="18,14173228" Visibility="3" BeginColor="-2302756" EndColor="-2302756" Style="gsHorizontal" Frame.Color="-4144960" Color="14474460"/>
+      <TfrxMemoView Name="Memo77" Left="374,08689" Top="36,81107" Width="173,85838" Height="18,89765" Font.Charset="1" Font.Color="-16777193" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="Renda"/>
+      <TfrxGradientView Name="Gradient71" Left="556,14997" Top="38,03154" Width="159,874015748031" Height="18,14173228" Visibility="3" BeginColor="-2302756" EndColor="-2302756" Style="gsHorizontal" Frame.Color="-4144960" Color="14474460"/>
+      <TfrxMemoView Name="Memo78" Left="562,14997" Top="37,03154" Width="139,84261" Height="18,89765" Font.Charset="1" Font.Color="-16777193" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="Telefone"/>
+      <TfrxGradientView Name="Gradient72" Left="555,9295" Top="55,84252945" Width="159,11811024" Height="18,89765" Visibility="3" EndColor="-1" Style="gsHorizontal" Frame.Color="-4144960" Color="16777215"/>
+      <TfrxMemoView Name="Memo79" Left="4,33859" Top="55,70872" Width="166,29932" Height="18,89765" Font.Charset="1" Font.Color="-16777195" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="[qrRelDetalheProf.&#34;CNPJ&#34;]"/>
+      <TfrxMemoView Name="Memo80" Left="185,75603" Top="55,70872" Width="173,85838" Height="18,89765" Font.Charset="1" Font.Color="-16777195" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="[qrRelDetalheProf.&#34;CIDADE&#34;]"/>
+      <TfrxMemoView Name="Memo81" Left="373,953" Top="55,70872" Width="173,85838" Height="18,89765" DisplayFormat.FormatStr="%2.2n" DisplayFormat.Kind="fkNumeric" Font.Charset="1" Font.Color="-16777195" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="[qrRelDetalheProf.&#34;DATA_INICIO&#34;]"/>
+      <TfrxMemoView Name="Memo82" Left="561,9295" Top="56,48825" Width="151,1812" Height="18,89765" Font.Charset="1" Font.Color="-16777195" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="[qrRelDetalheProf.&#34;RENDA_BRUTA&#34;]"/>
+      <TfrxMemoView Name="Memo67" Left="4,77953" Top="0" Width="166,29932" Height="18,89765" Font.Charset="1" Font.Color="-16777193" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="Nome do Cônjuge"/>
+      <TfrxMemoView Name="Memo68" Left="186,11039" Top="0" Width="173,85838" Height="18,89765" Font.Charset="1" Font.Color="-16777193" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="CPF"/>
+      <TfrxMemoView Name="Memo69" Left="374,30736" Top="0" Width="173,85838" Height="18,89765" Font.Charset="1" Font.Color="-16777193" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="RG"/>
+      <TfrxMemoView Name="Memo70" Left="562,37044" Top="0,22047" Width="139,84261" Height="18,89765" Font.Charset="1" Font.Color="-16777193" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="Trabalho"/>
+      <TfrxMemoView Name="Memo84" Left="0" Top="0" Width="716,22047244" Height="75,5906" Font.Charset="1" Font.Color="-16777195" Font.Height="-13" Font.Name="Calibri" Font.Style="1" Frame.Color="8421504" Frame.Typ="15" ParentFont="False" Text="">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+    </TfrxDetailData>
+    <TfrxMasterData Name="MasterData1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="472,44125" Left="0" Top="170,07885" Width="718,1107" ColumnWidth="0" ColumnGap="0" DataSet="qrRel" DataSetName="qrRel" RowCount="0">
+      <TfrxGradientView Name="Gradient51" Left="0" Top="368,18924" Width="369,25984252" Height="18,14173228" Visibility="3" BeginColor="-2302756" EndColor="-2302756" Style="gsHorizontal" Frame.Color="-4144960" Color="14474460"/>
+      <TfrxGradientView Name="Gradient52" Left="369,86642" Top="368,18924" Width="346,96062992" Height="18,14173228" Visibility="3" BeginColor="-2302756" EndColor="-2302756" Style="gsHorizontal" Frame.Color="-4144960" Color="14474460"/>
+      <TfrxGradientView Name="Gradient13" Left="1,13385827" Top="74,72440945" Width="178,77165354" Height="18,89765" Visibility="3" EndColor="-1" Style="gsHorizontal" Frame.Color="-4144960" Color="16777215"/>
+      <TfrxGradientView Name="Gradient14" Left="180,75603" Top="74,72440945" Width="187,46456693" Height="18,89765" Visibility="3" EndColor="-1" Style="gsHorizontal" Frame.Color="-4144960" Color="16777215"/>
+      <TfrxGradientView Name="Gradient15" Left="368,953" Top="74,72440945" Width="187,46456693" Height="18,89765" Visibility="3" EndColor="-1" Style="gsHorizontal" Frame.Color="-4144960" Color="16777215"/>
+      <TfrxGradientView Name="Gradient2" Left="1,45671" Top="0,11812" Width="715,08661417" Height="18,89765" BeginColor="-5658199" EndColor="-4144960" Style="gsHorizontal" Frame.Color="-4144960" Color="11842740"/>
+      <TfrxGradientView Name="Gradient3" Left="1,51181102" Top="18,89765" Width="715,08661417" Height="18,89765" Visibility="3" BeginColor="-2302756" EndColor="-2302756" Style="gsHorizontal" Frame.Color="-4144960" Color="14474460"/>
+      <TfrxMemoView Name="Memo4" Left="6" Top="18,89765" Width="702,99258" Height="18,89765" Font.Charset="1" Font.Color="-16777193" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="Endereço"/>
+      <TfrxGradientView Name="Gradient9" Left="0,77953" Top="56,69295" Width="179,52721244" Height="18,14173228" Visibility="3" BeginColor="-2302756" EndColor="-2302756" Style="gsHorizontal" Frame.Color="-4144960" Color="14474460"/>
+      <TfrxMemoView Name="Memo5" Left="5,77953" Top="55,69295" Width="166,29932" Height="18,89765" Font.Charset="1" Font.Color="-16777193" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="CPF/CNPJ"/>
+      <TfrxGradientView Name="Gradient10" Left="181,11039" Top="56,69295" Width="187,08627244" Height="18,14173228" Visibility="3" BeginColor="-2302756" EndColor="-2302756" Style="gsHorizontal" Frame.Color="-4144960" Color="14474460"/>
+      <TfrxMemoView Name="Memo6" Left="187,11039" Top="55,69295" Width="173,85838" Height="18,89765" Font.Charset="1" Font.Color="-16777193" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="Rg/IE"/>
+      <TfrxGradientView Name="Gradient11" Left="369,30736" Top="56,69295" Width="187,08627244" Height="18,14173228" Visibility="3" BeginColor="-2302756" EndColor="-2302756" Style="gsHorizontal" Frame.Color="-4144960" Color="14474460"/>
+      <TfrxMemoView Name="Memo7" Left="375,30736" Top="55,69295" Width="173,85838" Height="18,89765" Font.Charset="1" Font.Color="-16777193" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="Data de Emissão"/>
+      <TfrxGradientView Name="Gradient12" Left="557,37044" Top="56,91342" Width="159,11811024" Height="18,14173228" Visibility="3" BeginColor="-2302756" EndColor="-2302756" Style="gsHorizontal" Frame.Color="-4144960" Color="14474460"/>
+      <TfrxMemoView Name="Memo8" Left="563,37044" Top="55,91342" Width="139,84261" Height="18,89765" Font.Charset="1" Font.Color="-16777193" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="Orgão Emissor"/>
+      <TfrxGradientView Name="Gradient16" Left="557,14997" Top="74,72440945" Width="159,11811024" Height="18,89765" Visibility="3" EndColor="-1" Style="gsHorizontal" Frame.Color="-4144960" Color="16777215"/>
+      <TfrxMemoView Name="Memo14" Left="5,55906" Top="74,5906" Width="166,29932" Height="18,89765" Font.Charset="1" Font.Color="-16777195" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="[qrRel.&#34;CLIENTE_CPF_CNPJ&#34;]"/>
+      <TfrxMemoView Name="Memo15" Left="186,9765" Top="74,5906" Width="173,85838" Height="18,89765" Font.Charset="1" Font.Color="-16777195" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="[qrRel.&#34;CLIENTE_RG_IE&#34;]"/>
+      <TfrxMemoView Name="Memo16" Left="375,17347" Top="74,5906" Width="173,85838" Height="18,89765" Font.Charset="1" Font.Color="-16777195" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="[qrRel.&#34;CLIENTE_DATA_RG&#34;]"/>
+      <TfrxMemoView Name="Memo17" Left="563,14997" Top="75,37013" Width="151,1812" Height="18,89765" Font.Charset="1" Font.Color="-16777195" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="[qrRel.&#34;CLIENTE_ORGAO&#34;]"/>
+      <TfrxGradientView Name="Gradient4" Left="1,51181102" Top="37,92913386" Width="715,08661417" Height="18,89765" Visibility="3" EndColor="-1" Style="gsHorizontal" Frame.Color="-4144960" Color="16777215"/>
+      <TfrxMemoView Name="Memo3" Left="5,77953" Top="0" Width="702,99258" Height="18,89765" Font.Charset="1" Font.Color="-1" Font.Height="-13" Font.Name="Calibri" Font.Style="1" ParentFont="False" Text="[qrRel.&#34;CLIENTE&#34;]"/>
+      <TfrxMemoView Name="Memo13" Left="5,55906" Top="37,79527559" Width="702,99258" Height="18,89765" Font.Charset="1" Font.Color="-16777195" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="[qrRel.&#34;CLIENTE_ENDERECO&#34;]"/>
+      <TfrxGradientView Name="Gradient5" Left="1,13385827" Top="111,72440945" Width="178,77165354" Height="18,89765" Visibility="3" EndColor="-1" Style="gsHorizontal" Frame.Color="-4144960" Color="16777215"/>
+      <TfrxGradientView Name="Gradient6" Left="180,75603" Top="111,72440945" Width="187,46456693" Height="18,89765" Visibility="3" EndColor="-1" Style="gsHorizontal" Frame.Color="-4144960" Color="16777215"/>
+      <TfrxGradientView Name="Gradient7" Left="368,953" Top="111,72440945" Width="187,46456693" Height="18,89765" Visibility="3" EndColor="-1" Style="gsHorizontal" Frame.Color="-4144960" Color="16777215"/>
+      <TfrxGradientView Name="Gradient8" Left="0,77953" Top="93,69295" Width="179,52721244" Height="18,14173228" Visibility="3" BeginColor="-2302756" EndColor="-2302756" Style="gsHorizontal" Frame.Color="-4144960" Color="14474460"/>
+      <TfrxMemoView Name="Memo9" Left="5,77953" Top="92,69295" Width="166,29932" Height="18,89765" Font.Charset="1" Font.Color="-16777193" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="Data de Nascimento"/>
+      <TfrxGradientView Name="Gradient17" Left="181,11039" Top="93,69295" Width="187,08627244" Height="18,14173228" Visibility="3" BeginColor="-2302756" EndColor="-2302756" Style="gsHorizontal" Frame.Color="-4144960" Color="14474460"/>
+      <TfrxMemoView Name="Memo10" Left="187,11039" Top="92,69295" Width="173,85838" Height="18,89765" Font.Charset="1" Font.Color="-16777193" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="Telefone"/>
+      <TfrxGradientView Name="Gradient18" Left="369,30736" Top="93,69295" Width="187,08627244" Height="18,14173228" Visibility="3" BeginColor="-2302756" EndColor="-2302756" Style="gsHorizontal" Frame.Color="-4144960" Color="14474460"/>
+      <TfrxMemoView Name="Memo11" Left="375,30736" Top="92,69295" Width="173,85838" Height="18,89765" Font.Charset="1" Font.Color="-16777193" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="Celular"/>
+      <TfrxGradientView Name="Gradient19" Left="557,37044" Top="93,91342" Width="159,11811024" Height="18,14173228" Visibility="3" BeginColor="-2302756" EndColor="-2302756" Style="gsHorizontal" Frame.Color="-4144960" Color="14474460"/>
+      <TfrxMemoView Name="Memo12" Left="563,37044" Top="92,91342" Width="139,84261" Height="18,89765" Font.Charset="1" Font.Color="-16777193" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="Fax"/>
+      <TfrxGradientView Name="Gradient20" Left="557,14997" Top="111,72440945" Width="159,11811024" Height="18,89765" Visibility="3" EndColor="-1" Style="gsHorizontal" Frame.Color="-4144960" Color="16777215"/>
+      <TfrxMemoView Name="Memo18" Left="5,55906" Top="111,5906" Width="166,29932" Height="18,89765" Font.Charset="1" Font.Color="-16777195" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="[qrRel.&#34;CLIENTE_NASC&#34;]"/>
+      <TfrxMemoView Name="Memo19" Left="186,9765" Top="111,5906" Width="173,85838" Height="18,89765" Font.Charset="1" Font.Color="-16777195" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="[qrRel.&#34;CLIENTE_TELEFONE&#34;]"/>
+      <TfrxMemoView Name="Memo20" Left="375,17347" Top="111,5906" Width="173,85838" Height="18,89765" Font.Charset="1" Font.Color="-16777195" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="[qrRel.&#34;CLIENTE_CELULAR&#34;]"/>
+      <TfrxMemoView Name="Memo21" Left="563,14997" Top="112,37013" Width="151,1812" Height="18,89765" Font.Charset="1" Font.Color="-16777195" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="[qrRel.&#34;CLIENTE_FAX&#34;]"/>
+      <TfrxGradientView Name="Gradient21" Left="0,91338827" Top="149,07876945" Width="179,1496063" Height="18,89765" Visibility="3" EndColor="-1" Style="gsHorizontal" Frame.Color="-4144960" Color="16777215"/>
+      <TfrxGradientView Name="Gradient22" Left="181,03937008" Top="149,07876945" Width="187,08661417" Height="18,89765" Visibility="3" EndColor="-1" Style="gsHorizontal" Frame.Color="-4144960" Color="16777215"/>
+      <TfrxGradientView Name="Gradient23" Left="368,73253" Top="149,07876945" Width="187,46456693" Height="18,89765" Visibility="3" EndColor="-1" Style="gsHorizontal" Frame.Color="-4144960" Color="16777215"/>
+      <TfrxGradientView Name="Gradient24" Left="0,75590551" Top="131,04731" Width="179,1496063" Height="18,14173228" Visibility="3" BeginColor="-2302756" EndColor="-2302756" Style="gsHorizontal" Frame.Color="-4144960" Color="14474460"/>
+      <TfrxMemoView Name="Memo23" Left="5,55906" Top="130,04731" Width="166,29932" Height="18,89765" Font.Charset="1" Font.Color="-16777193" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="Sexo"/>
+      <TfrxGradientView Name="Gradient25" Left="180,88992" Top="131,04731" Width="187,08627244" Height="18,14173228" Visibility="3" BeginColor="-2302756" EndColor="-2302756" Style="gsHorizontal" Frame.Color="-4144960" Color="14474460"/>
+      <TfrxMemoView Name="Memo24" Left="186,88992" Top="130,04731" Width="173,85838" Height="18,89765" Font.Charset="1" Font.Color="-16777193" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="E-mail"/>
+      <TfrxGradientView Name="Gradient26" Left="369,08689" Top="131,04731" Width="187,08627244" Height="18,14173228" Visibility="3" BeginColor="-2302756" EndColor="-2302756" Style="gsHorizontal" Frame.Color="-4144960" Color="14474460"/>
+      <TfrxMemoView Name="Memo25" Left="375,08689" Top="130,04731" Width="173,85838" Height="18,89765" Font.Charset="1" Font.Color="-16777193" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="Ponto Referência"/>
+      <TfrxGradientView Name="Gradient27" Left="557,14997" Top="131,26778" Width="159,11811024" Height="18,14173228" Visibility="3" BeginColor="-2302756" EndColor="-2302756" Style="gsHorizontal" Frame.Color="-4144960" Color="14474460"/>
+      <TfrxMemoView Name="Memo26" Left="563,14997" Top="130,26778" Width="139,84261" Height="18,89765" Font.Charset="1" Font.Color="-16777193" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="Naruralidade"/>
+      <TfrxGradientView Name="Gradient28" Left="556,9295" Top="149,07876945" Width="159,11811024" Height="18,89765" Visibility="3" EndColor="-1" Style="gsHorizontal" Frame.Color="-4144960" Color="16777215"/>
+      <TfrxMemoView Name="Memo27" Left="5,33859" Top="148,94496" Width="166,29932" Height="18,89765" Font.Charset="1" Font.Color="-16777195" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="[qrRel.&#34;CLIENTE_SEXO&#34;]"/>
+      <TfrxMemoView Name="Memo28" Left="186,75603" Top="148,94496" Width="173,85838" Height="18,89765" Font.Charset="1" Font.Color="-16777195" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="[qrRel.&#34;CLIENTE_EMAIL&#34;]"/>
+      <TfrxMemoView Name="Memo29" Left="374,953" Top="148,94496" Width="173,85838" Height="18,89765" Font.Charset="1" Font.Color="-16777195" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="[qrRel.&#34;CLIENTE_PONTO_REF&#34;]"/>
+      <TfrxMemoView Name="Memo30" Left="562,9295" Top="149,72449" Width="151,1812" Height="18,89765" Font.Charset="1" Font.Color="-16777195" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="[qrRel.&#34;CLIENTE_NATURALIDADE&#34;]"/>
+      <TfrxMemoView Name="Memo32" Align="baCenter" Left="102,04731" Top="173,9765" Width="514,01608" Height="18,89765" Font.Charset="1" Font.Color="-16777195" Font.Height="-15" Font.Name="Calibri" Font.Style="1" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="Dados Familiares"/>
+      <TfrxGradientView Name="Gradient29" Left="0,13385827" Top="214,68513945" Width="368,50393701" Height="18,89765" Visibility="3" EndColor="-1" Style="gsHorizontal" Frame.Color="-4144960" Color="16777215"/>
+      <TfrxGradientView Name="Gradient30" Left="369,51206" Top="214,68513945" Width="346,20482693" Height="18,89765" Visibility="3" EndColor="-1" Style="gsHorizontal" Frame.Color="-4144960" Color="16777215"/>
+      <TfrxGradientView Name="Gradient32" Left="0" Top="196,65368" Width="368,50371244" Height="18,14173228" Visibility="3" BeginColor="-2302756" EndColor="-2302756" Style="gsHorizontal" Frame.Color="-4144960" Color="14474460"/>
+      <TfrxMemoView Name="Memo33" Left="4,77953" Top="195,65368" Width="366,61441" Height="18,89765" Font.Charset="1" Font.Color="-16777193" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="Nome do Pai"/>
+      <TfrxGradientView Name="Gradient33" Left="369,63779528" Top="196,65368" Width="346,20472441" Height="18,14173228" Visibility="3" BeginColor="-2302756" EndColor="-2302756" Style="gsHorizontal" Frame.Color="-4144960" Color="14474460"/>
+      <TfrxMemoView Name="Memo34" Left="378,86642" Top="195,65368" Width="336,37817" Height="18,89765" Font.Charset="1" Font.Color="-16777193" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="Nome da Mãe"/>
+      <TfrxMemoView Name="Memo37" Left="4,55906" Top="214,55133" Width="362,83488" Height="18,89765" Font.Charset="1" Font.Color="-16777195" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="[qrRel.&#34;CLIENTE_PAI&#34;]"/>
+      <TfrxMemoView Name="Memo38" Left="378,73253" Top="214,55133" Width="336,37817" Height="18,89765" Font.Charset="1" Font.Color="-16777195" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="[qrRel.&#34;CLIENTE_MAE&#34;]"/>
+      <TfrxMemoView Name="Memo36" Align="baCenter" Left="102,04731" Top="240,34663" Width="514,01608" Height="18,89765" Font.Charset="1" Font.Color="-16777195" Font.Height="-15" Font.Name="Calibri" Font.Style="1" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="Dados Cônjuge"/>
+      <TfrxGradientView Name="Gradient31" Left="1,13385827" Top="281,76398945" Width="178,77165354" Height="18,89765" Visibility="3" EndColor="-1" Style="gsHorizontal" Frame.Color="-4144960" Color="16777215"/>
+      <TfrxGradientView Name="Gradient34" Left="180,75603" Top="281,76398945" Width="187,46456693" Height="18,89765" Visibility="3" EndColor="-1" Style="gsHorizontal" Frame.Color="-4144960" Color="16777215"/>
+      <TfrxGradientView Name="Gradient35" Left="368,953" Top="281,76398945" Width="187,46456693" Height="18,89765" Visibility="3" EndColor="-1" Style="gsHorizontal" Frame.Color="-4144960" Color="16777215"/>
+      <TfrxGradientView Name="Gradient36" Left="0,77953" Top="263,73253" Width="179,52721244" Height="18,14173228" Visibility="3" BeginColor="-2302756" EndColor="-2302756" Style="gsHorizontal" Frame.Color="-4144960" Color="14474460"/>
+      <TfrxMemoView Name="Memo39" Left="5,77953" Top="262,73253" Width="166,29932" Height="18,89765" Font.Charset="1" Font.Color="-16777193" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="Nome do Cônjuge"/>
+      <TfrxGradientView Name="Gradient37" Left="181,11039" Top="263,73253" Width="187,08627244" Height="18,14173228" Visibility="3" BeginColor="-2302756" EndColor="-2302756" Style="gsHorizontal" Frame.Color="-4144960" Color="14474460"/>
+      <TfrxMemoView Name="Memo40" Left="187,11039" Top="262,73253" Width="173,85838" Height="18,89765" Font.Charset="1" Font.Color="-16777193" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="CPF"/>
+      <TfrxGradientView Name="Gradient38" Left="369,30736" Top="263,73253" Width="187,08627244" Height="18,14173228" Visibility="3" BeginColor="-2302756" EndColor="-2302756" Style="gsHorizontal" Frame.Color="-4144960" Color="14474460"/>
+      <TfrxMemoView Name="Memo41" Left="375,30736" Top="262,73253" Width="173,85838" Height="18,89765" Font.Charset="1" Font.Color="-16777193" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="RG"/>
+      <TfrxGradientView Name="Gradient39" Left="557,37044" Top="263,953" Width="159,11811024" Height="18,14173228" Visibility="3" BeginColor="-2302756" EndColor="-2302756" Style="gsHorizontal" Frame.Color="-4144960" Color="14474460"/>
+      <TfrxMemoView Name="Memo42" Left="563,37044" Top="262,953" Width="139,84261" Height="18,89765" Font.Charset="1" Font.Color="-16777193" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="Trabalho"/>
+      <TfrxGradientView Name="Gradient40" Left="557,14997" Top="281,76398945" Width="159,11811024" Height="18,89765" Visibility="3" EndColor="-1" Style="gsHorizontal" Frame.Color="-4144960" Color="16777215"/>
+      <TfrxMemoView Name="Memo43" Left="5,55906" Top="281,63018" Width="166,29932" Height="18,89765" Font.Charset="1" Font.Color="-16777195" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="[qrRel.&#34;CONJUGE_NOME&#34;]"/>
+      <TfrxMemoView Name="Memo44" Left="186,9765" Top="281,63018" Width="173,85838" Height="18,89765" Font.Charset="1" Font.Color="-16777195" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="[qrRel.&#34;CONJUGE_CPF&#34;]"/>
+      <TfrxMemoView Name="Memo45" Left="375,17347" Top="281,63018" Width="173,85838" Height="18,89765" Font.Charset="1" Font.Color="-16777195" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="[qrRel.&#34;CONJUGE_RG&#34;]"/>
+      <TfrxMemoView Name="Memo46" Left="563,14997" Top="282,40971" Width="151,1812" Height="18,89765" Font.Charset="1" Font.Color="-16777195" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="[qrRel.&#34;CONJUGE_TRABALHO&#34;]"/>
+      <TfrxGradientView Name="Gradient41" Left="0,91338827" Top="319,11834945" Width="178,77165354" Height="18,89765" Visibility="3" EndColor="-1" Style="gsHorizontal" Frame.Color="-4144960" Color="16777215"/>
+      <TfrxGradientView Name="Gradient42" Left="180,53556" Top="319,11834945" Width="187,46456693" Height="18,89765" Visibility="3" EndColor="-1" Style="gsHorizontal" Frame.Color="-4144960" Color="16777215"/>
+      <TfrxGradientView Name="Gradient43" Left="368,73253" Top="319,11834945" Width="187,46456693" Height="18,89765" Visibility="3" EndColor="-1" Style="gsHorizontal" Frame.Color="-4144960" Color="16777215"/>
+      <TfrxGradientView Name="Gradient44" Left="0,55906" Top="301,08689" Width="179,52721244" Height="18,14173228" Visibility="3" BeginColor="-2302756" EndColor="-2302756" Style="gsHorizontal" Frame.Color="-4144960" Color="14474460"/>
+      <TfrxMemoView Name="Memo47" Left="5,55906" Top="300,08689" Width="166,29932" Height="18,89765" Font.Charset="1" Font.Color="-16777193" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="Admissão"/>
+      <TfrxGradientView Name="Gradient45" Left="180,88992" Top="301,08689" Width="187,08627244" Height="18,14173228" Visibility="3" BeginColor="-2302756" EndColor="-2302756" Style="gsHorizontal" Frame.Color="-4144960" Color="14474460"/>
+      <TfrxMemoView Name="Memo48" Left="186,88992" Top="300,08689" Width="173,85838" Height="18,89765" Font.Charset="1" Font.Color="-16777193" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="Profissão"/>
+      <TfrxGradientView Name="Gradient46" Left="369,08689" Top="301,08689" Width="187,08627244" Height="18,14173228" Visibility="3" BeginColor="-2302756" EndColor="-2302756" Style="gsHorizontal" Frame.Color="-4144960" Color="14474460"/>
+      <TfrxMemoView Name="Memo49" Left="375,08689" Top="300,08689" Width="173,85838" Height="18,89765" Font.Charset="1" Font.Color="-16777193" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="Renda"/>
+      <TfrxGradientView Name="Gradient47" Left="557,14997" Top="301,30736" Width="159,11811024" Height="18,14173228" Visibility="3" BeginColor="-2302756" EndColor="-2302756" Style="gsHorizontal" Frame.Color="-4144960" Color="14474460"/>
+      <TfrxMemoView Name="Memo50" Left="563,14997" Top="300,30736" Width="139,84261" Height="18,89765" Font.Charset="1" Font.Color="-16777193" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="Telefone"/>
+      <TfrxGradientView Name="Gradient48" Left="556,9295" Top="319,11834945" Width="159,11811024" Height="18,89765" Visibility="3" EndColor="-1" Style="gsHorizontal" Frame.Color="-4144960" Color="16777215"/>
+      <TfrxMemoView Name="Memo51" Left="5,33859" Top="318,98454" Width="166,29932" Height="18,89765" Font.Charset="1" Font.Color="-16777195" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="[qrRel.&#34;CONJUGE_ADMISSAO&#34;]"/>
+      <TfrxMemoView Name="Memo52" Left="186,75603" Top="318,98454" Width="173,85838" Height="18,89765" Font.Charset="1" Font.Color="-16777195" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="[qrRel.&#34;CONJUGE_PROFISSAO&#34;]"/>
+      <TfrxMemoView Name="Memo53" Left="374,953" Top="318,98454" Width="173,85838" Height="18,89765" DisplayFormat.FormatStr="%2.2n" DisplayFormat.Kind="fkNumeric" Font.Charset="1" Font.Color="-16777195" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="[qrRel.&#34;CONJUGE_RENDA&#34;]"/>
+      <TfrxMemoView Name="Memo54" Left="562,9295" Top="319,76407" Width="151,1812" Height="18,89765" Font.Charset="1" Font.Color="-16777195" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="[qrRel.&#34;CONJUGE_FONE&#34;]"/>
+      <TfrxMemoView Name="Memo56" Align="baCenter" Left="102,04731" Top="344,51206" Width="514,01608" Height="18,89765" Font.Charset="1" Font.Color="-16777195" Font.Height="-15" Font.Name="Calibri" Font.Style="1" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="Autorizados a Comprar"/>
+      <TfrxGradientView Name="Gradient49" Left="0,13385827" Top="386,22069945" Width="368,50393701" Height="18,89765" Visibility="3" EndColor="-1" Style="gsHorizontal" Frame.Color="-4144960" Color="16777215"/>
+      <TfrxGradientView Name="Gradient50" Left="369,51206" Top="386,22069945" Width="346,20482693" Height="18,89765" Visibility="3" EndColor="-1" Style="gsHorizontal" Frame.Color="-4144960" Color="16777215"/>
+      <TfrxMemoView Name="Memo57" Left="4,77953" Top="367,18924" Width="366,61441" Height="18,89765" Font.Charset="1" Font.Color="-16777193" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="Pessoa"/>
+      <TfrxMemoView Name="Memo58" Left="376,86642" Top="367,18924" Width="336,37817" Height="18,89765" Font.Charset="1" Font.Color="-16777193" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="CPF"/>
+      <TfrxMemoView Name="Memo59" Left="4,55906" Top="386,08689" Width="362,83488" Height="18,89765" Font.Charset="1" Font.Color="-16777195" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="[qrRel.&#34;AUTORIZADO01&#34;]"/>
+      <TfrxMemoView Name="Memo60" Left="378,73253" Top="386,08689" Width="336,37817" Height="18,89765" Font.Charset="1" Font.Color="-16777195" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="[qrRel.&#34;AUT01&#34;]"/>
+      <TfrxGradientView Name="Gradient53" Left="0,69291827" Top="405,13411945" Width="368,50393701" Height="18,89765" Visibility="3" EndColor="-1" Style="gsHorizontal" Frame.Color="-4144960" Color="16777215"/>
+      <TfrxGradientView Name="Gradient54" Left="370,07112" Top="405,13411945" Width="346,20482693" Height="18,89765" Visibility="3" EndColor="-1" Style="gsHorizontal" Frame.Color="-4144960" Color="16777215"/>
+      <TfrxMemoView Name="Memo63" Left="5,11812" Top="405,00031" Width="362,83488" Height="18,89765" Font.Charset="1" Font.Color="-16777195" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="[qrRel.&#34;AUTORIZADO02&#34;]"/>
+      <TfrxMemoView Name="Memo64" Left="379,29159" Top="405,00031" Width="336,37817" Height="18,89765" Font.Charset="1" Font.Color="-16777195" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="[qrRel.&#34;AUT02&#34;]"/>
+      <TfrxGradientView Name="Gradient55" Left="0,55906" Top="423,57505945" Width="368,50393701" Height="18,89765" Visibility="3" EndColor="-1" Style="gsHorizontal" Frame.Color="-4144960" Color="16777215"/>
+      <TfrxGradientView Name="Gradient56" Left="369,93726173" Top="423,57505945" Width="346,20482693" Height="18,89765" Visibility="3" EndColor="-1" Style="gsHorizontal" Frame.Color="-4144960" Color="16777215"/>
+      <TfrxMemoView Name="Memo61" Left="4,98426173" Top="423,44125" Width="362,83488" Height="18,89765" Font.Charset="1" Font.Color="-16777195" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="[qrRel.&#34;AUTORIZADO03&#34;]"/>
+      <TfrxMemoView Name="Memo62" Left="379,15773173" Top="423,44125" Width="336,37817" Height="18,89765" Font.Charset="1" Font.Color="-16777195" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="[qrRel.&#34;AUT03&#34;]"/>
+      <TfrxMemoView Name="Memo66" Align="baCenter" Left="102,04731" Top="449,76407" Width="514,01608" Height="18,89765" Font.Charset="1" Font.Color="-16777195" Font.Height="-15" Font.Name="Calibri" Font.Style="1" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="Profissões"/>
+      <TfrxMemoView Name="Memo31" Left="0" Top="0" Width="716,220472440945" Height="170,07885" Font.Charset="1" Font.Color="-16777195" Font.Height="-13" Font.Name="Calibri" Font.Style="1" Frame.Color="8421504" Frame.Typ="15" ParentFont="False" Text="">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo35" Left="0" Top="196,53556" Width="716,220472440945" Height="37,7953" Font.Charset="1" Font.Color="-16777195" Font.Height="-13" Font.Name="Calibri" Font.Style="1" Frame.Color="8421504" Frame.Typ="15" ParentFont="False" Text="">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo55" Left="0" Top="263,5671" Width="716,220472440945" Height="75,5906" Font.Charset="1" Font.Color="-16777195" Font.Height="-13" Font.Name="Calibri" Font.Style="1" Frame.Color="8421504" Frame.Typ="15" ParentFont="False" Text="">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo65" Left="0" Top="366,61441" Width="716,22047244" Height="75,5906" Font.Charset="1" Font.Color="-16777195" Font.Height="-13" Font.Name="Calibri" Font.Style="1" Frame.Color="8421504" Frame.Typ="15" ParentFont="False" Text="">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+    </TfrxMasterData>
+    <TfrxHeader Name="Header1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="30,23624" Left="0" Top="774,80365" Width="718,1107">
+      <TfrxMemoView Name="Memo86" Align="baCenter" Left="102,04731" Top="3,77953" Width="514,01608" Height="18,89765" Font.Charset="1" Font.Color="-16777195" Font.Height="-15" Font.Name="Calibri" Font.Style="1" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="Referências"/>
+    </TfrxHeader>
+    <TfrxDetailData Name="DetailData3" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="49,13389" Left="0" Top="952,44156" Width="718,1107" ColumnWidth="0" ColumnGap="0" DataSet="qrRelContato" DataSetName="qrRelContato" RowCount="0">
+      <TfrxGradientView Name="Gradient81" Left="367,953" Top="18,48816945" Width="187,46456693" Height="18,89765" Visibility="3" EndColor="-1" Style="gsHorizontal" Frame.Color="-4144960" Color="16777215"/>
+      <TfrxMemoView Name="Memo83" Left="374,17347" Top="18,35436" Width="173,85838" Height="18,89765" Font.Charset="1" Font.Color="-16777195" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="[qrRelContato.&#34;CONTATO_PREJUDICADO&#34;]"/>
+      <TfrxGradientView Name="Gradient82" Left="0,13385827" Top="18,48816945" Width="186,33071354" Height="18,89765" Visibility="3" EndColor="-1" Style="gsHorizontal" Frame.Color="-4144960" Color="16777215"/>
+      <TfrxGradientView Name="Gradient83" Left="179,75603" Top="18,48816945" Width="187,46456693" Height="18,89765" Visibility="3" EndColor="-1" Style="gsHorizontal" Frame.Color="-4144960" Color="16777215"/>
+      <TfrxGradientView Name="Gradient84" Left="0" Top="0,45671" Width="190,86580244" Height="18,14173228" Visibility="3" BeginColor="-2302756" EndColor="-2302756" Style="gsHorizontal" Frame.Color="-4144960" Color="14474460"/>
+      <TfrxGradientView Name="Gradient85" Left="180,11039" Top="0,45671" Width="187,08627244" Height="18,14173228" Visibility="3" BeginColor="-2302756" EndColor="-2302756" Style="gsHorizontal" Frame.Color="-4144960" Color="14474460"/>
+      <TfrxGradientView Name="Gradient86" Left="368,30736" Top="0,45671" Width="187,08627244" Height="18,14173228" Visibility="3" BeginColor="-2302756" EndColor="-2302756" Style="gsHorizontal" Frame.Color="-4144960" Color="14474460"/>
+      <TfrxGradientView Name="Gradient87" Left="556,37044" Top="0,67718" Width="159,874015748031" Height="18,14173228" Visibility="3" BeginColor="-2302756" EndColor="-2302756" Style="gsHorizontal" Frame.Color="-4144960" Color="14474460"/>
+      <TfrxGradientView Name="Gradient88" Left="556,14997" Top="18,48816945" Width="159,11811024" Height="18,89765" Visibility="3" EndColor="-1" Style="gsHorizontal" Frame.Color="-4144960" Color="16777215"/>
+      <TfrxMemoView Name="Memo89" Left="4,55906" Top="18,35436" Width="359,05535" Height="18,89765" Font.Charset="1" Font.Color="-16777195" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="[qrRelContato.&#34;PRODUTO&#34;]"/>
+      <TfrxMemoView Name="Memo90" Left="562,14997" Top="19,13389" Width="151,1812" Height="18,89765" Font.Charset="1" Font.Color="-16777195" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="[qrRelContato.&#34;TELEFONE_UTILIZADO&#34;]"/>
+      <TfrxMemoView Name="Memo91" Left="4,77953" Top="0" Width="355,27582" Height="18,89765" Font.Charset="1" Font.Color="-16777193" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="Produto"/>
+      <TfrxMemoView Name="Memo92" Left="374,30736" Top="0" Width="173,85838" Height="18,89765" Font.Charset="1" Font.Color="-16777193" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="Contato prejudicado"/>
+      <TfrxMemoView Name="Memo93" Left="562,37044" Top="0,22047" Width="139,84261" Height="18,89765" Font.Charset="1" Font.Color="-16777193" Font.Height="-13" Font.Name="Calibri" Font.Style="0" ParentFont="False" Text="Telefone"/>
+      <TfrxMemoView Name="Memo94" Left="0" Top="0" Width="716,22047244" Height="37,7953" Font.Charset="1" Font.Color="-16777195" Font.Height="-13" Font.Name="Calibri" Font.Style="1" Frame.Color="8421504" Frame.Typ="15" ParentFont="False" Text="">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+    </TfrxDetailData>
+    <TfrxHeader Name="Header2" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="30,23624" Left="0" Top="899,52814" Width="718,1107">
+      <TfrxMemoView Name="Memo95" Align="baCenter" Left="102,04731" Top="3,77953" Width="514,01608" Height="18,89765" Font.Charset="1" Font.Color="-16777195" Font.Height="-15" Font.Name="Calibri" Font.Style="1" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="Contato"/>
+    </TfrxHeader>
+  </TfrxReportPage>
+</TfrxReport>

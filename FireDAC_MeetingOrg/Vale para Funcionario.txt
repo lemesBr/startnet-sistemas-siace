@@ -1,0 +1,66 @@
+/******************************************************************************/
+/***                       FUNCIONARIO_VALE                                 ***/
+/******************************************************************************/
+
+CREATE TABLE FUNCIONARIO_VALE (
+    ID          INTEGER PRIMARY KEY,
+    ID_CLIENTE  INTEGER,
+    LANCAMENTO  DATE,
+    USUARIO     VARCHAR(100),
+    VALOR       DECIMAL(12,2),
+    MOTIVO      VARCHAR(100),
+    ALTERACAO   DATE,
+    QUITADO     INTEGER DEFAULT 0
+);
+
+CREATE GENERATOR GEN_FUNCIONARIO_VALE_ID;
+
+ALTER TABLE FUNCIONARIO_VALE ADD CONSTRAINT FK_FUNCIONARIO_VALE_1 FOREIGN KEY (ID_CLIENTE) REFERENCES CLIENTES (CODIGO);
+
+CREATE OR ALTER TRIGGER FUNCIONARIO_VALE_BI FOR FUNCIONARIO_VALE
+ACTIVE BEFORE INSERT POSITION 0
+as
+begin
+  if (new.id is null) then
+    new.id = gen_id(gen_funcionario_vale_id,1);
+end
+
+/******************************************************************************/
+/***                       FUNCIONARIO_PAGO                                 ***/
+/******************************************************************************/
+
+CREATE TABLE FUNCIONARIO_PAGO (
+    ID          INTEGER PRIMARY KEY,
+    ID_CLIENTE  INTEGER,
+    DATA        DATE,
+    VALOR       DECIMAL(12,2)
+);
+
+CREATE GENERATOR GEN_FUNCIONARIO_PAGO_ID;
+
+ALTER TABLE FUNCIONARIO_PAGO ADD CONSTRAINT FK_FUNCIONARIO_PAGO_1 FOREIGN KEY (ID_CLIENTE) REFERENCES CLIENTES (CODIGO);
+
+CREATE OR ALTER TRIGGER FUNCIONARIO_PAGO_BI FOR FUNCIONARIO_PAGO
+ACTIVE BEFORE INSERT POSITION 0
+as
+begin
+  if (new.id is null) then
+    new.id = gen_id(gen_funcionario_pago_id,1);
+end
+
+
+/******************************************************************************/
+/***                       CHEQUES_EMITIDOS                                 ***/
+/******************************************************************************/
+
+ADICIONAR ID_VALE: INTEGER
+
+ALTER TABLE CHEQUES_EMITIDOS ADD CONSTRAINT FK_CHEQUES_EMITIDOS_1 FOREIGN KEY (ID_VALE) REFERENCES FUNCIONARIO_VALE (ID) ON DELETE CASCADE;
+
+/******************************************************************************/
+/***                       MOVIMENTO_DIARIO                                 ***/
+/******************************************************************************/
+
+ADICIONAR ID_VALE: INTEGER
+
+ALTER TABLE MOVIMENTO_DIARIO ADD CONSTRAINT FK_MOVIMENTO_DIARIO_1 FOREIGN KEY (ID_VALE) REFERENCES FUNCIONARIO_VALE (ID) ON DELETE CASCADE;

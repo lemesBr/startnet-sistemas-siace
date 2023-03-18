@@ -1,0 +1,282 @@
+
+                              INTERFACE PARA ECF SWEDA -  DEVICE DRIVER
+                              =========================================
+
+SERSWEDA.SYS E S2070.SYS
+========================
+ 
+O device driver SERSWEDA.SYS foi desenvolvido para ser a interface de acesso a
+impressora fiscal SWEDA para aplicativos desenvolvidos em COBOL, CLIPPER,C, 
+DELPHI, VISUAL BASIC etc...
+
+INSTALAÇÃO DO SERSWEDA.SYS:
+---------------------------
+
+1. O device dever ser instalado no arquivo CONFIG.SYS do seguinte modo:
+
+          DEVICE = C:\SERSWEDA.SYS /COMX  /T04B0
+
+          onde :  COMX -> indica a porta serial na qual esta conectada a 
+                          impressora fiscal SWEDA.
+
+                  T04B0 -> constante de tempo (hexadecimal) multiplo de 
+                           55 ms que e responsavel pela atuacao dos time-outs
+                           de transmissao e recepcao.
+
+OBS: DEVERA SER MANTIDO A CONSTANTE /T04B0 NA LINHA DE INSTALACAO.
+
+
+O device driver S2070.SYS foi desenvolvido para ser a interface de acesso a
+do ECF-PDV S-2070 para aplicativos desenvolvidos em COBOL, CLIPPER,C, DELPHI, 
+VISUAL BASIC etc...
+
+
+INSTALAÇÃO DO S2070.SYS:
+------------------------
+
+1. O device dever ser instalado no arquivo CONFIG.SYS do seguinte modo:
+
+          DEVICE = C:\S2070.SYS   /T04B0
+
+          onde :  T04B0 -> constante de tempo (hexadecimal) multiplo de 
+                           55 ms que e responsavel pela atuacao dos time-outs
+                           de transmissao e recepcao.
+
+OBS: DEVERA SER MANTIDO A CONSTANTE /T04B0 NA LINHA DE INSTALACAO.
+
+
+Esta sequencia devera ser seguida para enviar qualquer comando ao ECF utilizando
+qualquer um dos dois devices:
+
+          Envio do comando ao ECF:
+
+	          1) Abrir o arquivo IFSWEDA ;
+	
+	          2) Escrever os comandos desejados no arquivo IFSWEDA;
+	
+        	  3) Fechar o arquivo IFSWEDA ;
+
+          Leitura o status do ultimo comando enviado:
+
+	          1) Abrir o arquivo IFSWEDA ;
+	
+        	  2) Ler o arquivo IFSWEDA ;
+	
+        	  3) Fechar o arquivo IFSWEDA.
+
+          Caso ocorram time-outs , serao retornados os seguintes status :
+
+          TIME-OUT DE TRANSMISSAO : Status = .-P002}
+
+          TIME-OUT DE RECEPCAO : Status = .-P006}
+
+     
+
+Esta interface é compatível para os ambientes DOS e WINDOWS 95.
+
+-----------------------------------------------------------------------------
+                        DLL para a comunicacao com o ECF
+                        ================================
+
+SERSWEDA.DLL
+============
+
+DLL para Comunicação com o ECF SWEDA - Versão 1.00
+
+
+A SERSWEDA.DLL foi desenvolvido para ser a interface de acesso a
+impressora fiscal SWEDA para aplicativos desenvolvidos em COBOL, CLIPPER,C, 
+DELPHI, etc em ambiente WINDOWS.
+
+
+Instalação da DLL
+=================
+
+1. Copie o arquivo IFSWEDA.DLL para um diretório que esteja no Path do seu computador, 
+como por exemplo: C:\WINDOWS\SYSTEM.
+
+
+Funções da DLL
+--------------
+
+1. Função ABREPORTA
+
+São passadas para a função as seguintes variáveis:
+· Porta Serial do tipo numérico.
+· TimeOut do tipo numérico, valor em segundos que a dll deverá aguardar a resposta
+  do ECF.
+
+A função retorna True ou False, se a porta foi aberta com sucesso ou não.
+
+Seu índice na DLL é 1. 
+
+
+
+2. Função ENVIACOMANDO
+
+É passada apenas o texto a ser enviado do tipo alfanumérico, respeitando os formatos
+aceitos pelo ECF SWEDA.
+
+A função retorna a resposta vinda do ECF, conforme formato descrito no manual de 
+programação.
+
+          Caso ocorram time-outs , serao retornados os seguintes status :
+
+          TIME-OUT DE TRANSMISSAO : Status = .-P002}
+
+          TIME-OUT DE RECEPCAO : Status = .-P006}
+
+O índice na DLL é 2.
+
+
+
+3. Função FECHAPORTA
+
+É passada apenas a porta serial do tipo numérico.
+
+A função retorna True ou False, se a porta foi aberta com sucesso ou não.
+
+Seu índice na DLL é 3.
+
+
+
+Versão 1.00 - 15 de Setembro de 1998.
+
+Esta interface é compatível para os ambientes WINDOWS 95 e WINDOWS 98.
+
+
+                        DLL para a comunicação com o ECF
+                        ================================
+
+SWECF.DLL
+=========
+
+Arquivos relacionados
+=====================
+
+SWecf.DLL   =     DLL que envia o comando para o ECF e captura o status.
+SWecf.lib   =     biblioteca da DLL para eventualmente ser ligada a aplicacao
+                  via "LINK".
+ESC13.c     =     Fonte de um aplicativo que interage com a DLL.
+ESC13.rc    =     arquivo de recursos
+ESC13.EXE   =     Executavel. Envia o comando <ESC>.13 e mostra o status.
+HELLO.ICO   =     icone do programa
+resource.h  =     header
+
+SWecf.DLL
+==========
+ 
+        Desenvolvido usando o Microsoft Visual C/C++ versão 5.0, obedecendo
+a arquitetura de 32 bits a partir do WINDOWS 95. Utiliza apenas as funções da
+API do Windows com a finalidade de prover acesso a impressora fiscal SWEDA para
+os aplicativos desenvolvidos em linguagens C e DELPHI. Na linguagem DELPHI, o
+compilador deverá ser orientado atraves da diretiva "stdcall" que a passagem
+dos argumentos da funcao é no formato Microsoft em vez de Pascal.
+        Outras linguagens também poderão ter acesso a este programa, desde que
+tenham uma estrutura definida para acessá-la. Caso nao funcione, consultar o
+manual ou suporte da linguagem.
+
+INSTALACAO DO SWecf.DLL:
+------------------------
+
+        Copiar para o diretório onde será executada a aplicação.
+        Caso a linguagem usada pela aplicação tenha sido escrita em "C",
+        efetuar o "LINK" com a biblioteca "SWecf.lib".
+
+FUNÇÕES:
+
+*************        int ECFOpen(Porta,Timeout,log,ShowErro)
+
+        unsigned int Porta      // número da porta serial. 1 = COM1/2 = COM2
+                                // não aceita valor zero.
+                                // Aceita até COM15(=15).       (32 bits)
+
+        unsigned int Timeout    // Tempo em segundos            (32 bits)
+
+        unsigned int Log        // 0 = Não tem log              (32 bits)
+                                // 1 = Log semanal(renovado semanalmente)
+                                // >= 2 = tamanho máximo em Kbytes do arquivo
+
+        unsigned int ShowErro  // FALSE= Não mostra caixa de diálogo se faltar
+                                //        sinais CTS ou DSR do ECF, ou for
+                                //        recebido texto com formato incorreto.
+                                // TRUE=  Mostra uma caixa de diálogo quando
+                                //        ocorrer erro.         (32 bits)
+
+        A função "ECFOpen()" programará a porta serial selecionada para operar
+a velocidade de 9600 bits/s, sem paridade,8 bits e 1 stop bit.
+        O timeout e' expresso em segundos.
+        Se houver LOG,  será criado ou aberto um arquivo em modo texto no
+diretorio "\temp". O nome deste arquivo terá o seguinte formato:
+        ECFxxxxxxx.CMy           onde  <xxxxxxxx>  e' o nome do dia da semana e
+ <y> o numero da porta serial.
+        O argumento "ShowErro" = TRUE, mostrará a caixa de diálogo em todas as
+condições de erro. Igual a FALSE, deixa de mostrar se houver falta do sinal CTS
+(ECF desconectado) ou falta de sinal DSR(ECF desligado). Em ambas as situacoes,
+nÆo será mostrado nenhuma mensagem de erro na tela, caso nao tenha sido recebido o
+status do ECF.
+        O retorno desta função igual a zero indica que a função conseguiu
+iniciar a porta serial e todas as suas variáveis.
+
+-------------------------------------------------------------------------------
+
+*************        int ECFWrite(comando)
+
+        LPSTR comando  =  endereço de uma "string ASCIIZ"(terminada em caracter
+                          null). Na linguagem DELPHI e' identificada com o tipo
+                          Pchar. Os dois primeiros caracteres devem ser escape
+                          (0x1b) e '.'. O caracter '}' deve encerrar o comando.
+        O retorno desta funcao igual a zero indica que a funcao conseguiu
+enviar o comando e receber o status do ECF. Esta função pode gerar um  dos
+seguintes textos de erro (ignorar as haspas):
+        ".-P002}" = indica que venceu o tempo de espera de CTS/DSR.
+        ".-P006}" = indica que nao recebeu o status do ECF.
+        O texto gerado estara' disponivel para a aplicacao, por intermedio da
+funcao "ECFRead()".
+
+-------------------------------------------------------------------------------
+
+        int ECFRead(Status, ext)
+
+        LPSTR Status   =  endereço de uma "string ASCIIZ"(terminada em caracter
+                          null). Na linguagem DELPHI é identificada com o tipo
+                          Pchar.
+        ext  extensao =   A aplicação deve informar o tamanho real da área
+                          "Status" informada no primeiro argumento. A extensão
+                          da area nao deve ser inferior a 132 bytes para não
+                          ocorrer overflow e erro interno na aplicação.
+
+        O retorno desta função diferente de zero, indica que a DLL nao foi
+iniciada com a função ECFOpen(). Poderá ser recebido uma dos seguintes textos
+de erro (ignorar as haspas):
+        ".-P002}" = indica que venceu o tempo de espera de CTS/DSR.
+        ".-P006}" = indica que não recebeu o status do ECF.
+        Quando a aplicação receber um dos dois textos, ela deve enviar o
+comando <ESC>.23(vide manual de programação) para comparar o número consecutivo.
+        Se o consecutivo recebido do ECF for inferior, então o comando nao foi
+processado. Se o numero recebido for maior, enviar novamente caso seja inicio
+de cupom, comprovante ou relatorio. Igual indica que o ECF processou o comando.
+Confirmar através do comando ESC.28 se a operacao foi aberta.
+-------------------------------------------------------------------------------
+
+        int  ECFClose()
+
+        O retorno desta função diferente de zero, indica que a DLL não foi
+iniciada com a função ECFOpen(). Esta função libera o uso da serial para outra
+aplicação.
+
+-------------------------------------------------------------------------------
+
+        int ECFPathLog(Path)
+
+        LPSTR Path  =   endereço de uma "string ASCIIZ"(terminada em caracter
+                        null). Na linguagem DELPHI é identificada com o tipo
+                        Pchar.
+
+        Informa o "Path" onde se encontra o log usado pela DLL(se habilitado).
+        O retorno desta função diferente de zero, indica que a DLL não foi
+iniciada com a função ECFOpen().
+
+------------------------------  fim SWEDA ---------------------------------
+
+

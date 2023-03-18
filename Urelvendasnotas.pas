@@ -1,0 +1,309 @@
+unit Urelvendasnotas;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, RzPanel, RzRadGrp, Mask, RXCtrls, StdCtrls, SUIButton,
+  ExtCtrls, FMTBcd, SqlExpr, DB, Provider, DBClient, Grids,
+  XDBGrids, RxToolEdit, AdvOfficePager;
+
+type
+  TFormRelVendaNotas = class(TForm)
+    FDvOfficePager11: TAdvOfficePage;
+    Bevel1: TBevel;
+    Image1: TImage;
+    Edit2: TEdit;
+    Panel3: TPanel;
+    btnSuibtton1: TsuiButton;
+    suiButton3: TsuiButton;
+    suiButton1: TsuiButton;
+    Panel5: TPanel;
+    Label1: TLabel;
+    CDS_RELGRUPO: TClientDataSet;
+    SQL_RELGRUPO: TDataSetProvider;
+    DTS_RELGRUPO: TDataSource;
+    SQLD_RELGRUPO: TSQLDataSet;
+    pnl1: TPanel;
+    rxlbl1: TRxLabel;
+    rxlbl2: TRxLabel;
+    RxLabel2: TRxLabel;
+    DateEdit1: TDateEdit;
+    DateEdit2: TDateEdit;
+    RzRadioGroup1: TRzRadioGroup;
+    SQLD_RELGRUPONR_NOTA: TIntegerField;
+    SQLD_RELGRUPOCOD_CLIENTE: TIntegerField;
+    SQLD_RELGRUPOSERIE_NF: TStringField;
+    SQLD_RELGRUPOCD_CFOP: TIntegerField;
+    SQLD_RELGRUPODT_EMISSAO: TDateField;
+    SQLD_RELGRUPODT_LANCAMENTO: TDateField;
+    SQLD_RELGRUPOVL_ACRESCIMOS: TFMTBCDField;
+    SQLD_RELGRUPOVL_DESCONTOS: TFMTBCDField;
+    SQLD_RELGRUPOVL_MERCADORIAS: TFMTBCDField;
+    SQLD_RELGRUPOVL_SERVICOS: TFMTBCDField;
+    SQLD_RELGRUPOVL_TOTAL: TFMTBCDField;
+    SQLD_RELGRUPOCOD_PGTO: TIntegerField;
+    SQLD_RELGRUPOVL_AVISTA: TFMTBCDField;
+    SQLD_RELGRUPOVL_PRAZO: TFMTBCDField;
+    SQLD_RELGRUPOPESO_TOTAL: TFMTBCDField;
+    SQLD_RELGRUPOQT_PECAS: TFMTBCDField;
+    SQLD_RELGRUPOCFOP_DESC: TStringField;
+    SQLD_RELGRUPOCD_TRANSPORTADORA: TIntegerField;
+    SQLD_RELGRUPOUF_ORIGEM: TStringField;
+    SQLD_RELGRUPOUF_DESTINO: TStringField;
+    SQLD_RELGRUPOPESO_LIQUIDO: TFMTBCDField;
+    SQLD_RELGRUPOVL_FRETE: TFMTBCDField;
+    SQLD_RELGRUPOVL_SEGURO: TFMTBCDField;
+    SQLD_RELGRUPOVL_BASE_ICM: TFMTBCDField;
+    SQLD_RELGRUPOVL_ICM: TFMTBCDField;
+    SQLD_RELGRUPOVL_BASE_ICM_SUBST: TFMTBCDField;
+    SQLD_RELGRUPOVL_ICM_SUBST: TFMTBCDField;
+    SQLD_RELGRUPOVL_IPI: TFMTBCDField;
+    SQLD_RELGRUPOVL_ISS: TFMTBCDField;
+    SQLD_RELGRUPOTP_FRETE: TStringField;
+    SQLD_RELGRUPOQT_VOLUMES: TFMTBCDField;
+    SQLD_RELGRUPOESPECIE_VOLUMES: TStringField;
+    SQLD_RELGRUPOMARCA_VOLUMES: TStringField;
+    SQLD_RELGRUPONR_VOLUMES: TIntegerField;
+    SQLD_RELGRUPOCD_TIPOCOBR: TIntegerField;
+    SQLD_RELGRUPOCD_FUNCIONARIO: TIntegerField;
+    SQLD_RELGRUPODT_ATZ: TDateField;
+    SQLD_RELGRUPOPLACA_TRANSP: TStringField;
+    SQLD_RELGRUPOUF_PLACA_TRANSP: TStringField;
+    SQLD_RELGRUPOVL_OUTROS: TFMTBCDField;
+    SQLD_RELGRUPONR_PEDIDO: TIntegerField;
+    SQLD_RELGRUPOVL_BASE_PIS: TFMTBCDField;
+    SQLD_RELGRUPOVL_PIS: TFMTBCDField;
+    SQLD_RELGRUPOVL_BASE_COFINS: TFMTBCDField;
+    SQLD_RELGRUPOVL_COFINS: TFMTBCDField;
+    SQLD_RELGRUPOVL_BASE_IPI: TFMTBCDField;
+    SQLD_RELGRUPOVL_BASE_ISS: TFMTBCDField;
+    SQLD_RELGRUPOVL_DESCONTO_ITEM: TFMTBCDField;
+    SQLD_RELGRUPOVL_ISENTO_ITENS: TFMTBCDField;
+    SQLD_RELGRUPOVL_OUTROS_ITENS: TFMTBCDField;
+    SQLD_RELGRUPONR_PROTOCOLO_NFE: TStringField;
+    SQLD_RELGRUPODT_PROCESSAMENTO_NFE: TDateField;
+    SQLD_RELGRUPOSTATUS: TStringField;
+    SQLD_RELGRUPONR_LOTE_NFE: TStringField;
+    SQLD_RELGRUPONR_RECIBO_NFE: TStringField;
+    SQLD_RELGRUPONR_PROTOCOLO_CANC_NFE: TStringField;
+    SQLD_RELGRUPOCHAVE_ACESSO_NFE: TStringField;
+    SQLD_RELGRUPOVL_FRETE_CONHECIMENTO: TFMTBCDField;
+    SQLD_RELGRUPOVL_ST_CONHECIMENTO: TFMTBCDField;
+    SQLD_RELGRUPOVL_ICM_CONHECIMENTO: TFMTBCDField;
+    SQLD_RELGRUPOBASE_ICM_PROPRIO_ST: TFMTBCDField;
+    SQLD_RELGRUPOVL_ICM_PROPRIO_ST: TFMTBCDField;
+    SQLD_RELGRUPOVL_BASE_ICM_SUBST_REAL: TFMTBCDField;
+    SQLD_RELGRUPOVL_ICM_SUBST_REAL: TFMTBCDField;
+    SQLD_RELGRUPOCNPJ_TRANSP: TStringField;
+    SQLD_RELGRUPONOME_TRANSP: TStringField;
+    SQLD_RELGRUPOIE_TRANSP: TStringField;
+    SQLD_RELGRUPOEND_TRANSPORTADOR: TStringField;
+    SQLD_RELGRUPOCIDADE_TRANSP: TStringField;
+    SQLD_RELGRUPOUF_TRANSP: TStringField;
+    SQLD_RELGRUPOTP: TStringField;
+    SQLD_RELGRUPON_NOTA_ENTRADA: TStringField;
+    SQLD_RELGRUPONOME_CLIENTE_FOR: TStringField;
+    SQLD_RELGRUPOCPF_CNPJ_CLIENTE_FORN: TStringField;
+    SQLD_RELGRUPOIE_CLIENTE_FORN: TStringField;
+    SQLD_RELGRUPOENDERECO_CLI_FORN: TStringField;
+    SQLD_RELGRUPOEND_NUM_CLIENTE: TStringField;
+    SQLD_RELGRUPOCOD_IBGE: TStringField;
+    SQLD_RELGRUPOCEP_CLIENTE_FORN: TStringField;
+    SQLD_RELGRUPOBAIRRO_CLIENTE_FORN: TStringField;
+    SQLD_RELGRUPOTIPO_PESSOA: TStringField;
+    SQLD_RELGRUPOTELEFONE: TStringField;
+    SQLD_RELGRUPOCIDADE_CLIENTE_FORN: TStringField;
+    SQLD_RELGRUPOUF_CLIENTE_FORN: TStringField;
+    SQLD_RELGRUPOIE_PRODUTOR: TStringField;
+    SQLD_RELGRUPOPRODUTOR_RURAL: TStringField;
+    SQLD_RELGRUPOPAGAMENTO: TStringField;
+    SQLD_RELGRUPOSTATUS_INUTILIZADO: TStringField;
+    SQLD_RELGRUPOSTATUS_CANCELADO: TStringField;
+    SQLD_RELGRUPOSTATUS_EMAIL: TStringField;
+    SQLD_RELGRUPOCOD_FORNECEDOR: TIntegerField;
+    SQLD_RELGRUPODEPEC: TStringField;
+    SQLD_RELGRUPOCHAVE2: TStringField;
+    SQLD_RELGRUPOSTATUS_RETORNO: TStringField;
+    SQLD_RELGRUPOJUSTIFICATIVA_CANCEL_INUTIL: TStringField;
+    SQLD_RELGRUPOMODELO: TStringField;
+    SQLD_RELGRUPOCORRECAO: TStringField;
+    SQLD_RELGRUPOFL_IMPRESSO: TStringField;
+    SQLD_RELGRUPOCD_EMPRESA: TIntegerField;
+    CDS_RELGRUPONR_NOTA: TIntegerField;
+    CDS_RELGRUPOCOD_CLIENTE: TIntegerField;
+    CDS_RELGRUPOSERIE_NF: TStringField;
+    CDS_RELGRUPOCD_CFOP: TIntegerField;
+    CDS_RELGRUPODT_EMISSAO: TDateField;
+    CDS_RELGRUPODT_LANCAMENTO: TDateField;
+    CDS_RELGRUPOVL_ACRESCIMOS: TFMTBCDField;
+    CDS_RELGRUPOVL_DESCONTOS: TFMTBCDField;
+    CDS_RELGRUPOVL_MERCADORIAS: TFMTBCDField;
+    CDS_RELGRUPOVL_SERVICOS: TFMTBCDField;
+    CDS_RELGRUPOVL_TOTAL: TFMTBCDField;
+    CDS_RELGRUPOCOD_PGTO: TIntegerField;
+    CDS_RELGRUPOVL_AVISTA: TFMTBCDField;
+    CDS_RELGRUPOVL_PRAZO: TFMTBCDField;
+    CDS_RELGRUPOPESO_TOTAL: TFMTBCDField;
+    CDS_RELGRUPOQT_PECAS: TFMTBCDField;
+    CDS_RELGRUPOCFOP_DESC: TStringField;
+    CDS_RELGRUPOCD_TRANSPORTADORA: TIntegerField;
+    CDS_RELGRUPOUF_ORIGEM: TStringField;
+    CDS_RELGRUPOUF_DESTINO: TStringField;
+    CDS_RELGRUPOPESO_LIQUIDO: TFMTBCDField;
+    CDS_RELGRUPOVL_FRETE: TFMTBCDField;
+    CDS_RELGRUPOVL_SEGURO: TFMTBCDField;
+    CDS_RELGRUPOVL_BASE_ICM: TFMTBCDField;
+    CDS_RELGRUPOVL_ICM: TFMTBCDField;
+    CDS_RELGRUPOVL_BASE_ICM_SUBST: TFMTBCDField;
+    CDS_RELGRUPOVL_ICM_SUBST: TFMTBCDField;
+    CDS_RELGRUPOVL_IPI: TFMTBCDField;
+    CDS_RELGRUPOVL_ISS: TFMTBCDField;
+    CDS_RELGRUPOTP_FRETE: TStringField;
+    CDS_RELGRUPOQT_VOLUMES: TFMTBCDField;
+    CDS_RELGRUPOESPECIE_VOLUMES: TStringField;
+    CDS_RELGRUPOMARCA_VOLUMES: TStringField;
+    CDS_RELGRUPONR_VOLUMES: TIntegerField;
+    CDS_RELGRUPOCD_TIPOCOBR: TIntegerField;
+    CDS_RELGRUPOCD_FUNCIONARIO: TIntegerField;
+    CDS_RELGRUPODT_ATZ: TDateField;
+    CDS_RELGRUPOPLACA_TRANSP: TStringField;
+    CDS_RELGRUPOUF_PLACA_TRANSP: TStringField;
+    CDS_RELGRUPOVL_OUTROS: TFMTBCDField;
+    CDS_RELGRUPONR_PEDIDO: TIntegerField;
+    CDS_RELGRUPOVL_BASE_PIS: TFMTBCDField;
+    CDS_RELGRUPOVL_PIS: TFMTBCDField;
+    CDS_RELGRUPOVL_BASE_COFINS: TFMTBCDField;
+    CDS_RELGRUPOVL_COFINS: TFMTBCDField;
+    CDS_RELGRUPOVL_BASE_IPI: TFMTBCDField;
+    CDS_RELGRUPOVL_BASE_ISS: TFMTBCDField;
+    CDS_RELGRUPOVL_DESCONTO_ITEM: TFMTBCDField;
+    CDS_RELGRUPOVL_ISENTO_ITENS: TFMTBCDField;
+    CDS_RELGRUPOVL_OUTROS_ITENS: TFMTBCDField;
+    CDS_RELGRUPONR_PROTOCOLO_NFE: TStringField;
+    CDS_RELGRUPODT_PROCESSAMENTO_NFE: TDateField;
+    CDS_RELGRUPOSTATUS: TStringField;
+    CDS_RELGRUPONR_LOTE_NFE: TStringField;
+    CDS_RELGRUPONR_RECIBO_NFE: TStringField;
+    CDS_RELGRUPONR_PROTOCOLO_CANC_NFE: TStringField;
+    CDS_RELGRUPOCHAVE_ACESSO_NFE: TStringField;
+    CDS_RELGRUPOVL_FRETE_CONHECIMENTO: TFMTBCDField;
+    CDS_RELGRUPOVL_ST_CONHECIMENTO: TFMTBCDField;
+    CDS_RELGRUPOVL_ICM_CONHECIMENTO: TFMTBCDField;
+    CDS_RELGRUPOBASE_ICM_PROPRIO_ST: TFMTBCDField;
+    CDS_RELGRUPOVL_ICM_PROPRIO_ST: TFMTBCDField;
+    CDS_RELGRUPOVL_BASE_ICM_SUBST_REAL: TFMTBCDField;
+    CDS_RELGRUPOVL_ICM_SUBST_REAL: TFMTBCDField;
+    CDS_RELGRUPOCNPJ_TRANSP: TStringField;
+    CDS_RELGRUPONOME_TRANSP: TStringField;
+    CDS_RELGRUPOIE_TRANSP: TStringField;
+    CDS_RELGRUPOEND_TRANSPORTADOR: TStringField;
+    CDS_RELGRUPOCIDADE_TRANSP: TStringField;
+    CDS_RELGRUPOUF_TRANSP: TStringField;
+    CDS_RELGRUPOTP: TStringField;
+    CDS_RELGRUPON_NOTA_ENTRADA: TStringField;
+    CDS_RELGRUPONOME_CLIENTE_FOR: TStringField;
+    CDS_RELGRUPOCPF_CNPJ_CLIENTE_FORN: TStringField;
+    CDS_RELGRUPOIE_CLIENTE_FORN: TStringField;
+    CDS_RELGRUPOENDERECO_CLI_FORN: TStringField;
+    CDS_RELGRUPOEND_NUM_CLIENTE: TStringField;
+    CDS_RELGRUPOCOD_IBGE: TStringField;
+    CDS_RELGRUPOCEP_CLIENTE_FORN: TStringField;
+    CDS_RELGRUPOBAIRRO_CLIENTE_FORN: TStringField;
+    CDS_RELGRUPOTIPO_PESSOA: TStringField;
+    CDS_RELGRUPOTELEFONE: TStringField;
+    CDS_RELGRUPOCIDADE_CLIENTE_FORN: TStringField;
+    CDS_RELGRUPOUF_CLIENTE_FORN: TStringField;
+    CDS_RELGRUPOIE_PRODUTOR: TStringField;
+    CDS_RELGRUPOPRODUTOR_RURAL: TStringField;
+    CDS_RELGRUPOPAGAMENTO: TStringField;
+    CDS_RELGRUPOSTATUS_INUTILIZADO: TStringField;
+    CDS_RELGRUPOSTATUS_CANCELADO: TStringField;
+    CDS_RELGRUPOSTATUS_EMAIL: TStringField;
+    CDS_RELGRUPOCOD_FORNECEDOR: TIntegerField;
+    CDS_RELGRUPODEPEC: TStringField;
+    CDS_RELGRUPOCHAVE2: TStringField;
+    CDS_RELGRUPOSTATUS_RETORNO: TStringField;
+    CDS_RELGRUPOJUSTIFICATIVA_CANCEL_INUTIL: TStringField;
+    CDS_RELGRUPOMODELO: TStringField;
+    CDS_RELGRUPOCORRECAO: TStringField;
+    CDS_RELGRUPOFL_IMPRESSO: TStringField;
+    CDS_RELGRUPOCD_EMPRESA: TIntegerField;
+    procedure suiButton3Click(Sender: TObject);
+    procedure suiButton1Click(Sender: TObject);
+    procedure btnSuibtton1Click(Sender: TObject);
+    procedure FormKeyPress(Sender: TObject; var Key: Char);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FormRelVendaNotas: TFormRelVendaNotas;
+
+implementation
+
+uses ModulodeDados, UConsGRP, Principal, UGrupoTributacao, URelatorioGtrib,
+  URelatorioNotas;
+
+{$R *.dfm}
+
+procedure TFormRelVendaNotas.suiButton3Click(Sender: TObject);
+begin
+DateEdit1.Clear;
+DateEdit2.Clear;
+end;
+
+procedure TFormRelVendaNotas.suiButton1Click(Sender: TObject);
+begin
+close;
+end;
+
+procedure TFormRelVendaNotas.btnSuibtton1Click(Sender: TObject);
+begin
+  if (DateEdit1.Text = '  /  /    ') and (DateEdit2.Text = '  /  /    ') then
+  begin
+    ShowMessage('Favor informar um periodo a ser impresso');
+  end else
+  If DateEdit2.Date < DateEdit1.Date Then
+  begin
+    ShowMessage('Intervalo de datas inválido, a data inicial é maior que a data final!');
+    DateEdit2.Date := DateEdit1.Date;
+  end  Else
+
+  begin
+ CDS_RELGRUPO.Close;
+ SQLD_RELGRUPO.Close;
+ SQLD_RELGRUPO.Params.Parambyname('DATAI').AsDate   := DateEdit1.DATE;
+ SQLD_RELGRUPO.Params.Parambyname('DATAF').AsDate    := DateEdit2.DATE;
+  IF RzRadioGroup1.ItemIndex = 0 THEN
+ SQLD_RELGRUPO.Params.Parambyname('STAT').AsString       := 'S'
+ else
+ SQLD_RELGRUPO.Params.Parambyname('STAT').AsString       := 'N';
+ SQLD_RELGRUPO.Open;
+
+ CDS_RELGRUPO.Open;
+
+
+FormRel_VendasNotas := TFormRel_VendasNotas.Create(self);
+FormRel_VendasNotas.RLReport1.Prepare;
+FormRel_VendasNotas.RLReport1.PreviewModal;
+end;
+end;
+
+procedure TFormRelVendaNotas.FormKeyPress(Sender: TObject; var Key: Char);
+begin
+if key=#27 then
+begin
+close;
+end;
+
+    If Key = #13 then
+    Begin
+      Key := #0;
+      Perform(WM_NextDlgCtl, 0, 0);
+    End;
+end;
+
+end.

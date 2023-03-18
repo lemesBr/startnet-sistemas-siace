@@ -1,0 +1,180 @@
+
+SNGPC
+
+site para homologação
+http://homologacao.anvisa.gov.br/sngpc/webservice/sngpc.asmx
+http://homologacao.anvisa.gov.br/sngpc/webservice/sngpc.asmx?WSDL
+
+site para produção
+http://sngpc.anvisa.gov.br/webservice/sngpc.asmx
+http://sngpc.anvisa.gov.br/webservice/sngpc.asmx?WSDL
+
+No Delphi 7
+File / New / Other / Webservices / WSDL Importer
+usando: http://homologacao.anvisa.gov.br/sngpc/webservice/sngpc.asmx?WSDL
+salve o arquivo sngpc.pas
+
+Baixar 
+do site http://www.anvisa.gov.br/sngpc/esquemas.asp
+-Tipos Simples
+-Tipos Complexos
+-Mensagens SNGPC
+-Operações
+e salvar numa pasta como *.xsd
+
+No Delphi 7
+File / New / Other / New / XML Data Binding
+abrindo: sngpc200711v1_0.xsd da pasta (verificar os nomes dos arquivos pois a Anvisa pode ter alguns nome errados) 
+salve o arquivo sngpc200711v1_0.pas
+
+No Delphi 7
+Função PrintMD5 disponivel no link abaixo:
+http://forum.datasus.gov.br/viewtopic.php?t=7376
+salve o arquivo md5.pas
+
+
+Criando o Projeto
+
+No Delphi 7
+Uses do arquivo gerado pelo WSDL Importer, do XML Data Binding e do MD5
+--------------------------------
+uses sngpc, sngpc200711v1_0, md5;
+
+//------------------------------
+// Implementar as rotinas de XML
+//------------------------------
+var
+  xml : TXMLDocument;
+  msg : IXMLMensagemSNGPC;
+  ws : sngpcSoap;
+  HashIdentificacao : String;
+  Retorno : String;
+begin
+  //
+  xml := TXmlDocument.Create(nil);
+  xml.Active := False;
+  xml.FileName := '';
+  //
+  msg := GetmensagemSNGPC(xml);
+  //
+  xml.Version := '1.0';
+  xml.Encoding := 'ISO-8859-1';
+  //
+  // inicio da construcao do xml (modelo abaixo)
+  //
+
+  //
+  // Cabecalho
+  //
+  msg.Cabecalho.CnpjEmissor    := '09359009000909';
+  msg.Cabecalho.DataInicio     := FormatDateTime('yyyy-mm-dd',now);
+{continue preenchendo Cabecalho}
+  //
+  // Corpo
+  //
+  with msg.Corpo.Medicamentos do
+  begin
+    //
+    // Entradas
+    //
+    Memo1.Lines.Add('Entradas');
+    cdsEntrada.Close;
+    cdsEntrada.Params.ParamByName('DATA_INICIAL').AsDate := edtDataInicial.Date;
+    cdsEntrada.Params.ParamByName('DATA_FINAL').AsDate   := edtDataFinal.Date+1;
+    cdsEntrada.Open;
+    //
+    if cdsEntrada.RecordCount > 0 then
+    begin
+      while not cdsEntrada.Eof do
+      begin
+        //
+        cdsItens.Close;
+        cdsItens.Params.ParamByName('COD_MOVIMENTO').AsInteger := cdsEntradaCOD_MOVIMENTO.AsInteger;
+        cdsItens.Open;
+        //
+        if cdsItens.RecordCount > 0 then
+        begin
+          with EntradaMedicamentos.Add do
+          begin
+            //
+            Memo1.Lines.Add(cdsEntradaNUMERO.AsString+';1;'+
+                            cdsEntradaDT_DOCUMENTO.AsString+';'+
+                            cdsEntradaCNPJ_ORIGEM.AsString+';'+
+                            cdsEntradaCNPJ_DESTINO.AsString);
+            //
+            NotaFiscalEntradaMedicamento.NumeroNotaFiscal       := cdsEntradaNUMERO.AsInteger;
+            NotaFiscalEntradaMedicamento.TipoOperacaoNotaFiscal := '1';
+            NotaFiscalEntradaMedicamento.DataNotaFiscal         := FormatDateTime('yyyy-mm-dd', cdsEntradaDT_DOCUMENTO.AsDateTime); //'2010-03-03';
+            NotaFiscalEntradaMedicamento.CnpjOrigem             := TiraPontos(cdsEntradaCNPJ_ORIGEM.AsString); // '09358002000104';
+            NotaFiscalEntradaMedicamento.CnpjDestino            := TiraPontos(cdsEntradaCNPJ_DESTINO.AsString); // '09358002000104';
+            //
+            while not cdsItens.Eof do
+            begin
+              with MedicamentoEntrada.Add do
+              begin
+                //
+                Memo1.Lines.Add(cdsItensREGISTROMS.AsString+';'+
+                                cdsItensDES_PRODUTO.AsString+';'+
+                                cdsItensLOTE.AsString+';'+
+                                cdsItensQUANTIDADE.AsString);
+                //
+                RegistroMSMedicamento := cdsItensREGISTROMS.AsString; //'1010000430215';
+                NumeroLoteMedicamento := cdsItensLOTE.AsString;       // 'ABU1212';
+                QuantidadeMedicamento := cdsItensQUANTIDADE.AsInteger;
+              end;
+              cdsItens.Next;
+            end;
+            //
+            Memo1.Lines.Add(cdsEntradaDT_LANCAMENTO.AsString);
+            //
+            DataRecebimentoMedicamento := FormatDateTime('yyyy-mm-dd', cdsEntradaDT_LANCAMENTO.AsDateTime); // '2010-03-03';
+            //
+          end;
+        end;
+        cdsEntrada.Next;
+      end;
+    end;
+
+{continue preenchendo Corpo}
+
+  end;
+  // 
+  // fim da construcao do XML   
+  //
+  xml.Active := true ;
+  xml.SaveToFile('sngpc.xml');
+  //
+  // Fim da Criação do XML
+  //
+  // Rotina de Validação e Envio do XML
+  //
+  if cbhomologacao.Checked then
+  begin
+    HTTPRIO1.URL          := 'http://homologacao.anvisa.gov.br/sngpc/webservice/sngpc.asmx';
+    HTTPRIO1.WSDLLocation := 'http://homologacao.anvisa.gov.br/sngpc/webservice/sngpc.asmx?wsdl';
+  end
+  else
+  begin
+    HTTPRIO1.URL          := 'http://sngpc.anvisa.gov.br/webservice/sngpc.asmx';
+    HTTPRIO1.WSDLLocation := 'http://sngpc.anvisa.gov.br/webservice/sngpc.asmx?wsdl';
+  end;
+  HTTPRIO1.Service      := 'sngpc';
+  HTTPRIO1.Port         := 'sngpcSoap';
+  //
+  ws := HTTPRIO1 as sngpcSoap;
+  //
+  // usuario e senha, precisam ser validos (cadastre-se na anvisa)(o retorno da anvisa eh demorado)
+  //
+  Retorno := ws.ValidarUsuario('teste@gmail.com','12345678');
+  // 
+  HashIdentificacao:= MD5Print(MD5String(xml.XML.text));
+  //
+  Retorno := ws.EnviaArquivoSNGPC('teste@gmail.com','12345678', xml.XML.text, HashIdentificacao);
+  //
+  // retorno pode ser tratado daqui em diante 
+  //
+  xml := nil; // A interface "msg" é o owner do TXmlDocument
+  ws := nil;
+  //
+end;
+

@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2014/04/14 11:34:34.162.pas,C:\Users\Fernando\Documents\Borland Studio Projects\Unit1.pas=C:\Meus Arquivos\Meus Programas\Delphi\Baixar XML NFe DLL\Código Fonte do Exemplo de Uso\U_Principal.pas</Transaction>
+    <Transaction>2014/04/14 11:34:34.162.dfm,C:\Users\Fernando\Documents\Borland Studio Projects\Unit1.dfm=C:\Meus Arquivos\Meus Programas\Delphi\Baixar XML NFe DLL\Código Fonte do Exemplo de Uso\U_Principal.dfm</Transaction>
+    <Transaction>2014/04/14 11:35:04.262.bdsproj,C:\Users\Fernando\Documents\Borland Studio Projects\Project1.bdsproj=C:\Meus Arquivos\Meus Programas\Delphi\Baixar XML NFe DLL\Código Fonte do Exemplo de Uso\BaixarXMLNFeExemploDeUso.bdsproj</Transaction>
+    <Transaction>2014/04/14 11:44:44.482.bdsproj,C:\Meus Arquivos\Meus Programas\Delphi\Baixar XML NFe DLL\Código Fonte do Exemplo de Uso\BaixarXMLNFeExemploDeUso.bdsproj=C:\Meus Arquivos\Meus Programas\Delphi\Baixar XML NFe DLL\Código Fonte do Exemplo de Uso\DownloadXMLNFeExemplo.bdsproj</Transaction>
+    <Transaction>2014/04/14 14:02:21.857.pas,C:\Meus Arquivos\Meus Programas\Delphi\Baixar XML NFe DLL\Código Fonte do Exemplo de Uso\Unit1.pas=C:\Meus Arquivos\Meus Programas\Delphi\Baixar XML NFe DLL\Código Fonte do Exemplo de Uso\utils.pas</Transaction>
+    <Transaction>2014/04/14 14:12:00.665.pas,C:\Meus Arquivos\Meus Programas\Delphi\Baixar XML NFe DLL\Código Fonte do Exemplo de Uso\Unit1.pas=C:\Meus Arquivos\Meus Programas\Delphi\Baixar XML NFe DLL\Código Fonte do Exemplo de Uso\UDownloadXMLNFeDLL.pas</Transaction>
+  </Transactions>
+</BorlandProject>

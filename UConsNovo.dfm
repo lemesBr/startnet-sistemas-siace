@@ -1,0 +1,231 @@
+object FrmConsNovo: TFrmConsNovo
+  Left = 371
+  Top = 158
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsSingle
+  Caption = 'Consulta'
+  ClientHeight = 471
+  ClientWidth = 451
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  KeyPreview = True
+  OldCreateOrder = False
+  Position = poDesktopCenter
+  OnKeyDown = FormKeyDown
+  OnKeyPress = FormKeyPress
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Panel1: TPanel
+    Left = 0
+    Top = 65
+    Width = 451
+    Height = 56
+    Align = alTop
+    BevelInner = bvLowered
+    BevelOuter = bvNone
+    BevelWidth = 2
+    Color = 16710131
+    TabOrder = 0
+    object LTipo: TLabel
+      Left = 8
+      Top = 8
+      Width = 27
+      Height = 13
+      Caption = 'LTipo'
+    end
+    object EdtCons: TEdit
+      Left = 8
+      Top = 24
+      Width = 337
+      Height = 21
+      CharCase = ecUpperCase
+      Color = clSilver
+      TabOrder = 0
+    end
+    object BtnOK: TAdvGlowButton
+      Left = 365
+      Top = 20
+      Width = 65
+      Height = 28
+      Caption = '&OK'
+      ImageIndex = 4
+      Images = FormPrincipal.sAlphaImageList3
+      NotesFont.Charset = DEFAULT_CHARSET
+      NotesFont.Color = clWindowText
+      NotesFont.Height = -11
+      NotesFont.Name = 'Tahoma'
+      NotesFont.Style = []
+      TabOrder = 1
+      Appearance.ColorChecked = 16111818
+      Appearance.ColorCheckedTo = 16367008
+      Appearance.ColorDisabled = 15921906
+      Appearance.ColorDisabledTo = 15921906
+      Appearance.ColorDown = 16111818
+      Appearance.ColorDownTo = 16367008
+      Appearance.ColorHot = 16117985
+      Appearance.ColorHotTo = 16372402
+      Appearance.ColorMirrorHot = 16107693
+      Appearance.ColorMirrorHotTo = 16775412
+      Appearance.ColorMirrorDown = 16102556
+      Appearance.ColorMirrorDownTo = 16768988
+      Appearance.ColorMirrorChecked = 16102556
+      Appearance.ColorMirrorCheckedTo = 16768988
+      Appearance.ColorMirrorDisabled = 11974326
+      Appearance.ColorMirrorDisabledTo = 15921906
+    end
+  end
+  object Panel2: TPanel
+    Left = 0
+    Top = 121
+    Width = 451
+    Height = 331
+    Align = alClient
+    BevelInner = bvLowered
+    BevelOuter = bvNone
+    BevelWidth = 2
+    Color = 16710131
+    TabOrder = 1
+    object DBGrid: TDBGrid
+      Left = 2
+      Top = 2
+      Width = 447
+      Height = 287
+      Align = alTop
+      Color = clSilver
+      Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit]
+      ReadOnly = True
+      TabOrder = 0
+      TitleFont.Charset = DEFAULT_CHARSET
+      TitleFont.Color = clWindowText
+      TitleFont.Height = -11
+      TitleFont.Name = 'MS Sans Serif'
+      TitleFont.Style = []
+      OnKeyDown = DBGridKeyDown
+    end
+    object BtnLocalizar: TAdvGlowButton
+      Left = 124
+      Top = 293
+      Width = 75
+      Height = 31
+      Caption = '&Localizar'
+      ImageIndex = 20
+      Images = FormPrincipal.sAlphaImageList3
+      NotesFont.Charset = DEFAULT_CHARSET
+      NotesFont.Color = clWindowText
+      NotesFont.Height = -11
+      NotesFont.Name = 'Tahoma'
+      NotesFont.Style = []
+      TabOrder = 1
+      Appearance.ColorChecked = 16111818
+      Appearance.ColorCheckedTo = 16367008
+      Appearance.ColorDisabled = 15921906
+      Appearance.ColorDisabledTo = 15921906
+      Appearance.ColorDown = 16111818
+      Appearance.ColorDownTo = 16367008
+      Appearance.ColorHot = 16117985
+      Appearance.ColorHotTo = 16372402
+      Appearance.ColorMirrorHot = 16107693
+      Appearance.ColorMirrorHotTo = 16775412
+      Appearance.ColorMirrorDown = 16102556
+      Appearance.ColorMirrorDownTo = 16768988
+      Appearance.ColorMirrorChecked = 16102556
+      Appearance.ColorMirrorCheckedTo = 16768988
+      Appearance.ColorMirrorDisabled = 11974326
+      Appearance.ColorMirrorDisabledTo = 15921906
+    end
+    object BtnSair: TAdvGlowButton
+      Left = 252
+      Top = 293
+      Width = 75
+      Height = 31
+      Caption = '&Sair'
+      ImageIndex = 8
+      Images = FormPrincipal.sAlphaImageList3
+      NotesFont.Charset = DEFAULT_CHARSET
+      NotesFont.Color = clWindowText
+      NotesFont.Height = -11
+      NotesFont.Name = 'Tahoma'
+      NotesFont.Style = []
+      TabOrder = 2
+      OnClick = BtnSairClick
+      Appearance.ColorChecked = 16111818
+      Appearance.ColorCheckedTo = 16367008
+      Appearance.ColorDisabled = 15921906
+      Appearance.ColorDisabledTo = 15921906
+      Appearance.ColorDown = 16111818
+      Appearance.ColorDownTo = 16367008
+      Appearance.ColorHot = 16117985
+      Appearance.ColorHotTo = 16372402
+      Appearance.ColorMirrorHot = 16107693
+      Appearance.ColorMirrorHotTo = 16775412
+      Appearance.ColorMirrorDown = 16102556
+      Appearance.ColorMirrorDownTo = 16768988
+      Appearance.ColorMirrorChecked = 16102556
+      Appearance.ColorMirrorCheckedTo = 16768988
+      Appearance.ColorMirrorDisabled = 11974326
+      Appearance.ColorMirrorDisabledTo = 15921906
+    end
+  end
+  object StatusBar1: TStatusBar
+    Left = 0
+    Top = 452
+    Width = 451
+    Height = 19
+    Panels = <>
+  end
+  object Panel3: TPanel
+    Left = 0
+    Top = 0
+    Width = 451
+    Height = 65
+    Align = alTop
+    BevelInner = bvLowered
+    BevelOuter = bvNone
+    BevelWidth = 2
+    Color = 16710131
+    TabOrder = 3
+    object Label1: TLabel
+      Left = 2
+      Top = 2
+      Width = 447
+      Height = 13
+      Align = alTop
+      Caption = 'Consultar Por'
+      Color = clSilver
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+      ExplicitWidth = 77
+    end
+    object GroupBox1: TGroupBox
+      Left = 2
+      Top = 15
+      Width = 447
+      Height = 48
+      Align = alClient
+      TabOrder = 0
+      object ComboCons: TComboBox
+        Left = 8
+        Top = 16
+        Width = 433
+        Height = 21
+        Style = csDropDownList
+        TabOrder = 0
+        OnChange = ComboConsChange
+        Items.Strings = (
+          'Palavra Chave'
+          'Nome'
+          'C'#243'digo')
+      end
+    end
+  end
+end

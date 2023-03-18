@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:sngpc="urn:sngpc-schema" targetNamespace="urn:sngpc-schema" elementFormDefault="qualified">
+
+	<!-- Definicao do corpo da entrada e saida de produtos -->
+	<include schemaLocation="sngpcSimpleTypes200906.xsd"/>
+	<include schemaLocation="sngpcComplexTypes200711v1_0.xsd"/>
+	
+	<complexType name="ct_EntradaMedicamento">
+		<sequence>
+			<element name="notaFiscalEntradaMedicamento" type="sngpc:ct_NotaFiscal"/>
+			<element name="medicamentoEntrada" type="sngpc:ct_Medicamento" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="dataRecebimentoMedicamento" type="sngpc:st_data"/>
+		</sequence>
+	</complexType>
+	<complexType name="ct_SaidaMedicamentoVendaAoConsumidor">
+		<sequence>
+			<element name="tipoReceituarioMedicamento" type="sngpc:st_TipoReceituario"/>
+			<element name="numeroNotificacaoMedicamento" type="sngpc:st_Notificacao"/>
+			<element name="dataPrescricaoMedicamento" type="sngpc:st_data"/>
+			<element name="prescritorMedicamento" type="sngpc:ct_Prescritor"/>
+			<element name="usoMedicamento" type="sngpc:st_TipoUsoMedicamento"/>
+			<element name="compradorMedicamento" type="sngpc:ct_Comprador"/>
+			<element name="medicamentoVenda" type="sngpc:ct_Medicamento" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="dataVendaMedicamento" type="sngpc:st_data"/>
+		</sequence>
+	</complexType>
+	<complexType name="ct_SaidaMedicamentoTransferencia">
+		<sequence>
+			<element name="notaFiscalTransferenciaMedicamento" type="sngpc:ct_NotaFiscal"/>
+			<element name="medicamentoTransferencia" type="sngpc:ct_Medicamento" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="dataTransferenciaMedicamento" type="sngpc:st_data"/>
+		</sequence>
+	</complexType>
+	<complexType name="ct_SaidaMedicamentoPerda">
+		<sequence>
+			<element name="motivoPerdaMedicamento" type="sngpc:st_TipoMotivoPerda"/>
+			<element name="medicamentoPerda" type="sngpc:ct_Medicamento"/>
+			<element name="dataPerdaMedicamento" type="sngpc:st_data"/>
+		</sequence>
+	</complexType>
+	<!-- Definicao do corpo da entrada e saida de insumos -->
+	<complexType name="ct_EntradaInsumo">
+		<sequence>
+			<element name="notaFiscalEntradaInsumo" type="sngpc:ct_NotaFiscal"/>
+			<element name="substanciaInsumoEntrada" type="sngpc:ct_InsumoEntrada" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="dataRecebimentoInsumo" type="sngpc:st_data"/>
+		</sequence>
+	</complexType>
+	<complexType name="ct_SaidaInsumoVenda">
+		<sequence>
+			<element name="tipoReceituarioInsumo" type="sngpc:st_TipoReceituario"/>
+			<element name="numeroNotificacaoInsumo" type="sngpc:st_Notificacao"/>
+			<element name="dataPrescricaoInsumo" type="sngpc:st_data"/>
+			<element name="prescritorInsumo" type="sngpc:ct_Prescritor"/>
+			<element name="usoInsumo" type="sngpc:st_TipoUsoMedicamento"/>
+			<element name="compradorInsumo" type="sngpc:ct_Comprador"/>
+			<element name="substanciaInsumoVendaAoConsumidor" type="sngpc:ct_InsumoVendaAoConsumidor" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="dataVendaInsumo" type="sngpc:st_data"/>
+		</sequence>
+	</complexType>
+	<complexType name="ct_SaidaInsumoTransferencia">
+		<sequence>
+			<element name="notaFiscalTransferenciaInsumo" type="sngpc:ct_NotaFiscal"/>
+			<element name="substanciaInsumoTransferencia" type="sngpc:ct_InsumoTransferencia" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="dataTransferenciaInsumo" type="sngpc:st_data"/>
+		</sequence>
+	</complexType>
+	<complexType name="ct_SaidaInsumoPerda">
+		<sequence>
+			<element name="motivoPerdaInsumo" type="sngpc:st_TipoMotivoPerda"/>
+			<element name="substanciaInsumoPerda" type="sngpc:ct_InsumoPerda"/>
+			<element name="dataPerdaInsumo" type="sngpc:st_data"/>
+			<element name="cnpjFornecedorInsumo" type="sngpc:st_CNPJ"/>
+		</sequence>
+	</complexType>
+</schema>

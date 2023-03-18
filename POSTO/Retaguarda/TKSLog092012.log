@@ -1,0 +1,30 @@
+.LOG
+TKS Software
+TeleFax: +55(71)371-1818
+E-Mail : tks@e-net.com.br
+Site   : www.igara.com.br
+Arquivo de LOG - Auditoria
+ 
+04/09/2012 18:59:24 - Erro :: Problemas ao tentar acessar Base de Dados do Interbase
+                  - Msg  :: Erro ao tentar acessar Base de Dados. Verifique sua configuração.
+04/09/2012 19:50:59 - Erro :: Problemas ao tentar acessar Base de Dados do Firebird
+                  - Msg  :: Erro ao tentar acessar Base de Dados. Verifique sua configuração.
+04/09/2012 19:54:03 - Erro :: Problemas ao tentar acessar Base de Dados do Firebird
+                  - Msg  :: Erro ao tentar acessar Base de Dados. Verifique sua configuração.
+05/09/2012 07:22:24 - Erro :: Problemas ao tentar acessar Base de Dados do Firebird
+                  - Msg  :: Erro ao tentar acessar Base de Dados. Verifique sua configuração.
+05/09/2012 07:25:26 - Att  :: Inserção de Registro (Procedure DM1.NewSave - DstClasse)
+05/09/2012 07:48:45 - Erro :: Tentativa de Abertura de mais de uma Instância "Siace-Posto".
+                  - Msg  :: O Aplicativo Siace-Posto já está sendo executado.
+05/09/2012 07:48:50 - Erro :: Tentativa de Abertura de mais de uma Instância "Siace-Posto".
+                  - Msg  :: O Aplicativo Siace-Posto já está sendo executado.
+05/09/2012 07:50:20 - Erro :: Problemas ao tentar acessar Base de Dados do Firebird
+                  - Msg  :: Erro ao tentar acessar Base de Dados. Verifique sua configuração.
+05/09/2012 07:50:28 - Erro :: Problemas ao tentar acessar Base de Dados do Firebird
+                  - Msg  :: Erro ao tentar acessar Base de Dados. Verifique sua configuração.
+05/09/2012 07:51:32 - Erro :: Problemas ao tentar acessar Base de Dados do Firebird
+                  - Msg  :: Erro ao tentar acessar Base de Dados. Verifique sua configuração.
+05/09/2012 07:52:45 - Erro :: Problemas ao tentar acessar Base de Dados do Firebird
+                  - Msg  :: Erro ao tentar acessar Base de Dados. Verifique sua configuração.
+05/09/2012 07:53:55 - Erro :: Problemas ao tentar acessar Base de Dados do Firebird
+                  - Msg  :: Erro ao tentar acessar Base de Dados. Verifique sua configuração.

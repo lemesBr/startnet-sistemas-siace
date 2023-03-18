@@ -1,0 +1,28 @@
+.LOG
+TKS Software
+TeleFax: +55(71)371-1818
+E-Mail : tks@e-net.com.br
+Site   : www.igara.com.br
+Arquivo de LOG - Auditoria
+ 
+07/08/2012 17:22:38 - Erro :: Problemas ao tentar acessar Base de Dados do Interbase
+                  - Msg  :: Erro ao tentar acessar Base de Dados. Verifique sua configuração.
+09/08/2012 19:36:23 - Erro :: Problemas ao tentar acessar Base de Dados do Interbase
+                  - Msg  :: Erro ao tentar acessar Base de Dados. Verifique sua configuração.
+09/08/2012 19:39:07 - Erro :: Impossível localizar arquivo de help em: C:\Siace\Siac-Enterprise\POSTO\Ilha\AJUDA TKPosto.chm
+09/08/2012 19:47:50 - Erro :: Impossível localizar arquivo de help em: C:\Siace\Siac-Enterprise\POSTO\Ilha\AJUDA TKPosto.chm
+09/08/2012 19:47:54 - Analisa_iRetorno_Bematech_Fi2: Arquivo BEMAFI32.INI não encontrado.
+09/08/2012 19:48:02 - Estado_ECF_Bematech_Fi2: Não é possível obter status, Verifique se o ECF está ligado e conectado.
+09/08/2012 19:49:51 - AbrePorta_Sweda_IFS7000: ERRO: Erro ao Abrir a Porta Serial de comunicação com o ECF - COM1
+09/08/2012 19:50:32 - AbrePorta_Sweda_IFS7000: ERRO: Erro ao Abrir a Porta Serial de comunicação com o ECF - COM1
+09/08/2012 19:52:08 - AbrePorta_Sweda_IFS7000: ERRO: Erro ao Abrir a Porta Serial de comunicação com o ECF - COM1
+09/08/2012 19:52:36 - AbrePorta_Sweda_IFS7000: ERRO: Erro ao Abrir a Porta Serial de comunicação com o ECF - COM1
+10/08/2012 06:08:17 - Erro :: Tentativa de Abertura de mais de uma Instância "Siace-Posto".
+                  - Msg  :: O Aplicativo "Siace-Posto" já está sendo executado.
+10/08/2012 06:08:20 - Erro :: Tentativa de Abertura de mais de uma Instância "Siace-Posto".
+                  - Msg  :: O Aplicativo "Siace-Posto" já está sendo executado.
+10/08/2012 06:08:26 - Erro :: Tentativa de Abertura de mais de uma Instância "Siace-Posto".
+                  - Msg  :: O Aplicativo "Siace-Posto" já está sendo executado.
+10/08/2012 14:15:48 - Erro :: Problemas ao tentar acessar Base de Dados
+                  - Msg  :: Erro ao tentar acessar Base de Dados. Verifique sua configuração.
+10/08/2012 14:16:02 - Erro :: Servidor de banco de dados local indisponível

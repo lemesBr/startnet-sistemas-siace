@@ -1,0 +1,18 @@
+C:\Meus Arquivos\Meus Programas\Delphi\Baixar XML NFe DLL\Código Fonte do Exemplo de Uso VB.NET\bin\Debug\DownloadXMLNFeExemplo.exe
+C:\Meus Arquivos\Meus Programas\Delphi\Baixar XML NFe DLL\Código Fonte do Exemplo de Uso VB.NET\bin\Debug\DownloadXMLNFeExemplo.pdb
+C:\Meus Arquivos\Meus Programas\Delphi\Baixar XML NFe DLL\Código Fonte do Exemplo de Uso VB.NET\bin\Debug\DownloadXMLNFeExemplo.xml
+C:\Meus Arquivos\Meus Programas\Delphi\Baixar XML NFe DLL\Código Fonte do Exemplo de Uso VB.NET\obj\Debug\DownloadXMLNFeExemplo.Resources.resources
+C:\Meus Arquivos\Meus Programas\Delphi\Baixar XML NFe DLL\Código Fonte do Exemplo de Uso VB.NET\obj\Debug\DownloadXMLNFeExemplo.vbproj.GenerateResource.Cache
+C:\Meus Arquivos\Meus Programas\Delphi\Baixar XML NFe DLL\Código Fonte do Exemplo de Uso VB.NET\obj\Debug\DownloadXMLNFeExemplo.exe
+C:\Meus Arquivos\Meus Programas\Delphi\Baixar XML NFe DLL\Código Fonte do Exemplo de Uso VB.NET\obj\Debug\DownloadXMLNFeExemplo.xml
+C:\Meus Arquivos\Meus Programas\Delphi\Baixar XML NFe DLL\Código Fonte do Exemplo de Uso VB.NET\obj\Debug\DownloadXMLNFeExemplo.pdb
+C:\Meus Arquivos\Meus Programas\Delphi\Baixar XML NFe DLL\Código Fonte do Exemplo de Uso VB.NET\obj\Debug\DownloadXMLNFeExemplo.Form1.resources
+C:\Meus Arquivos\Meus Programas\Delphi\Baixar XML NFe DLL\Código Fonte do Exemplo de Uso VB.NET Básico\obj\Debug\DownloadXMLNFeExemplo.exe
+C:\Meus Arquivos\Meus Programas\Delphi\Baixar XML NFe DLL\Código Fonte do Exemplo de Uso VB.NET Básico\obj\Debug\DownloadXMLNFeExemplo.xml
+C:\Meus Arquivos\Meus Programas\Delphi\Baixar XML NFe DLL\Código Fonte do Exemplo de Uso VB.NET Básico\obj\Debug\DownloadXMLNFeExemplo.pdb
+C:\Meus Arquivos\Meus Programas\Delphi\Baixar XML NFe DLL\Código Fonte do Exemplo de Uso VB.NET Básico\bin\Debug\DownloadXMLNFeExemplo.exe
+C:\Meus Arquivos\Meus Programas\Delphi\Baixar XML NFe DLL\Código Fonte do Exemplo de Uso VB.NET Básico\bin\Debug\DownloadXMLNFeExemplo.pdb
+C:\Meus Arquivos\Meus Programas\Delphi\Baixar XML NFe DLL\Código Fonte do Exemplo de Uso VB.NET Básico\bin\Debug\DownloadXMLNFeExemplo.xml
+C:\Meus Arquivos\Meus Programas\Delphi\Baixar XML NFe DLL\Código Fonte do Exemplo de Uso VB.NET Básico\obj\Debug\DownloadXMLNFeExemplo.Form1.resources
+C:\Meus Arquivos\Meus Programas\Delphi\Baixar XML NFe DLL\Código Fonte do Exemplo de Uso VB.NET Básico\obj\Debug\DownloadXMLNFeExemplo.Resources.resources
+C:\Meus Arquivos\Meus Programas\Delphi\Baixar XML NFe DLL\Código Fonte do Exemplo de Uso VB.NET Básico\obj\Debug\DownloadXMLNFeExemplo.vbproj.GenerateResource.Cache

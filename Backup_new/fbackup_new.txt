@@ -1,0 +1,11 @@
+Olá,
+ 
+Estava analisando o código do Programa FireBackup e descobri alguns erros simples nele. Então corrigi esses erros (tipo out of bonds) e implementei a opção do usuário ver o status do backup e o horário de término. Nada muito importante, mas acho que vocês devem oferecer sempre o melhor para nós usuários/colaboradores, certo? Então aí vai minha contribuição - O FirebackUp corrigido e implementado.
+Outra coisa, o link para participar do novo grupo está quebrado. Vocês poderiam me dizer como faço para voltar ao grupo de discussão de vocês - firebase?
+ 
+Obrigado à equipe,
+ 
+ 
+          Arthur Accioly               
+Jetro Soluções Empresariais
+Arthur <arthur_info@yahoo.com.br>

@@ -1,0 +1,564 @@
+object FormConfBaixaCheque: TFormConfBaixaCheque
+  Left = 624
+  Top = 256
+  BorderStyle = bsDialog
+  Caption = 'Confirma Baixa de Cheque'
+  ClientHeight = 173
+  ClientWidth = 436
+  Color = clBtnFace
+  Constraints.MinWidth = 130
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  KeyPreview = True
+  OldCreateOrder = False
+  Position = poDesktopCenter
+  Scaled = False
+  OnClose = FormClose
+  OnKeyDown = FormKeyDown
+  OnKeyPress = FormKeyPress
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Panel2: TPanel
+    Left = 0
+    Top = 0
+    Width = 436
+    Height = 44
+    Align = alTop
+    BevelOuter = bvNone
+    Color = 15263976
+    TabOrder = 0
+    object Panel1: TPanel
+      Left = 0
+      Top = 0
+      Width = 291
+      Height = 44
+      Align = alLeft
+      BevelInner = bvLowered
+      Color = 15263976
+      TabOrder = 0
+      object RxLabel1: TRxLabel
+        Left = 5
+        Top = 4
+        Width = 63
+        Height = 13
+        Caption = 'N'#176' da Conta:'
+      end
+      object Cliente: TComboEdit
+        Left = 6
+        Top = 18
+        Width = 109
+        Height = 19
+        CharCase = ecUpperCase
+        Ctl3D = False
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        GlyphKind = gkEllipsis
+        NumGlyphs = 1
+        ParentCtl3D = False
+        ParentFont = False
+        TabOrder = 0
+        Text = ''
+        OnButtonClick = ClienteButtonClick
+        OnEnter = ClienteEnter
+        OnExit = ClienteExit
+      end
+      object BTVisualizar: TsuiButton
+        Left = 122
+        Top = 4
+        Width = 165
+        Height = 37
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        Caption = 'Selecionar Conta'
+        AutoSize = False
+        ParentFont = False
+        UIStyle = WinXP
+        TabOrder = 1
+        Transparent = False
+        ModalResult = 0
+        FocusedRectMargin = 2
+        Glyph.Data = {
+          360C0000424D360C000000000000360000002800000020000000200000000100
+          180000000000000C000000000000000000000000000000000000FFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFF000000000000000000000000000000000000FFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFF000000000000FFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFF000000000000000000000000000000000000FFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFF000000007020000000FFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000000000000000FFFFFFFFFF
+          FFFFFFFFFFFFFF000000007020007020000000000000FFFFFFFFFFFFFFFFFF00
+          0000000000000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000000000000000000000FFFF
+          FFFFFFFFFFFFFF000000007020007020000000000000FFFFFFFFFFFFFFFFFF00
+          0000000000000000000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000000000000000FFFF
+          FFFFFFFFFFFFFF000000007020007020000000000000000000000000FFFFFFFF
+          FFFF000000000000000000000000000000000000000000FFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFF000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFF000000007020007020000000001020000000000000FFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000000000000000FFFFFFFFFFFF
+          FFFFFF000000000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFF00000000702000702000000000972F000000000000000000FF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000000000FFFFFFFFFFFF
+          000000000000000000000000000000000000000000000000000000FFFFFFFFFF
+          FFFFFFFFFFFFFF00000000702000000000000000972F00972F00000000000000
+          0000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000
+          0000000070200000000000000010200000000000000000000000000000000000
+          0000000000000000000000000000000000000000972F00972F00102000000000
+          0000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000
+          00702000702000000000000000972F00972F00972F0010200000000000000000
+          0000000000000000000000000000000000000000972F00972F00972F00000000
+          0000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFF000000
+          00702000702000000000000000972F00972F00972F00972F00972F00972F0097
+          2F00972F00702000000000000000000000000000972F00972F00972F00972F00
+          0000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFF000000
+          00702000702000000000000000972F00972F00972F00972F00972F00972F0097
+          2F00972F00972F00972F00972F00972F00972F00972F00972F00972F00972F00
+          972F000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000
+          00702000702000000000000000972F00972F00972F00972F00972F00972F0097
+          2F00972F00972F00972F00972F00972F00972F00972F00972F00972F00972F00
+          972F00972F000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000
+          00702000702000000000000000972F00972F00972F00972F00972F00972F0097
+          2F00972F00972F00972F00972F00972F00972F00972F00972F00972F00972F00
+          972F00972F00972F000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000
+          00702000702000000000000000972F00972F00972F00972F00972F00972F0097
+          2F00972F00972F00972F00972F00972F00972F00972F00972F00972F00972F00
+          972F00972F00972F000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000
+          00702000702000000000000000972F00972F00972F00972F00972F00972F0097
+          2F00972F00972F00972F00972F00972F00972F00972F00972F00972F00972F00
+          972F00972F00972F000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000
+          00702000702000000000000000972F00972F00972F00972F00972F00972F0097
+          2F00972F00972F00972F00972F00972F00972F00972F00972F00972F00972F00
+          972F00972F000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000
+          00702000702000000000000000972F00972F00972F00972F00972F00972FFFFF
+          FF00972FFFFFFFFFFFFFFFFFFF00972F00972F00972F00972F00972F00972F00
+          972F000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000
+          00702000702000000000000000972F00972F00972F00972F00972F00972F0097
+          2F00972F00702000000000000000000000000000972F00972F00972F00972F00
+          0000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000
+          00702000702000000000000000972F00972F00972F0010200000000000000000
+          0000000000000000000000000000000000000000972F00972F00972F00000000
+          0000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000
+          0000000070200000000000000010200000000000000000000000000000000000
+          0000000000000000000000000000000000000000972F00972F00102000000000
+          0000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          000000000000000000000000000000000000000000000000000000FFFFFFFFFF
+          FFFFFFFFFFFFFF00000000702000000000000000972F00972F00000000000000
+          0000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFF000000000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFF000000007020007020000000FFFFFF000000000000000000FF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFF
+          FFFFFFFFFFFF000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFF000000007020007020000000007020000000000000FFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000000000
+          FFFFFFFFFFFF000000000000000000FFFFFFFFFFFF000000000000000000FFFF
+          FFFFFFFFFFFFFF000000007020007020000000000000000000000000FFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000000000
+          FFFFFFFFFFFF000000000000000000FFFFFFFFFFFF000000000000000000FFFF
+          FFFFFFFFFFFFFF000000007020007020000000000000FFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000000000000000000000FFFFFFFFFF
+          FFFFFFFFFFFFFF000000007020007020000000000000FFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFF000000000000000000000000FFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFF000000007020000000FFFFFFFFFFFFFFFFFFFFFFFF00
+          0000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFF000000000000FFFFFFFFFFFFFFFFFF00000000
+          0000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
+        Layout = blGlyphLeft
+        Spacing = 4
+        MouseContinuouslyDownInterval = 100
+        OnClick = BTVisualizarClick
+        ResHandle = 0
+      end
+    end
+  end
+  object Panel3: TPanel
+    Left = 0
+    Top = 44
+    Width = 436
+    Height = 78
+    Align = alTop
+    BevelInner = bvRaised
+    Color = 15263976
+    TabOrder = 1
+    object RxLabel2: TRxLabel
+      Left = 5
+      Top = 5
+      Width = 39
+      Height = 13
+      Caption = 'Banco:'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clGray
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object RxLabel3: TRxLabel
+      Left = 320
+      Top = 5
+      Width = 50
+      Height = 13
+      Caption = 'Agencia:'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clGray
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object RxLabel4: TRxLabel
+      Left = 5
+      Top = 40
+      Width = 42
+      Height = 13
+      Caption = 'Titular:'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clGray
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object RxLabel5: TRxLabel
+      Left = 321
+      Top = 40
+      Width = 71
+      Height = 13
+      Caption = 'N'#176' da Conta:'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clGray
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object RxLabel6: TRxLabel
+      Left = 5
+      Top = 20
+      Width = 300
+      Height = 18
+      AutoSize = False
+      Color = clWhite
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object RxLabel7: TRxLabel
+      Left = 5
+      Top = 55
+      Width = 300
+      Height = 18
+      AutoSize = False
+      Color = clWhite
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object RxLabel8: TRxLabel
+      Left = 320
+      Top = 20
+      Width = 110
+      Height = 18
+      AutoSize = False
+      Color = clWhite
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object RxLabel9: TRxLabel
+      Left = 320
+      Top = 55
+      Width = 110
+      Height = 18
+      AutoSize = False
+      Color = clWhite
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+  end
+  object suiButton1: TsuiButton
+    Left = 211
+    Top = 136
+    Width = 100
+    Height = 30
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    Caption = 'Confirma'
+    AutoSize = False
+    ParentFont = False
+    UIStyle = WinXP
+    Enabled = False
+    TabOrder = 2
+    Transparent = False
+    ModalResult = 0
+    FocusedRectMargin = 2
+    Glyph.Data = {
+      5A010000424D5A01000000000000760000002800000012000000130000000100
+      040000000000E4000000C40E0000C40E00001000000000000000000000000000
+      80000080000000808000800000008000800080800000C0C0C000808080000000
+      FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333334433333
+      3333330000003333422433333333330000003334222243333333330000003342
+      2222243333333300000034222A2222433333330000003222A2A2224333333300
+      00003A2A222A222433333300000034A22222A2224333330000004222A2222A22
+      243333000000222A3A2224A2224333000000A2A333A2224A2224330000003A33
+      333A2224A2224300000033333333A2224A2243000000333333333A2224A22300
+      00003333333333A2224A3300000033333333333A222433000000333333333333
+      A224330000003333333333333A223300000033333333333333A333000000}
+    Layout = blGlyphLeft
+    Spacing = 4
+    MouseContinuouslyDownInterval = 100
+    OnClick = suiButton1Click
+    ResHandle = 0
+  end
+  object suiButton2: TsuiButton
+    Left = 327
+    Top = 136
+    Width = 100
+    Height = 30
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    Caption = 'Cancela'
+    AutoSize = False
+    ParentFont = False
+    UIStyle = WinXP
+    TabOrder = 3
+    Transparent = False
+    ModalResult = 0
+    FocusedRectMargin = 2
+    Glyph.Data = {
+      42020000424D4202000000000000420000002800000010000000100000000100
+      1000030000000002000000000000000000000000000000000000007C0000E003
+      00001F0000001F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C
+      1F7C005800581F7C005800581F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C
+      005800581F7C1F7C0058005800581F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C0058
+      00581F7C1F7C1F7C00580058005800581F7C1F7C1F7C1F7C1F7C1F7C00580058
+      1F7C1F7C1F7C1F7C1F7C0068005C005800581F7C1F7C1F7C1F7C005800581F7C
+      1F7C1F7C1F7C1F7C1F7C1F7C1F7C0058005800581F7C0058005800581F7C1F7C
+      1F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C005800600060006400581F7C1F7C1F7C
+      1F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C00600060006C1F7C1F7C1F7C1F7C
+      1F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C005800680064006C00741F7C1F7C1F7C
+      1F7C1F7C1F7C1F7C1F7C1F7C1F7C0070006C00681F7C1F7C007000741F7C1F7C
+      1F7C1F7C1F7C1F7C1F7C1F7C007C006C00741F7C1F7C1F7C1F7C007C00781F7C
+      1F7C1F7C1F7C1F7C1F7C00780078007C1F7C1F7C1F7C1F7C1F7C1F7C00780078
+      1F7C1F7C1F7C1F7C0078007800781F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C
+      00781F7C1F7C0078007800781F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C
+      1F7C1F7C1F7C007800781F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C
+      1F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C1F7C
+      1F7C1F7C1F7C}
+    Layout = blGlyphLeft
+    Spacing = 4
+    MouseContinuouslyDownInterval = 100
+    OnClick = suiButton2Click
+    ResHandle = 0
+  end
+  object SPC_BaixarCheque: TSQLStoredProc
+    MaxBlobSize = -1
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'CODIGO'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftFixedChar
+        Name = 'COMPENSADO'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftString
+        Name = 'USUARIO_BAIXA'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftDate
+        Name = 'DATA_BAIXA'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftString
+        Name = 'CODIGO_CC'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftString
+        Name = 'NUMERO_CC'
+        ParamType = ptInput
+      end>
+    SQLConnection = DM.SQLC
+    StoredProcName = 'SP_BAIXA_CHEQUE'
+    Left = 367
+  end
+  object MessageConta: TsuiMessageDialog
+    Position = poScreenCenter
+    Caption = 'Aten'#231#227'o !!!'
+    UIStyle = FromThemeFile
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    CaptionFont.Charset = DEFAULT_CHARSET
+    CaptionFont.Color = clWhite
+    CaptionFont.Height = -11
+    CaptionFont.Name = 'Tahoma'
+    CaptionFont.Style = [fsBold]
+    ButtonCursor = crHandPoint
+    ButtonCount = 1
+    Button1Caption = 'OK'
+    Button2Caption = 'Cancel'
+    Button3Caption = 'Cancel'
+    Button1ModalResult = 1
+    Button2ModalResult = 2
+    Button3ModalResult = 2
+    IconType = suiWarning
+    Text = 'Digite o N'#250'mero da Conta Banc'#225'ria!!!'
+    Left = 304
+    Top = 1
+  end
+  object MessageLocConta: TsuiMessageDialog
+    Position = poScreenCenter
+    Caption = 'Erro !!!'
+    UIStyle = FromThemeFile
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    CaptionFont.Charset = DEFAULT_CHARSET
+    CaptionFont.Color = clWhite
+    CaptionFont.Height = -11
+    CaptionFont.Name = 'Tahoma'
+    CaptionFont.Style = [fsBold]
+    ButtonCursor = crHandPoint
+    ButtonCount = 1
+    Button1Caption = 'OK'
+    Button2Caption = 'Cancel'
+    Button3Caption = 'Cancel'
+    Button1ModalResult = 1
+    Button2ModalResult = 2
+    Button3ModalResult = 2
+    IconType = suiStop
+    Text = 'Este N'#250'mero de Conta Banc'#225'ria N'#227'o Consta no Cadastro !'
+    Left = 336
+    Top = 1
+  end
+  object SPC_MovimentoBancario: TSQLStoredProc
+    MaxBlobSize = -1
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'CODIGO'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftDate
+        Name = 'DATA'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftString
+        Name = 'HISTORICO'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftString
+        Name = 'USUARIO'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftFixedChar
+        Name = 'TIPO'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftBCD
+        Name = 'VALOR_ENTRADA'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftBCD
+        Name = 'VALOR_SAIDA'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'CODIGO_CC'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftString
+        Name = 'NUMERO_CC'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'CODIGO_VENDA'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftString
+        Name = 'ORIGEM'
+        ParamType = ptInput
+      end>
+    SQLConnection = DM.SQLC
+    StoredProcName = 'SP_MOVIMENTO_DIARIO'
+    Left = 401
+  end
+  object qrcaixa_mov: TIBQuery
+    Database = DM.IBDatabase
+    Transaction = DM.IBTransaction
+    BufferChunks = 1000
+    CachedUpdates = False
+    ParamCheck = True
+    SQL.Strings = (
+      'select * from MOVIMENTO_DIARIO')
+    Left = 232
+    Top = 12
+  end
+end

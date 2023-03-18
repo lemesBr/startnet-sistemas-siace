@@ -1,0 +1,8 @@
+https://200.214.130.55:9443/farmaciapopular/
+
+HOMOLOGACAO
+http://189.28.128.37/portalfarmacia/login.jsf
+
+
+
+PRODUCAO

@@ -1,0 +1,11 @@
+frmBicos = 35, 103, 482, 775, C, 0, 0, 0, 0, C
+frmConsole = 3, 98, 778, 805, , 0, 0, 0, 0, 
+CUBEstados = 4, 77, 808, 836, 
+CUBRotinas = 6, 316, 814, 1073, CZ
+CUBFuncoesDll = 3, 72, 809, 831, C
+frmPrincipal = 0, 72, 447, 744, , 0, 0, 0, 0, 
+frmHelp = 0, 0, 0, 0, C, 0, 0, 0, 0, C
+frmProdutos = 0, 0, 0, 0, C, 0, 0, 0, 0, C
+frmLastSales = 35, 103, 482, 775, C, 0, 0, 0, 0, C
+CUBFuncoes = 0, 74, 808, 831, 
+frmTAG = 35, 103, 482, 775, CZ, 0, 0, 0, 0, C

@@ -1,0 +1,124 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xdb="http://www.borland.com/schemas/delphi/6.0/XMLDataBinding">
+  <xs:element name="definitions" type="wsdl:definitionsType"/>
+  <xs:complexType name="definitionsType"><xs:annotation>
+      <xs:appinfo xdb:docElement="definitions"/>
+    </xs:annotation>
+    
+    <xs:sequence>
+      <xs:element name="types" type="wsdl:typesType"/>
+      <xs:element name="message" type="wsdl:messageType" maxOccurs="unbounded"/>
+      <xs:element name="portType" type="wsdl:portType"/>
+      <xs:element name="binding" type="wsdl:bindingType"/>
+      <xs:element name="service" type="wsdl:serviceType"/>
+    </xs:sequence>
+    <xs:attribute name="targetNamespace" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="typesType">
+    <xs:sequence>
+      <xs:element name="schema" type="wsdl:schemaType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="schemaType">
+    <xs:sequence>
+      <xs:element name="element" type="wsdl:elementType" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="elementFormDefault" type="xs:string"/>
+    <xs:attribute name="targetNamespace" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="elementType">
+    <xs:sequence>
+      <xs:element name="complexType" type="wsdl:complexType" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="minOccurs" type="xs:integer"/>
+    <xs:attribute name="maxOccurs" type="xs:integer"/>
+    <xs:attribute name="name" type="xs:string"/>
+    <xs:attribute name="type" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="complexType">
+    <xs:sequence>
+      <xs:element name="sequence" type="wsdl:sequenceType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="sequenceType">
+    <xs:sequence>
+      <xs:element name="element" type="wsdl:elementType" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="messageType"><xs:annotation>
+      <xs:appinfo xdb:repeated="True"/>
+    </xs:annotation>
+    
+    <xs:sequence>
+      <xs:element name="part" type="wsdl:partType"/>
+    </xs:sequence>
+    <xs:attribute name="name" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="partType">
+    <xs:sequence/>
+    <xs:attribute name="name" type="xs:string"/>
+    <xs:attribute name="element" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="portType">
+    <xs:sequence>
+      <xs:element name="operation" type="wsdl:operationType" maxOccurs="unbounded" minOccurs="0"/>
+      <xs:element name="address" type="wsdl:addressType" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="name" type="xs:string"/>
+    <xs:attribute name="binding" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="operationType"><xs:annotation>
+      <xs:appinfo xdb:repeated="True"/>
+    </xs:annotation>
+    
+    <xs:sequence>
+      <xs:element name="input" type="wsdl:inputType" minOccurs="0"/>
+      <xs:element name="output" type="wsdl:outputType" minOccurs="0"/>
+      <xs:element name="operation" type="wsdl:operationType" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="name" type="xs:string"/>
+    <xs:attribute name="soapAction" type="xs:string"/>
+    <xs:attribute name="style" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="inputType">
+    <xs:sequence>
+      <xs:element name="body" type="wsdl:bodyType" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="message" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="outputType">
+    <xs:sequence>
+      <xs:element name="body" type="wsdl:bodyType" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="message" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="bindingType">
+    <xs:sequence>
+      <xs:element name="binding" type="wsdl:bindingType"/>
+      <xs:element name="operation" type="wsdl:operationType" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="transport" type="xs:string"/>
+    <xs:attribute name="style" type="xs:string"/>
+    <xs:attribute name="name" type="xs:string"/>
+    <xs:attribute name="type" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="bodyType">
+    <xs:sequence/>
+    <xs:attribute name="use" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="serviceType">
+    <xs:sequence>
+      <xs:element name="documentation" type="wsdl:documentationType"/>
+      <xs:element name="port" type="wsdl:portType"/>
+    </xs:sequence>
+    <xs:attribute name="name" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="documentationType">
+    <xs:sequence/>
+    <xs:attribute name="xmlns" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="addressType">
+    <xs:sequence/>
+    <xs:attribute name="location" type="xs:string"/>
+  </xs:complexType>
+</xs:schema>

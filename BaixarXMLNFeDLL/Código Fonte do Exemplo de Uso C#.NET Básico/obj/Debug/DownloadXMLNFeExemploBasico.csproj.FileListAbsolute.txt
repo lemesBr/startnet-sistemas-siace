@@ -1,0 +1,8 @@
+C:\Meus Arquivos\Meus Programas\Delphi\Baixar XML NFe DLL\Código Fonte do Exemplo de Uso C#.NET Básico\bin\Debug\DownloadXMLNFeExemploBasico.exe
+C:\Meus Arquivos\Meus Programas\Delphi\Baixar XML NFe DLL\Código Fonte do Exemplo de Uso C#.NET Básico\bin\Debug\DownloadXMLNFeExemploBasico.pdb
+C:\Meus Arquivos\Meus Programas\Delphi\Baixar XML NFe DLL\Código Fonte do Exemplo de Uso C#.NET Básico\obj\Debug\DownloadXMLNFeExemploBasico.csprojResolveAssemblyReference.cache
+C:\Meus Arquivos\Meus Programas\Delphi\Baixar XML NFe DLL\Código Fonte do Exemplo de Uso C#.NET Básico\obj\Debug\DownloadXMLNFeExemploBasico.Form1.resources
+C:\Meus Arquivos\Meus Programas\Delphi\Baixar XML NFe DLL\Código Fonte do Exemplo de Uso C#.NET Básico\obj\Debug\DownloadXMLNFeExemploBasico.Properties.Resources.resources
+C:\Meus Arquivos\Meus Programas\Delphi\Baixar XML NFe DLL\Código Fonte do Exemplo de Uso C#.NET Básico\obj\Debug\DownloadXMLNFeExemploBasico.csproj.GenerateResource.Cache
+C:\Meus Arquivos\Meus Programas\Delphi\Baixar XML NFe DLL\Código Fonte do Exemplo de Uso C#.NET Básico\obj\Debug\DownloadXMLNFeExemploBasico.exe
+C:\Meus Arquivos\Meus Programas\Delphi\Baixar XML NFe DLL\Código Fonte do Exemplo de Uso C#.NET Básico\obj\Debug\DownloadXMLNFeExemploBasico.pdb
