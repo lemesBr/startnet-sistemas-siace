@@ -31,7 +31,7 @@ object FormExtornoFretes: TFormExtornoFretes
     ParentFont = False
     TabOrder = 0
     UseDockManager = True
-    Version = '2.5.4.1'
+    Version = '2.5.8.0'
     BorderColor = 16765615
     Caption.Color = 16773091
     Caption.ColorTo = 16765615
@@ -392,7 +392,7 @@ object FormExtornoFretes: TFormExtornoFretes
     ParentFont = False
     TabOrder = 1
     UseDockManager = True
-    Version = '2.5.4.1'
+    Version = '2.5.8.0'
     BorderColor = 16765615
     Caption.Color = 16773091
     Caption.ColorTo = 16765615
