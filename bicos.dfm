@@ -18,13 +18,12 @@ inherited FormBicos: TFormBicos
     object Panel4: TPanel
       Left = 0
       Top = 0
-      Width = 656
+      Width = 778
       Height = 64
       Align = alTop
       TabOrder = 0
-      ExplicitWidth = 668
       DesignSize = (
-        656
+        778
         64)
       object Label1: TLabel
         Left = 16
@@ -72,13 +71,12 @@ inherited FormBicos: TFormBicos
     object GroupBox1: TGroupBox
       Left = 0
       Top = 64
-      Width = 656
+      Width = 778
       Height = 171
       Align = alClient
       TabOrder = 1
-      ExplicitWidth = 668
       DesignSize = (
-        656
+        778
         171)
       object Label2: TLabel
         Left = 16
@@ -179,7 +177,7 @@ inherited FormBicos: TFormBicos
         Left = 170
         Top = 33
         Width = 110
-        Height = 24
+        Height = 22
         Alignment = taCenter
         CharCase = ecUpperCase
         ClickKey = 120
@@ -263,12 +261,29 @@ inherited FormBicos: TFormBicos
     Top = 235
     ExplicitTop = 235
     FullHeight = 51
-    inherited BtnGravar: TAdvGlowButton
-      OnClick = BtnGravarClick
+    inherited btnLocalizar: TAdvGlowButton
+      OnClick = BtnConsultarClick
     end
-    inherited BtnExcluir: TAdvGlowButton
-      Caption = 'ou'
+    inherited btnSalvar: TAdvGlowButton
+      Left = 409
+      OnClick = BtnGravarClick
+      ExplicitLeft = 409
+    end
+    inherited btnexcluir: TAdvGlowButton
+      Width = 107
       OnClick = BtnExcluirClick
+      ExplicitLeft = 302
+      ExplicitTop = 2
+      ExplicitWidth = 107
+    end
+    inherited btnCancelar: TAdvGlowButton
+      OnClick = BtnCancelarClick
+    end
+    inherited btnEditar: TAdvGlowButton
+      OnClick = BtnAlterarClick
+    end
+    inherited btnNovo: TAdvGlowButton
+      OnClick = btnNovoClick
     end
   end
   object QryBomba: TFDQuery

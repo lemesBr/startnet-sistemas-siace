@@ -96,66 +96,56 @@ implementation
 uses ModuleDados1, ConsClientes, ModulodeDados, Principal, consvaletroco,
   RelValeTroco, clientes, veiculo, xloc_veiculo, Ubibli1;
 
-var  sSql : string;
-iEmp :Integer;
+var
+  sSql : string;
+  iEmp :Integer;
 
 {$R *.dfm}
 
 function RemoveChar(Const Texto:String):String;
-  //
-  // Remove caracteres de uma string deixando apenas numeros
-  //
-  var
+var
   I: integer;
   S: string;
-  begin
+begin
   S := '';
   for I := 1 To Length(Texto) Do
   begin
-  if (Texto[I] in ['0'..'9']) then
-  begin
-  S := S + Copy(Texto, I, 1);
-  end;
+    if (Texto[I] in ['0'..'9']) then
+    begin
+      S := S + Copy(Texto, I, 1);
+    end;
   end;
   result := S;
-  end;
+end;
 
 Procedure TFormValeTroco.AtualizaManutencao;
 begin
-//DBNavigator.Enabled:= (DM1.Sds_Afericao.State = dsBrowse);
-BTNNOVO.Enabled:= (DM1.Sds_valeTroco.State = dsBrowse);
-BTNEXCLUIR.Enabled:= (DM1.Sds_valeTroco.State = dsBrowse);
-BtnConsultar.Enabled:= (DM1.Sds_valeTroco.State = dsBrowse);
-BtnGravar.Enabled:= (DM1.Sds_valeTroco.State in [dsInsert, dsEdit]);
-BTNCANCELAR.Enabled:= (DM1.Sds_valeTroco.State in [dsInsert, dsEdit]);
-BtnAlterar.Enabled:= (DM1.Sds_valeTroco.State = dsBrowse);
-
+  BTNNOVO.Enabled:= (DM1.Sds_valeTroco.State = dsBrowse);
+  BTNEXCLUIR.Enabled:= (DM1.Sds_valeTroco.State = dsBrowse);
+  BtnLocalizar.Enabled:= (DM1.Sds_valeTroco.State = dsBrowse);
+  BtnSalvar.Enabled:= (DM1.Sds_valeTroco.State in [dsInsert, dsEdit]);
+  BTNCANCELAR.Enabled:= (DM1.Sds_valeTroco.State in [dsInsert, dsEdit]);
+  BtnEditar.Enabled:= (DM1.Sds_valeTroco.State = dsBrowse);
 end;
 
 procedure TFormValeTroco.HabilitaPanel;
 begin
-Panel1.Enabled:= True;
+  Panel1.Enabled:= True;
 end;
 
 procedure TFormValeTroco.DesabilitaPanel;
 begin
-Panel1.Enabled:= False;
+  Panel1.Enabled:= False;
 end;
 
 procedure TFormValeTroco.HabilitaNovo;
 begin
-//Novo1.Enabled:=True;
-//Editar1.Enabled:=False;
-//Excluir1.Enabled:=False;
-//Localizar1.Enabled:=False;
-//Salvar1.Enabled:= False;
-//Cancelar1.Enabled:=False;
-BTNNOVO.Enabled:=TRUE;
-BtnAlterar.Enabled:=FALSE;
-BTNCANCELAR.Enabled:=FALSE;
-BtnGravar.Enabled:=FALSE;
-BTNEXCLUIR.Enabled:=FALSE;
-BtnConsultar.Enabled:= False;
+  BTNNOVO.Enabled:=TRUE;
+  BtnEditar.Enabled:=FALSE;
+  BTNCANCELAR.Enabled:=FALSE;
+  BtnSalvar.Enabled:=FALSE;
+  BTNEXCLUIR.Enabled:=FALSE;
+  BtnLocalizar.Enabled:= False;
 end;
 
 procedure TFormValeTroco.RxDBComboEdit1ButtonClick(Sender: TObject);
@@ -174,495 +164,486 @@ procedure TFormValeTroco.RxDBComboEdit1KeyDown(Sender: TObject;
   var Key: Word; Shift: TShiftState);
 begin
   inherited;
-     if key = vk_f3 then
-        BtnAddPro.Click;
+  if key = vk_f3 then
+    BtnAddPro.Click;
 
-  if Key = VK_RETURN THEN
-  BEGIN
-  if (RxDBComboEdit1.Text = '') then
-  ShowMessage('Código do Cliente deve ser Informado');
-  RxDBComboEdit1.SetFocus;
+  if Key = VK_RETURN then
+  begin
+    if (RxDBComboEdit1.Text = '') then
+      ShowMessage('Código do Cliente deve ser Informado');
+    RxDBComboEdit1.SetFocus;
   end;
 end;
 
 procedure TFormValeTroco.btnNovoClick(Sender: TObject);
 begin
   inherited;
-if FormPrincipal.Label3.Caption ='N'then
-begin
-MsgInformacao.Text:= 'O usuário conectado não possui autorização para Inserir Registro. Contate o Administrador do Sistema para obter acesso!!! !!!';
-MsgInformacao.ShowModal;
-End;
-if FormPrincipal.Label3.Caption ='S'then
-begin
-//Try
-   dm1.ProxCod.Close;
-   dm1.ProxCod.SQL.Clear;
-   dm1.ProxCod.SQL.Add('select max(codigo) as N_CODIGO FROM VALETROCO');
-   DM1.ProxCod.Open;
+  if FormPrincipal.Label3.Caption = 'N'then
+  begin
+    MsgInformacao.Text:= 'O usuário conectado não possui autorização para '+
+    'Inserir Registro. Contate o Administrador do Sistema para obter acesso!!! !!!';
+    MsgInformacao.ShowModal;
+  end;
 
-   dm1.Sds_valeTroco.Open;
-   dm1.Sds_valeTroco.Insert;
-   DM1.Sds_valeTrocoCODIGO.ASINTEGER :=DM1.ProxCodN_CODIGO.ASINTEGER + 1;
-   DM1.Sds_valeTrocoUSERCAD.Text:= FormPrincipal.UserLogado;
-   DM1.Sds_valeTrocoDATACAD.Text:= datetostr(now);
-   DM1.Sds_valeTrocoDATA.Text:= datetostr(now);
-   DM1.Sds_valeTrocoHORA.Text:= TimeToStr(now);
-   DM1.Sds_valeTrocoDEBITOCREDITO.Text:= 'D';
-   dm1.Sds_valeTrocoCOD_EMPRESA.Text := DM.SDS_EmpresaCODIGO.Text;
-   HabilitaPanel;
-   AtualizaManutencao;
-   dt_venda.SetFocus;
-  { Except
-   MsgErro.Text:= 'Ocorreu um Erro. Reinicie o Sistema e tente novamente !!!';
-   MsgErro.ShowModal;
-   end; }
-end;
+  if FormPrincipal.Label3.Caption = 'S' then
+  begin
+    dm1.ProxCod.Close;
+    dm1.ProxCod.SQL.Clear;
+    dm1.ProxCod.SQL.Add('select max(codigo) as N_CODIGO FROM VALETROCO');
+    DM1.ProxCod.Open;
+
+    dm1.Sds_valeTroco.Open;
+    dm1.Sds_valeTroco.Insert;
+    DM1.Sds_valeTrocoCODIGO.ASINTEGER :=DM1.ProxCodN_CODIGO.ASINTEGER + 1;
+    DM1.Sds_valeTrocoUSERCAD.Text:= FormPrincipal.UserLogado;
+    DM1.Sds_valeTrocoDATACAD.Text:= datetostr(now);
+    DM1.Sds_valeTrocoDATA.Text:= datetostr(now);
+    DM1.Sds_valeTrocoHORA.Text:= TimeToStr(now);
+    DM1.Sds_valeTrocoDEBITOCREDITO.Text:= 'D';
+    dm1.Sds_valeTrocoCOD_EMPRESA.Text := DM.SDS_EmpresaCODIGO.Text;
+    HabilitaPanel;
+    AtualizaManutencao;
+    dt_venda.SetFocus;
+  end;
 end;
 
 procedure TFormValeTroco.BtnAlterarClick(Sender: TObject);
 begin
   inherited;
-if FormPrincipal.Label2.Caption ='N'then
-begin
-MsgInformacao.Text:= 'O usuário conectado não possui autorização para Editar Registro. Contate o Administrador do Sistema para obter acesso!!! !!!';
-MsgInformacao.ShowModal;
-End;
-if FormPrincipal.Label2.Caption ='S'then
-begin
-Try
-     DM1.Sds_valeTroco.Edit;
-     AtualizaManutencao;
-     HabilitaPanel;
-     dt_venda.SetFocus;
-   Except
-   MsgErro.Text:= 'Ocorreu um Erro. Reinicie o Sistema e tente novamente !!!';
-   MsgErro.ShowModal;
-   end;
+  if FormPrincipal.Label2.Caption = 'N' then
+  begin
+    MsgInformacao.Text:= 'O usuário conectado não possui autorização para '+
+    'Editar Registro. Contate o Administrador do Sistema para obter acesso!!! !!!';
+    MsgInformacao.ShowModal;
+  end;
 
-end;
+  if FormPrincipal.Label2.Caption ='S'then
+  begin
+    try
+      DM1.Sds_valeTroco.Edit;
+      AtualizaManutencao;
+      HabilitaPanel;
+      dt_venda.SetFocus;
+    except
+      MsgErro.Text:= 'Ocorreu um Erro. Reinicie o Sistema e tente novamente !!!';
+      MsgErro.ShowModal;
+    end;
+  end;
 end;
 
 procedure TFormValeTroco.BtnCancelarClick(Sender: TObject);
 begin
   inherited;
-Try
-     DM1.Sds_valeTroco.Cancel;
- if DM1.Sds_valeTroco.RecordCount = 0 then HabilitaNovo else AtualizaManutencao;
-     DesabilitaPanel;
-     //db_nome.Color:= $00E8E8E8;
-   Except
-   MsgErro.Text:= 'Ocorreu um Erro. Reinicie o Sistema e tente novamente !!!';
-   MsgErro.ShowModal;
-   end;
+  try
+    DM1.Sds_valeTroco.Cancel;
+    if DM1.Sds_valeTroco.RecordCount = 0 then
+      HabilitaNovo
+    else
+      AtualizaManutencao;
+
+    DesabilitaPanel;
+  except
+    MsgErro.Text:= 'Ocorreu um Erro. Reinicie o Sistema e tente novamente !!!';
+    MsgErro.ShowModal;
+  end;
 end;
 
 procedure TFormValeTroco.BtnExcluirClick(Sender: TObject);
 begin
   inherited;
-if FormPrincipal.Label1.Caption ='N'then
-begin
-MsgInformacao.Text:= 'O usuário conectado não possui autorização para Excluir Registro. Contate o Administrador do Sistema para obter acesso!!! !!!';
-MsgInformacao.ShowModal;
-End;
-if FormPrincipal.Label1.Caption ='S'then
-begin
-if MsgConfirmacao.ShowModal = mryes then
-begin
-Try
- Begin
-    DM1.Sds_valeTroco.Delete;
-    DM1.Sds_valeTroco.ApplyUpdates(0);
- end;
- if DM1.Sds_valeTroco.RecordCount = 0 then HabilitaNovo else AtualizaManutencao;
-       Except
-      MsgErro.Text:= 'Ocorreu um Erro. Reinicie o Sistema e tente novamente !!!';
-      MsgErro.ShowModal;
-end;
-end;
-end;
+  if FormPrincipal.Label1.Caption = 'N' then
+  begin
+    MsgInformacao.Text:= 'O usuário conectado não possui autorização para '+
+    'Excluir Registro. Contate o Administrador do Sistema para obter acesso!!! !!!';
+    MsgInformacao.ShowModal;
+  end;
+
+  if FormPrincipal.Label1.Caption = 'S' then
+  begin
+    if MsgConfirmacao.ShowModal = mryes then
+    begin
+      try
+        DM1.Sds_valeTroco.Delete;
+        DM1.Sds_valeTroco.ApplyUpdates(0);
+        if DM1.Sds_valeTroco.RecordCount = 0 then HabilitaNovo else AtualizaManutencao;
+      except
+        MsgErro.Text:= 'Ocorreu um Erro. Reinicie o Sistema e tente novamente !!!';
+        MsgErro.ShowModal;
+      end;
+    end;
+  end;
 end;
 
 procedure TFormValeTroco.BtnGravarClick(Sender: TObject);
 begin
   inherited;
-Try
-      begin
-          DM1.Sds_valeTrocoCOD_VEICULO.AsString := veiculo.Text;
-          DM1.Sds_valeTroco.Post;
-          DM1.Sds_valeTroco.ApplyUpdates(0);
-          AtualizaManutencao;
-          DesabilitaPanel;
-      end;
-   Except
-   MsgErro.Text:= 'Ocorreu um Erro. Reinicie o Sistema e tente novamente !!!';
-   MsgErro.ShowModal;
-   end;
-
+  try
+    DM1.Sds_valeTrocoCOD_VEICULO.AsString := veiculo.Text;
+    DM1.Sds_valeTroco.Post;
+    DM1.Sds_valeTroco.ApplyUpdates(0);
+    AtualizaManutencao;
+    DesabilitaPanel;
+  except
+    MsgErro.Text:= 'Ocorreu um Erro. Reinicie o Sistema e tente novamente !!!';
+    MsgErro.ShowModal;
+  end;
 end;
 
 procedure TFormValeTroco.BtnConsultarClick(Sender: TObject);
 begin
   dm1.Sds_valeTroco.Open;
- if FormConsValeTroco=nil   then
-      begin
-       FormConsValeTroco:=TFormConsValeTroco.Create(self);
-       FormConsValeTroco.ShowModal;
-       veiculo.Text := DM1.Sds_valeTrocoCOD_VEICULO.Text;
+  if FormConsValeTroco=nil   then
+  begin
+    FormConsValeTroco:=TFormConsValeTroco.Create(self);
+    FormConsValeTroco.ShowModal;
+    veiculo.Text := DM1.Sds_valeTrocoCOD_VEICULO.Text;
 
-        dm.SDS_VEICULOS.Active := false;
-        dm.SDS_veiculos.SQL.Clear;
-        dm.SDS_veiculos.SQL.Add('select * from veiculo where CODIGO like ' + #39 + '%' + veiculo.Text + '%' + #39+'order by NOME ASC');
-        dm.SDS_veiculos.Active := True;
-       // ACHOU:= DM.SDS_VEICULOS.locate('CODIGO', RemoveChar(veiculo.Text),[]);
-       // veiculo.Text := RemoveChar(veiculo.Text);
-        DBEdit4.TEXT  := DM.SDS_VEICULOSNOME.Text;
-       end;
+    dm.SDS_VEICULOS.Active := false;
+    dm.SDS_veiculos.SQL.Clear;
+    dm.SDS_veiculos.SQL.Add('select * from veiculo where CODIGO like ' + #39 +
+    '%' + veiculo.Text + '%' + #39+'order by NOME ASC');
+    dm.SDS_veiculos.Active := True;
+    DBEdit4.TEXT  := DM.SDS_VEICULOSNOME.Text;
+  end;
 end;
 
 procedure TFormValeTroco.FormKeyPress(Sender: TObject; var Key: Char);
 begin
-if Key =#27 then
-close;
+  if Key =#27 then
+    close;
 
-if  not (ActiveControl is TDBLookupComboBox) and not(ActiveControl is TRxDBComboEdit)  then
-    If Key = #13 then
-    Begin
-      Key := #0;
-      Perform(WM_NextDlgCtl, 0, 0);
-    End;
+  if  not (ActiveControl is TDBLookupComboBox) and not(ActiveControl is TRxDBComboEdit)  then
+  if Key = #13 then
+  begin
+    Key := #0;
+    Perform(WM_NextDlgCtl, 0, 0);
+  end;
 end;
 
 procedure TFormValeTroco.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
   inherited;
-     if dm.IBTransaction.Active then
-      dm.IBTransaction.Commit;
-      dm1.QConsValeTroco.SQL.Clear;
-      dm1.QConsValeTroco.SQL.Text := sSql;
-      dm1.QConsValeTroco.Close;
+  if dm.IBTransaction.Active then
+  dm.IBTransaction.Commit;
+  dm1.QConsValeTroco.SQL.Clear;
+  dm1.QConsValeTroco.SQL.Text := sSql;
+  dm1.QConsValeTroco.Close;
 
-Action := caFree;
-FormValeTroco := nil;
+  Action := caFree;
+  FormValeTroco := nil;
 end;
 
 procedure TFormValeTroco.EvDBNumEdit2Exit(Sender: TObject);
 begin
-DM1.Sds_valeTrocoSALDO_ATUAL.AsFloat := DM1.Sds_valeTrocoVALOR_VALETROCO.AsFloat - DM1.Sds_valeTrocoTOTAL_PAGO.AsFloat;
+  DM1.Sds_valeTrocoSALDO_ATUAL.AsFloat := DM1.Sds_valeTrocoVALOR_VALETROCO.AsFloat
+  - DM1.Sds_valeTrocoTOTAL_PAGO.AsFloat;
 end;
 
 procedure TFormValeTroco.BtnSairClick(Sender: TObject);
 begin
-     if dm.IBTransaction.Active then
-      dm.IBTransaction.Commit;
-   dm.IBTransaction.StartTransaction;
-   with dm1.QConsValeTroco do
-      begin
-         close;
-         sql.Clear;
-         sql.Text:= sSql;
-            begin
-               if DBEdit1.Text > '' then
-                  begin
-                      begin
-                           sql.Add(' WHERE V.CODIGO = :COD_VALE AND V.COD_EMPRESA = :CODEMP');
-                           Parambyname('COD_VALE').AsInteger:= StrToInt(DBEdit1.Text);
-                           Parambyname('codemp').AsInteger:= iEmp;
-                       end;
-               open;
-               end;
+  if dm.IBTransaction.Active then
+    dm.IBTransaction.Commit;
 
-    //IF DM.SDS_CONFIGURACOESFORM_PEDIDOS.Value = 'I' THEN
-    IF DM.SDS_CONFIGURACOESIMPRESSAO.TEXT ='P' THEN
-    BEGIN
-    FormRelValeTroco:=TFormrELValetroco.Create(self);
-    FormRelValeTroco.RLReport1.DefaultFilter.Destroy;
-    if dm1.Sds_valeTrocoDEBITOCREDITO.Text = 'D' THEN
-    BEGIN
-    FormRelValeTroco.RLLabel1.Caption := 'VALE Nº';
-    FormRelValeTroco.RLLabel35.Caption := 'Reconheço(emos) a exatidão deste VALE, na importancia acima Recebida.';
-    end ELSE
+  dm.IBTransaction.StartTransaction;
+  with dm1.QConsValeTroco do
+  begin
+    close;
+    sql.Clear;
+    sql.Text:= sSql;
+
+    if DBEdit1.Text > '' then
     begin
-    FormRelValeTroco.RLLabel1.Caption := 'VALE TROCO   Nº';
-    FormRelValeTroco.RLLabel35.Caption := 'Reconheço(emos) a exatidão deste VALE TROCO, na importancia acima.';
+      sql.Add(' WHERE V.CODIGO = :COD_VALE AND V.COD_EMPRESA = :CODEMP');
+      Parambyname('COD_VALE').AsInteger:= StrToInt(DBEdit1.Text);
+      Parambyname('codemp').AsInteger:= iEmp;
     end;
-    FormRelValeTroco.RLReport1.Prepare;
-    FormRelValeTroco.RLReport1.PreviewModal;
-    end else
-    IF DM.SDS_CONFIGURACOESIMPRESSAO.TEXT ='M' THEN
-    BEGIN
-    FormRelValeTroco:=TFormrELValetroco.Create(self);
-    //FormRelValeTroco.RLReport1.DefaultFilter.Destroy;
-    if dm1.Sds_valeTrocoDEBITOCREDITO.Text = 'D' THEN
-    BEGIN
-    FormRelValeTroco.RLLabel1.Caption := 'VALE Nº';
-    FormRelValeTroco.RLLabel35.Caption := 'Reconheço(emos) a exatidão deste VALE, na importancia acima Recebida.';
-    end ELSE
+
+    open;
+
+    if DM.SDS_CONFIGURACOESIMPRESSAO.TEXT = 'P' then
     begin
-    FormRelValeTroco.RLLabel1.Caption := 'VALE TROCO   Nº';
-    FormRelValeTroco.RLLabel35.Caption := 'Reconheço(emos) a exatidão deste VALE TROCO, na importancia acima.' ;
+      FormRelValeTroco:=TFormrELValetroco.Create(self);
+      FormRelValeTroco.RLReport1.DefaultFilter.Destroy;
+
+      if dm1.Sds_valeTrocoDEBITOCREDITO.Text = 'D' then
+      begin
+        FormRelValeTroco.RLLabel1.Caption:= 'VALE Nº';
+        FormRelValeTroco.RLLabel35.Caption:= 'Reconheço(emos) a exatidão '+
+        'deste VALE, na importancia acima Recebida.';
+      end
+      else
+      begin
+        FormRelValeTroco.RLLabel1.Caption:= 'VALE TROCO   Nº';
+        FormRelValeTroco.RLLabel35.Caption:= 'Reconheço(emos) a exatidão '+
+        'deste VALE TROCO, na importancia acima.';
+      end;
+
+      FormRelValeTroco.RLReport1.Prepare;
+      FormRelValeTroco.RLReport1.PreviewModal;
+    end
+    else
+    if DM.SDS_CONFIGURACOESIMPRESSAO.TEXT = 'M' then
+    begin
+      FormRelValeTroco:=TFormrELValetroco.Create(self);
+
+      if dm1.Sds_valeTrocoDEBITOCREDITO.Text = 'D' then
+      begin
+        FormRelValeTroco.RLLabel1.Caption:= 'VALE Nº';
+        FormRelValeTroco.RLLabel35.Caption:= 'Reconheço(emos) a exatidão '+
+        'deste VALE, na importancia acima Recebida.';
+      end
+      else
+      begin
+        FormRelValeTroco.RLLabel1.Caption:= 'VALE TROCO   Nº';
+        FormRelValeTroco.RLLabel35.Caption:= 'Reconheço(emos) a exatidão '+
+        'deste VALE TROCO, na importancia acima.' ;
+      end;
+
+      FormRelValeTroco.RLReport1.Prepare;
+      FormRelValeTroco.RLReport1.PreviewModal;
     end;
-    FormRelValeTroco.RLReport1.Prepare;
-    FormRelValeTroco.RLReport1.PreviewModal;
-    end;
-    end;
-end;
+  end;
 end;
 
 procedure TFormValeTroco.FormShow(Sender: TObject);
 begin
-    sSql := dm1.QConsValeTroco.SQL.Text;
-    iEmp := dm.sds_empresacodigo.asinteger;
-    btnNovo.SetFocus;
+  sSql := dm1.QConsValeTroco.SQL.Text;
+  iEmp := dm.sds_empresacodigo.asinteger;
+  btnNovo.SetFocus;
 
- ZQuery1.ExecSQL;   
-
+  ZQuery1.ExecSQL;
 end;
 
 procedure TFormValeTroco.RxDBComboEdit1KeyPress(Sender: TObject;
   var Key: Char);
 begin
-   if Key = #13 then
-   begin
-   dm.SDS_Clientes.Active := false;
-   dm.SDS_Clientes.SQL.Clear;
-   dm.SDS_Clientes.SQL.Add('select * from clientes where codigo like ' + #39 + '%' + RxDBComboEdit1.Text + '%' + #39+'order by NOME_RS ASC');
-   dm.SDS_Clientes.Active := True;
+  if Key = #13 then
+  begin
+    dm.SDS_Clientes.Active := false;
+    dm.SDS_Clientes.SQL.Clear;
+    dm.SDS_Clientes.SQL.Add('select * from clientes where codigo like ' + #39 +
+    '%' + RxDBComboEdit1.Text + '%' + #39+'order by NOME_RS ASC');
+    dm.SDS_Clientes.Active := True;
 
-   if RxDBComboEdit1.Text > '' then
-   begin
-   DM.SDS_Clientes.locate('CODIGO', RxDBComboEdit1.Text,[]);
-   dm1.Sds_valeTrocoNOME_CLIENTE.Text := DM.SDS_ClientesNOME_RS.Text;
-   EvDBComboBox2.SetFocus;
-   end else
-   if not DM.SDS_Clientes.locate('CODIGO', RxDBComboEdit1.Text,[]) = True then
-   begin
-   ShowMessage('Cliente não localizado');
-   end;
-   end;
+    if RxDBComboEdit1.Text > '' then
+    begin
+      DM.SDS_Clientes.locate('CODIGO', RxDBComboEdit1.Text,[]);
+      dm1.Sds_valeTrocoNOME_CLIENTE.Text := DM.SDS_ClientesNOME_RS.Text;
+      EvDBComboBox2.SetFocus;
+    end
+    else
+    if not DM.SDS_Clientes.locate('CODIGO', RxDBComboEdit1.Text,[]) = True then
+      ShowMessage('Cliente não localizado');
+  end;
 end;
 
 procedure TFormValeTroco.FormKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
   inherited;
-      if (Key=VK_F2) then
-      begin
-      btnNovo.Click;
-      end;
-      if (Key=VK_F3) then
-      begin
-      BtnAlterar.Click;
-      end;
-      if (Key=VK_F4) then
-      begin
-      BtnCancelar.Click;
-      end;
-      if (Key=VK_F5) then
-      begin
-      BtnExcluir.Click;
-      end;
-      if (Key=VK_F6) then
-      begin
-      BtnConsultar.Click;
-      end;
-      if (Key=VK_F10) then
-      begin
-      BtnGravar.Click;
-      end;
+  if (Key=VK_F2) then
+  begin
+    btnNovo.Click;
+  end;
+
+  if (Key=VK_F3) then
+  begin
+    BtnEditar.Click;
+  end;
+
+  if (Key=VK_F4) then
+  begin
+    BtnCancelar.Click;
+  end;
+
+  if (Key=VK_F5) then
+  begin
+    BtnExcluir.Click;
+  end;
+
+  if (Key=VK_F6) then
+  begin
+    BtnLocalizar.Click;
+  end;
+
+  if (Key=VK_F10) then
+  begin
+    BtnSalvar.Click;
+  end;
 end;
 
 procedure TFormValeTroco.EvDBComboBox1Change(Sender: TObject);
 begin
   inherited;
-IF EvDBComboBox1.ItemIndex = 1 then
-BEGIN
-DM1.Sds_valeTrocoTIPO.Value := 'A';
-//EvDBComboBox2.Enabled := FALSE;
-end else
-BEGIN
-EvDBComboBox2.Enabled := True;
-end;   
+  if EvDBComboBox1.ItemIndex = 1 then
+    DM1.Sds_valeTrocoTIPO.Value := 'A'
+  else
+    EvDBComboBox2.Enabled := True;
 end;
 
 procedure TFormValeTroco.RxDBComboEdit1Exit(Sender: TObject);
 begin
   inherited;
-if EvDBComboBox2.Enabled = True then
-begin
-  EvDBComboBox2.SetFocus;
-end else
-begin
-   suiDBEdit3.SetFocus;
-end;
+  if EvDBComboBox2.Enabled = True then
+    EvDBComboBox2.SetFocus
+  else
+    suiDBEdit3.SetFocus;
 end;
 
 procedure TFormValeTroco.EvDBComboBox2Exit(Sender: TObject);
 begin
-IF EvDBComboBox1.ItemIndex = 0 then
-BEGIN
-if (EvDBComboBox2.ItemIndex = 2) OR (EvDBComboBox2.ItemIndex = 3) THEN
-begin
- ShowMessage('TIPO DEVE SER COMBUSTÍVEL OU VALE');
- EvDBComboBox2.SetFocus;
-end;
-end;
+  if EvDBComboBox1.ItemIndex = 0 then
+  begin
+    if (EvDBComboBox2.ItemIndex = 2) OR (EvDBComboBox2.ItemIndex = 3) THEN
+    begin
+      ShowMessage('TIPO DEVE SER COMBUSTÍVEL OU VALE');
+      EvDBComboBox2.SetFocus;
+    end;
+  end;
 
-IF EvDBComboBox1.ItemIndex = 1 then
-BEGIN
-if (EvDBComboBox2.ItemIndex = 0) OR (EvDBComboBox2.ItemIndex = 1) THEN
-begin
- ShowMessage('TIPO CREDITO DO FRETEIRO OU PEDÁGIO');
- EvDBComboBox2.SetFocus;
-end;
-end;
+  if EvDBComboBox1.ItemIndex = 1 then
+  begin
+    if (EvDBComboBox2.ItemIndex = 0) OR (EvDBComboBox2.ItemIndex = 1) THEN
+    begin
+     ShowMessage('TIPO CREDITO DO FRETEIRO OU PEDÁGIO');
+     EvDBComboBox2.SetFocus;
+    end;
+  end;
 end;
 
 procedure TFormValeTroco.BtnAddProClick(Sender: TObject);
 begin
-
   FormClientes:=nil ;
   FormClientes:=TFormClientes.Create(self);
-  //FormClientes.FormStyle := fsMDIChild;
   FormClientes.Visible := True;
 end;
 
 procedure TFormValeTroco.SpeedButton1Click(Sender: TObject);
 begin
-
-    FrmVEICULO:=TFrmVEICULO.Create(self);
-    FrmVEICULO.FormStyle := fsNormal;
-    FrmVEICULO.ShowModal;
+  FrmVEICULO:=TFrmVEICULO.Create(self);
+  FrmVEICULO.FormStyle := fsNormal;
+  FrmVEICULO.ShowModal;
 end;
 
 procedure TFormValeTroco.veiculoButtonClick(Sender: TObject);
 begin
   inherited;
   DM.SDS_VEICULOS.Active:= False;
-    dm.SDS_veiculos.SQL.Clear;
-    dm.SDS_veiculos.SQL.Add('select * from veiculo order by NOME ASC');
-    DM.SDS_VEICULOS.Active:= True;
+  dm.SDS_veiculos.SQL.Clear;
+  dm.SDS_veiculos.SQL.Add('select * from veiculo order by NOME ASC');
+  DM.SDS_VEICULOS.Active:= True;
 
 
-if frmxloc_veiculo=nil   then
-    begin
-     frmxloc_veiculo:=Tfrmxloc_veiculo.Create(self);
-     if veiculo.Text >'' then
-     begin
-    //  frmxloc_veiculo.LOC.Text := freteiro.Text;
-    //  FormConsClientes.BitBtn1Click(Sender);
-      end;
-      frmxloc_veiculo.ShowModal;
+  if frmxloc_veiculo=nil   then
+  begin
+    frmxloc_veiculo:=Tfrmxloc_veiculo.Create(self);
+    frmxloc_veiculo.ShowModal;
 
+    veiculo.Text     := RESULTADO_PESQUISA1;
+    DBEdit4.Text  := RESULTADO_PESQUISA2;
+    DM1.Sds_valeTrocoCOD_CLIENTE.Text    :=   resultado_pesquisa4;
 
-      veiculo.Text     := RESULTADO_PESQUISA1;
-      DBEdit4.Text  := RESULTADO_PESQUISA2;
-      DM1.Sds_valeTrocoCOD_CLIENTE.Text    :=   resultado_pesquisa4;
-
-     //  veiculoChange(Sender);
-      dm.SDS_Clientes.Active := false;
-      dm.SDS_Clientes.SQL.Clear;
-      dm.SDS_Clientes.SQL.add('select * from clientes where CODIGO like ' + #39 + '%' + RxDBComboEdit1.Text + '%' + #39+'order by NOME_RS ASC');
-      dm.SDS_Clientes.Active := True;
-      ACHOU:= DM.SDS_Clientes.locate('CODIGO', RemoveChar(RxDBComboEdit1.Text),[]);
-      RxDBComboEdit1.Text := RemoveChar(RxDBComboEdit1.Text);
-      DBEdit2.TEXT    := DM.SDS_Clientes.Fieldbyname('NOME_RS').AsString;
-      end;
-
+    dm.SDS_Clientes.Active := false;
+    dm.SDS_Clientes.SQL.Clear;
+    dm.SDS_Clientes.SQL.add('select * from clientes where CODIGO like ' + #39 +
+    '%' + RxDBComboEdit1.Text + '%' + #39+'order by NOME_RS ASC');
+    dm.SDS_Clientes.Active := True;
+    ACHOU:= DM.SDS_Clientes.locate('CODIGO', RemoveChar(RxDBComboEdit1.Text),[]);
+    RxDBComboEdit1.Text := RemoveChar(RxDBComboEdit1.Text);
+    DBEdit2.TEXT    := DM.SDS_Clientes.Fieldbyname('NOME_RS').AsString;
+  end;
 end;
 
 procedure TFormValeTroco.veiculoChange(Sender: TObject);
 begin
   inherited;
-IF (veiculo.Text>='A') AND (veiculo.Text<='Z') THEN
-EDIT2.Text:='LETRAS';
+  if (veiculo.Text >= 'A') and (veiculo.Text <='Z') then
+    EDIT2.Text:='LETRAS';
 
-IF (veiculo.Text>='0') AND (veiculo.Text<='9') THEN
-EDIT2.Text:='NUMEROS';
+  if (veiculo.Text >= '0') and (veiculo.Text<='9') then
+    EDIT2.Text:='NUMEROS';
 
-IF veiculo.Text='' THEN
-EDIT2.Text:=''
+  if veiculo.Text = '' then
+    EDIT2.Text:=''
 end;
 
 procedure TFormValeTroco.veiculoExit(Sender: TObject);
 begin
   inherited;
- If  veiculo.Text >'' then
-  BEGIN
- if edit2.Text='LETRAS' THEN
-
-  BEGIN
-   dm.SDS_VEICULOS.Active := false;
-   dm.SDS_veiculos.SQL.Clear;
-   dm.SDS_veiculos.SQL.Add('select * from veiculo where NOME like ' + #39 + '%' + veiculo.Text + '%' + #39+'order by NOME ASC');
-   dm.SDS_VEICULOS.Active := True;
-   ACHOU := DM.SDS_VEICULOS.locate('nome',veiculo.Text,[loCaseInsensitive]);
-
-  IF ACHOU=FALSE THEN
+  if veiculo.Text > '' then
   begin
-  veiculoButtonClick(sender);
-  end;
+    if edit2.Text = 'LETRAS' then
+    begin
+      dm.SDS_VEICULOS.Active := false;
+      dm.SDS_veiculos.SQL.Clear;
+      dm.SDS_veiculos.SQL.Add('select * from veiculo where NOME like ' + #39 +
+       '%' + veiculo.Text + '%' + #39+'order by NOME ASC');
+      dm.SDS_VEICULOS.Active := True;
+      ACHOU := DM.SDS_VEICULOS.locate('nome',veiculo.Text,[loCaseInsensitive]);
 
-  TRY
-  IF ACHOU=TRUE THEN
-  begin
-      DBEdit4.text    := DM.SDS_VEICULOS.Fieldbyname('NOME').AsString;
+      if ACHOU = FALSE then
+        veiculoButtonClick(sender);
 
-      DM1.Sds_valeTrocoCOD_CLIENTE.Text   :=   DM.SDS_VEICULOSCOD_CLIENTE.Text;
-      dm.SDS_Clientes.Active := false;
-      dm.SDS_Clientes.SQL.Clear;
-      dm.SDS_Clientes.sql.add('select * from clientes where CODIGO like ' + #39 + '%' + RxDBComboEdit1.Text + '%' + #39+'order by NOME_RS ASC');
-      dm.SDS_Clientes.Active := True;
-      ACHOU:= DM.SDS_Clientes.locate('CODIGO', RemoveChar(RxDBComboEdit1.Text),[]);
-      RxDBComboEdit1.Text := RemoveChar(RxDBComboEdit1.Text);
-      DBEdit2.text    := DM.SDS_Clientes.Fieldbyname('NOME_RS').AsString;
+      try
+        if ACHOU = TRUE then
+        begin
+          DBEdit4.text    := DM.SDS_VEICULOS.Fieldbyname('NOME').AsString;
 
-  RxDBComboEdit1.SetFocus;
-  end;
-    except
-     ShowMessage('Erro ao consultar');
+          DM1.Sds_valeTrocoCOD_CLIENTE.Text   :=   DM.SDS_VEICULOSCOD_CLIENTE.Text;
+          dm.SDS_Clientes.Active := false;
+          dm.SDS_Clientes.SQL.Clear;
+          dm.SDS_Clientes.sql.add('select * from clientes where CODIGO like ' +
+          #39 + '%' + RxDBComboEdit1.Text + '%' + #39+'order by NOME_RS ASC');
+          dm.SDS_Clientes.Active := True;
+          ACHOU:= DM.SDS_Clientes.locate('CODIGO', RemoveChar(RxDBComboEdit1.Text),[]);
+          RxDBComboEdit1.Text := RemoveChar(RxDBComboEdit1.Text);
+          DBEdit2.text    := DM.SDS_Clientes.Fieldbyname('NOME_RS').AsString;
+
+          RxDBComboEdit1.SetFocus;
+        end;
+      except
+       ShowMessage('Erro ao consultar');
+      end;
+    end else
+
+    if EDIT2.Text = 'NUMEROS' then
+    begin
+      if veiculo.text > '999999'then
+        veiculo.SetFocus;
+
+      dm.SDS_VEICULOS.Active := false;
+      dm.SDS_veiculos.SQL.Clear;
+      dm.SDS_veiculos.SQL.Add('select * from veiculo where CODIGO like ' + #39 +
+       '%' + veiculo.Text + '%' + #39+'order by NOME ASC');
+      dm.SDS_veiculos.Active := True;
+      ACHOU:= DM.SDS_VEICULOS.locate('CODIGO', RemoveChar(veiculo.Text),[]);
+      veiculo.Text := RemoveChar(veiculo.Text);
+
+      if ACHOU = FALSE then
+      begin
+        SHOWMESSAGE('Codigo do Veículo Não Localizado');
+        veiculo.SetFocus;
+      end;
+
+      if ACHOU = TRUE then
+      begin
+        DBEdit4.text    := DM.SDS_VEICULOS.Fieldbyname('NOME').AsString;
+
+        DM1.Sds_valeTrocoCOD_CLIENTE.Text   :=   DM.SDS_VEICULOSCOD_CLIENTE.Text;
+        dm.SDS_Clientes.Active := false;
+        dm.SDS_Clientes.SQL.Clear;
+        dm.SDS_Clientes.SQL.Add('select * from clientes where CODIGO like ' +
+        #39 + '%' + RxDBComboEdit1.Text + '%' + #39+'order by NOME_RS ASC');
+        dm.SDS_Clientes.Active := True;
+        ACHOU:= DM.SDS_Clientes.locate('CODIGO', RemoveChar(RxDBComboEdit1.Text),[]);
+        RxDBComboEdit1.Text := RemoveChar(RxDBComboEdit1.Text);
+        DBEdit2.text    := DM.SDS_Clientes.Fieldbyname('NOME_RS').AsString;
+
+        RxDBComboEdit1.SetFocus;
+      end;
     end;
-  end else
-
-IF EDIT2.Text='NUMEROS' THEN
-BEGIN
- IF veiculo.text > '999999' then
-begin
-  //ShowMessage('Quantidade informada Invalida, cupom aceita  maximo 999 itens, favor corrigir...');
- veiculo.SetFocus;
-end else
-
-  dm.SDS_VEICULOS.Active := false;
-  dm.SDS_veiculos.SQL.Clear;
-  dm.SDS_veiculos.SQL.Add('select * from veiculo where CODIGO like ' + #39 + '%' + veiculo.Text + '%' + #39+'order by NOME ASC');
-  dm.SDS_veiculos.Active := True;
-  ACHOU:= DM.SDS_VEICULOS.locate('CODIGO', RemoveChar(veiculo.Text),[]);
-  veiculo.Text := RemoveChar(veiculo.Text);
-
-IF ACHOU=FALSE THEN
-begin
-SHOWMESSAGE('Codigo do Veículo Não Localizado');
-veiculo.SetFocus;
-end;
-
-IF ACHOU=TRUE THEN
-begin
-      DBEdit4.text    := DM.SDS_VEICULOS.Fieldbyname('NOME').AsString;
-
-      DM1.Sds_valeTrocoCOD_CLIENTE.Text   :=   DM.SDS_VEICULOSCOD_CLIENTE.Text;
-      dm.SDS_Clientes.Active := false;
-      dm.SDS_Clientes.SQL.Clear;
-      dm.SDS_Clientes.SQL.Add('select * from clientes where CODIGO like ' + #39 + '%' + RxDBComboEdit1.Text + '%' + #39+'order by NOME_RS ASC');
-      dm.SDS_Clientes.Active := True;
-      ACHOU:= DM.SDS_Clientes.locate('CODIGO', RemoveChar(RxDBComboEdit1.Text),[]);
-      RxDBComboEdit1.Text := RemoveChar(RxDBComboEdit1.Text);
-      DBEdit2.text    := DM.SDS_Clientes.Fieldbyname('NOME_RS').AsString;
-
-  RxDBComboEdit1.SetFocus;
-end;
-end;
-end;
+  end;
 end;
 
 end.

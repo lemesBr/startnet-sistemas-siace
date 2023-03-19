@@ -3,14 +3,29 @@ unit ModuledadosPostos;
 interface
 
 uses
-  SysUtils, Classes, DB, DBClient, SimpleDS, Data.DBXFirebird;
+  SysUtils, Classes, DB, DBClient, SimpleDS, Data.DBXFirebird,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client;
 
 type
   TDMP = class(TDataModule)
-    sds_frentista: TSimpleDataSet;
     dts_frentista: TDataSource;
-    SDS_Tanques: TSimpleDataSet;
     DTS_TANQUES: TDataSource;
+    DTS_BOMBA: TDataSource;
+    DTS_BICOS: TDataSource;
+    sds_frentista: TFDQuery;
+    sds_frentistaCOD_FRENTISTA: TIntegerField;
+    sds_frentistaNOME: TStringField;
+    sds_frentistaCOMISSAO: TFMTBCDField;
+    sds_frentistaPICPATH: TStringField;
+    sds_frentistaULTATUAL: TSQLTimeStampField;
+    sds_frentistaULTATUALCODSETOR: TIntegerField;
+    sds_frentistaULTATUALCODSETORUSER: TIntegerField;
+    sds_frentistaDATAHORA: TSQLTimeStampField;
+    sds_frentistaENABLED: TIntegerField;
+    sds_frentistaOBS: TStringField;
+    SDS_Tanques: TFDQuery;
     SDS_TanquesCOD_TANQUE: TIntegerField;
     SDS_TanquesID_TANQUE: TIntegerField;
     SDS_TanquesLITROS: TFMTBCDField;
@@ -22,8 +37,15 @@ type
     SDS_TanquesOBS: TStringField;
     SDS_TanquesCOD_PRODUTOS: TIntegerField;
     SDS_TanquesLITROS_ATUAL: TFMTBCDField;
-    SDS_BOMBA: TSimpleDataSet;
-    DTS_BOMBA: TDataSource;
+    SDS_TanquesVLR_SAI: TFMTBCDField;
+    SDS_TanquesVLR_ENT: TFMTBCDField;
+    SDS_TanquesEST_INI: TFMTBCDField;
+    SDS_TanquesEST_ATU: TFMTBCDField;
+    SDS_TanquesDAT_ULT_ENT: TDateField;
+    SDS_TanquesNUM_NF: TIntegerField;
+    SDS_TanquesDAT_ULT_SAI: TDateField;
+    SDS_TanquesESTOQUE_MEDICAO: TBCDField;
+    SDS_BOMBA: TFDQuery;
     SDS_BOMBACOD_BOMBA: TIntegerField;
     SDS_BOMBACOD_FRENTISTA: TIntegerField;
     SDS_BOMBAID_BOMBA: TIntegerField;
@@ -41,8 +63,7 @@ type
     SDS_BOMBASERIE: TStringField;
     SDS_BOMBAFABRICANTE: TStringField;
     SDS_BOMBAMODELO: TStringField;
-    SDS_BICOS: TSimpleDataSet;
-    DTS_BICOS: TDataSource;
+    SDS_BICOS: TFDQuery;
     SDS_BICOSCOD_BICO: TIntegerField;
     SDS_BICOSCOD_BOMBA: TIntegerField;
     SDS_BICOSCOD_TANQUE: TIntegerField;
@@ -56,25 +77,6 @@ type
     SDS_BICOSOBS: TStringField;
     SDS_BICOSID_BICO: TStringField;
     SDS_BICOSPOSICAO: TIntegerField;
-    SDS_TanquesVLR_SAI: TFMTBCDField;
-    SDS_TanquesVLR_ENT: TFMTBCDField;
-    SDS_TanquesEST_INI: TFMTBCDField;
-    SDS_TanquesEST_ATU: TFMTBCDField;
-    SDS_TanquesDAT_ULT_ENT: TDateField;
-    SDS_TanquesNUM_NF: TIntegerField;
-    SDS_TanquesDAT_ULT_SAI: TDateField;
-    SDS_TanquesESTOQUE_MEDICAO: TFMTBCDField;
-    sds_frentistaCOD_FRENTISTA: TIntegerField;
-    sds_frentistaID_FRENTISTA: TIntegerField;
-    sds_frentistaNOME: TStringField;
-    sds_frentistaCOMISSAO: TFMTBCDField;
-    sds_frentistaPICPATH: TStringField;
-    sds_frentistaULTATUAL: TSQLTimeStampField;
-    sds_frentistaULTATUALCODSETOR: TIntegerField;
-    sds_frentistaULTATUALCODSETORUSER: TIntegerField;
-    sds_frentistaDATAHORA: TSQLTimeStampField;
-    sds_frentistaENABLED: TIntegerField;
-    sds_frentistaOBS: TStringField;
   private
     { Private declarations }
   public

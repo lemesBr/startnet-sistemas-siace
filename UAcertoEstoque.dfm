@@ -3,7 +3,7 @@ inherited FormAcertoEstoque: TFormAcertoEstoque
   Top = 145
   Caption = 'Acerto de Estoque'
   ClientHeight = 493
-  ClientWidth = 673
+  ClientWidth = 655
   FormStyle = fsMDIChild
   OldCreateOrder = True
   Position = poScreenCenter
@@ -11,12 +11,12 @@ inherited FormAcertoEstoque: TFormAcertoEstoque
   OnClose = FormClose
   OnCreate = FormCreate
   OnShow = FormShow
-  ExplicitWidth = 679
+  ExplicitWidth = 661
   ExplicitHeight = 522
   PixelsPerInch = 96
   TextHeight = 13
   inherited Panel1: TAdvPanel
-    Width = 673
+    Width = 655
     Height = 442
     ExplicitWidth = 673
     ExplicitHeight = 442
@@ -24,7 +24,7 @@ inherited FormAcertoEstoque: TFormAcertoEstoque
     object Panel5: TPanel
       Left = 0
       Top = 0
-      Width = 673
+      Width = 655
       Height = 89
       Align = alTop
       BevelInner = bvLowered
@@ -32,6 +32,7 @@ inherited FormAcertoEstoque: TFormAcertoEstoque
       BevelWidth = 2
       ParentColor = True
       TabOrder = 0
+      ExplicitWidth = 673
       object Label1: TLabel
         Left = 8
         Top = 3
@@ -713,7 +714,7 @@ inherited FormAcertoEstoque: TFormAcertoEstoque
     object Panel6: TPanel
       Left = 0
       Top = 89
-      Width = 673
+      Width = 655
       Height = 119
       Align = alClient
       BevelInner = bvLowered
@@ -721,6 +722,7 @@ inherited FormAcertoEstoque: TFormAcertoEstoque
       BevelWidth = 2
       ParentColor = True
       TabOrder = 1
+      ExplicitWidth = 673
       object Label5: TLabel
         Left = 9
         Top = 72
@@ -819,7 +821,7 @@ inherited FormAcertoEstoque: TFormAcertoEstoque
       object Label30: TLabel
         Left = 2
         Top = 2
-        Width = 669
+        Width = 651
         Height = 14
         Align = alTop
         Alignment = taCenter
@@ -1170,17 +1172,18 @@ inherited FormAcertoEstoque: TFormAcertoEstoque
     object Panel7: TPanel
       Left = 0
       Top = 208
-      Width = 673
+      Width = 655
       Height = 234
       Align = alBottom
       BevelInner = bvLowered
       BevelOuter = bvNone
       BevelWidth = 2
       TabOrder = 2
+      ExplicitWidth = 673
       object DBGrid1: TsDBGrid
         Left = 2
         Top = 2
-        Width = 669
+        Width = 651
         Height = 230
         Align = alClient
         Color = clWhite
@@ -1259,51 +1262,48 @@ inherited FormAcertoEstoque: TFormAcertoEstoque
   end
   inherited Panel2: TAdvPanel
     Top = 442
-    Width = 673
+    Width = 655
     ExplicitTop = 442
     ExplicitWidth = 673
     FullHeight = 51
-    inherited BtnSair: TAdvGlowButton
-      ImageIndex = 8
-      Images = FormPrincipal.sAlphaImageList2
-      Picture.Data = {}
-      OnClick = BtnSairClick
+    inherited btnLocalizar: TAdvGlowButton
+      Left = 553
+      OnClick = BtnConsultarClick
+      ExplicitLeft = 571
+      ExplicitTop = 2
+      ExplicitHeight = 47
+    end
+    inherited btnSalvar: TAdvGlowButton
+      Left = 390
+      OnClick = BtnGravarClick
+      ExplicitLeft = 384
+      ExplicitTop = 4
+      ExplicitHeight = 47
+    end
+    inherited btnexcluir: TAdvGlowButton
+      Left = 290
+      OnClick = BtnExcluirClick
+      ExplicitLeft = 302
+      ExplicitTop = 2
+    end
+    inherited btnCancelar: TAdvGlowButton
+      Left = 190
+      ImageIndex = 2
+      OnClick = BtnCancelarClick
+      ExplicitLeft = 202
+    end
+    inherited btnEditar: TAdvGlowButton
+      Left = 90
+      OnClick = BtnAlterarClick
+      ExplicitLeft = 102
     end
     inherited btnNovo: TAdvGlowButton
-      ImageIndex = 0
-      Images = FormPrincipal.sAlphaImageList2
-      Picture.Data = {}
+      Width = 88
       OnClick = btnNovoClick
-    end
-    inherited BtnGravar: TAdvGlowButton
-      ImageIndex = 10
-      Images = FormPrincipal.sAlphaImageList2
-      Picture.Data = {}
-      OnClick = BtnGravarClick
-    end
-    inherited BtnExcluir: TAdvGlowButton
-      ImageIndex = 3
-      Images = FormPrincipal.sAlphaImageList2
-      Picture.Data = {}
-      OnClick = BtnExcluirClick
-    end
-    inherited BtnConsultar: TAdvGlowButton
-      ImageIndex = 20
-      Images = FormPrincipal.sAlphaImageList2
-      Picture.Data = {}
-      OnClick = BtnConsultarClick
-    end
-    inherited BtnCancelar: TAdvGlowButton
-      ImageIndex = 2
-      Images = FormPrincipal.sAlphaImageList2
-      Picture.Data = {}
-      OnClick = BtnCancelarClick
-    end
-    inherited BtnAlterar: TAdvGlowButton
-      ImageIndex = 1
-      Images = FormPrincipal.sAlphaImageList2
-      Picture.Data = {}
-      OnClick = BtnAlterarClick
+      ExplicitLeft = 2
+      ExplicitTop = 2
+      ExplicitWidth = 88
+      ExplicitHeight = 47
     end
   end
   object QInsAce: TFDQuery

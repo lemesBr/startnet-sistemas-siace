@@ -68,106 +68,109 @@ var
   FrmCadConvenio: TFrmCadConvenio;
 
 implementation
+
 Uses Ubibli1, UConsConvenio, ModulodeDados, Principal;
 
-var vl_grava : boolean;
+var
+  vl_grava: boolean;
 
 {$R *.dfm}
 
 procedure TFrmCadConvenio.Botoes(acao : string);
 begin
-   {  (N)OVO
-      (G)RAVAR
-      (C)ANCELAR
-      (A)LTERAR
-      (E)EXCLUIR
-      (P)ESQUISAR/CONSULTAR  }
+  {
+    (N)OVO
+    (G)RAVAR
+    (C)ANCELAR
+    (A)LTERAR
+    (E)EXCLUIR
+    (P)ESQUISAR/CONSULTAR
+  }
 
-   if (acao = 'N') or (acao = 'A') then
-      begin
-          EDedit(FrmCadConvenio, true);
-          btnNovo.Enabled      := false;
-          BtnGravar.Enabled    := true;
-          btnCancelar.Enabled  := true;
-          BtnAlterar.Enabled   := false;
-          if acao = 'N' then
-             begin
-                Limpaedit(FrmCadConvenio);
-                btnExcluir.Enabled   := false
-             end
-          else
-              btnExcluir.Enabled   := true;
-          BtnConsultar.Enabled := false;
-      end
-   else
-      begin
-         if not (acao = 'G') then
-            Limpaedit(FrmCadConvenio);
-         EDedit(FrmCadConvenio, false);
-         btnNovo.Enabled      := true;
-         BtnGravar.Enabled    := false;
-         btnCancelar.Enabled  := false;
-         if (acao = 'C') or (acao = 'E') then
-            btnalterar.Enabled:= false
-         else
-            btnalterar.Enabled:= true;
-         if acao = 'G' then
-            btnExcluir.Enabled:= true
-         else
-            BtnExcluir.Enabled:= false;
-         BtnConsultar.Enabled := true;
-      end;
+  if (acao = 'N') or (acao = 'A') then
+  begin
+    EDedit(FrmCadConvenio, true);
+    btnNovo.Enabled      := false;
+    BtnSalvar.Enabled    := true;
+    btnCancelar.Enabled  := true;
+    BtnEditar.Enabled   := false;
+
+    if acao = 'N' then
+    begin
+      Limpaedit(FrmCadConvenio);
+      btnExcluir.Enabled   := false
+    end
+    else
+    begin
+      btnExcluir.Enabled   := true;
+      BtnLocalizar.Enabled := false;
+    end;
+  end
+  else
+  begin
+    if not (acao = 'G') then
+      Limpaedit(FrmCadConvenio);
+
+    EDedit(FrmCadConvenio, false);
+    btnNovo.Enabled      := true;
+    BtnSalvar.Enabled    := false;
+    btnCancelar.Enabled  := false;
+
+    if (acao = 'C') or (acao = 'E') then
+      btnEditar.Enabled:= false
+    else
+      btnEditar.Enabled:= true;
+
+    if acao = 'G' then
+      btnExcluir.Enabled:= true
+    else
+      BtnExcluir.Enabled:= false;
+
+    BtnLocalizar.Enabled := true;
+  end;
 end;
 
 procedure TFrmCadConvenio.EdtCNPJExit(Sender: TObject);
 begin
   inherited;
   if edtcnpj.Text = '  .   .   /    -  ' then
-     exit;
+    exit;
   if not cnpj(edtcnpj.Text) then
-     begin
-        showmessage('CNPJ Inválido');
-        edtcnpj.SetFocus;
-     end;
+  begin
+    showmessage('CNPJ Inválido');
+    edtcnpj.SetFocus;
+  end;
 end;
 
 procedure TFrmCadConvenio.FormShow(Sender: TObject);
 begin
   inherited;
   if tag = 0 then
-     begin
-        vl_grava:= true;
-      {  if not DM.Acesso('C003','I') then
-           begin
-             Application.MessageBox('Você não tem permissão para efetuar esta operação.', 'Aviso', mb_ApplModal + mb_iconInformation + mb_OK + mb_DefButton1);
-             Botoes('C');
-           end
-        else  }
-           begin
-             Botoes('N');
-             comboativo.ItemIndex:= 0;
-             edtnome.SetFocus;
-           end;
-     end
+  begin
+    vl_grava:= true;
+    Botoes('N');
+    comboativo.ItemIndex:= 0;
+    edtnome.SetFocus;
+  end
   else
-     if tag = 1 then
-        Botoes('G');
+  if tag = 1 then
+    Botoes('G');
 end;
 
 procedure TFrmCadConvenio.BtnNovoClick(Sender: TObject);
 begin
   inherited;
   vl_grava:= true;
-if FormPrincipal.Label3.Caption ='N'then
-begin
-ShowMessage('O usuário conectado não possui autorização para Inserir Registro. Contate o Administrador do Sistema para obter acesso!!! !!!');
-End else
-if FormPrincipal.Label3.Caption ='S'then
-begin
-  Botoes('N');
-  comboativo.ItemIndex:= 0;
-  edtnome.SetFocus;
-end;
+  if FormPrincipal.Label3.Caption ='N'then
+    ShowMessage('O usuário conectado não possui autorização para Inserir '+
+    'Registro. Contate o Administrador do Sistema para obter acesso!!! !!!')
+  else
+  if FormPrincipal.Label3.Caption ='S'then
+  begin
+    Botoes('N');
+    comboativo.ItemIndex:= 0;
+    edtnome.SetFocus;
+  end;
 end;
 
 procedure TFrmCadConvenio.BtnCancelarClick(Sender: TObject);
@@ -179,16 +182,16 @@ end;
 procedure TFrmCadConvenio.BtnAlterarClick(Sender: TObject);
 begin
   inherited;
-if FormPrincipal.Label2.Caption ='N'then
-begin
-ShowMessage('O usuário conectado não possui autorização para Editar o Registro. Contate o Administrador do Sistema para obter acesso!!! !!!');
-End else
-if FormPrincipal.Label2.Caption ='S'then
-begin
-  vl_grava:= false;
-  Botoes('A');
-  edtnome.SetFocus;
-end;
+  if FormPrincipal.Label2.Caption ='N' then
+    ShowMessage('O usuário conectado não possui autorização para Editar o '+
+    'Registro. Contate o Administrador do Sistema para obter acesso!!! !!!')
+  else
+  if FormPrincipal.Label2.Caption ='S' then
+  begin
+    vl_grava:= false;
+    Botoes('A');
+    edtnome.SetFocus;
+  end;
 end;
 
 procedure TFrmCadConvenio.FormClose(Sender: TObject;
@@ -196,7 +199,7 @@ procedure TFrmCadConvenio.FormClose(Sender: TObject;
 begin
   inherited;
   if IBTRCon.Active then
-     IBTRCon.Commit;
+    IBTRCon.Commit;
   IBSQLCon.Close;
   Action:= caFree;
 end;
@@ -204,81 +207,85 @@ end;
 procedure TFrmCadConvenio.BtnGravarClick(Sender: TObject);
 begin
   inherited;
- { if (vl_grava) and (not DM.Acesso('C003','I')) then
-     begin
-        Application.MessageBox('Você não tem permissão para efetuar esta operação.', 'Aviso', mb_ApplModal + mb_iconInformation + mb_OK + mb_DefButton1);
-        Abort;
-        Exit;
-     end; }
-
   if edtnome.Text = '' then
-     begin
-        showmessage('Digite o Nome do Convênio');
-        edtnome.SetFocus;
-        exit;
-     end;
+  begin
+    showmessage('Digite o Nome do Convênio');
+    edtnome.SetFocus;
+    exit;
+  end;
+
   if IBTRCon.Active then
-     IBTRCon.Commit;
+    IBTRCon.Commit;
+
   IBTRCon.StartTransaction;
   try
     try
-      with IBSQLCon do
+    with IBSQLCon do
+      begin
+        close;
+        commandtext.Clear;
+        if vl_grava = true then
         begin
-           close;
-           commandtext.Clear;
-           if vl_grava = true then
-              begin
-                 cod_con.Text:= inttostr(prxcod('convenio', 'cod_con', dm.IBTransaction, dm.ibsqlcod));
-                 commandtext.Add('INSERT INTO CONVENIO(COD_CON, NOME_CON, END_CON, BAI_CON, CID_CON, CEP_CON, TEL_CON, FAX_CON, ATIVO_CON, RESPONSAVEL_CON, CNPJ_CON, INSC_CON, ' +
-                         'EST_CON, OBS_AUTORIZACAO_CON, DIA_REFERENCIA_CON, DESCONTO_CON) ' +
-                         'VALUES(:CODCON, :NOMECON, :ENDCON, :BAICON, :CIDCON, :CEPCON, :TELCON, :FAXCON, :ATIVOCON, :RESPONSAVELCON, :CNPJCON, :INSCCON, ' +
-                         ':ESTCON, :OBS_AUTORIZACAOCON, :DIA_REFERENCIACON, :DESCONTOCON)');
-              end
-           else
-              begin
-                 commandtext.Add('UPDATE CONVENIO SET NOME_CON = :NOMECON, END_CON = :ENDCON, BAI_CON = :BAICON, CID_CON = :CIDCON, EST_CON = :ESTCON, CEP_CON = :CEPCON, TEL_CON = :TELCON, ' +
-                                                         'FAX_CON = :FAXCON, ATIVO_CON = :ATIVOCON, RESPONSAVEL_CON = :RESPONSAVELCON, CNPJ_CON = :CNPJCON, INSC_CON = :INSCCON, ' +
-                                                         'OBS_AUTORIZACAO_CON = :OBS_AUTORIZACAOCON, DIA_REFERENCIA_CON = :DIA_REFERENCIACON, DESCONTO_CON = :DESCONTOCON WHERE COD_CON = :CODCON');
-              end;
-           Parambyname('codcon').AsInteger               := strtoint(cod_con.Text);
-           Parambyname('nomecon').AsString               := edtnome.Text;
-           if edtend.Text = '' then
-              Parambyname('endcon').Value                := null
-           else
-              Parambyname('endcon').AsString             := edtend.Text;
-           if edtbai.Text = '' then
-              Parambyname('baicon').Value                := null
-           else
-              Parambyname('baicon').AsString             := edtbai.Text;
-           if edtcid.Text = '' then
-              Parambyname('cidcon').Value                := null
-           else
-              Parambyname('cidcon').AsString             := edtcid.Text;
-           Parambyname('estcon').AsString                := comboest.Text;
-           Parambyname('cepcon').AsString                := edtcep.Text;
-           Parambyname('telcon').AsString                := edttel.Text;
-           Parambyname('faxcon').AsString                := edtfax.Text;
-           Parambyname('ativocon').AsString              := copy(comboativo.Text, 1, 1);
-           if edtresp.Text = '' then
-              Parambyname('responsavelcon').Value        := null
-           else
-              Parambyname('responsavelcon').AsString     := edtresp.Text;
-           Parambyname('cnpjcon').AsString               := edtcnpj.Text;
-           Parambyname('insccon').AsString               := edtinsc.Text;
-           if MemoTermo.Text = '' then
-              Parambyname('obs_autorizacaocon').Value    := null
-           else
-              Parambyname('obs_autorizacaocon').AsString := MemoTermo.Text;
-           if ComboDia.Text = '' then
-              Parambyname('dia_referenciacon').Value     := null
-           else
-              Parambyname('dia_referenciacon').AsInteger := strtoint(ComboDia.Text);
-           if edtdesconto.Text = '0' then
-              Parambyname('descontocon').Value           := null
-           else
-              Parambyname('descontocon').AsFloat         := strtofloat(edtdesconto.Text);
-           open;
+          cod_con.Text:= inttostr(prxcod('convenio', 'cod_con', dm.IBTransaction, dm.ibsqlcod));
+          commandtext.Add('INSERT INTO CONVENIO(COD_CON, NOME_CON, END_CON, BAI_CON, CID_CON, CEP_CON, TEL_CON, FAX_CON, ATIVO_CON, RESPONSAVEL_CON, CNPJ_CON, INSC_CON, ' +
+          'EST_CON, OBS_AUTORIZACAO_CON, DIA_REFERENCIA_CON, DESCONTO_CON) ' +
+          'VALUES(:CODCON, :NOMECON, :ENDCON, :BAICON, :CIDCON, :CEPCON, :TELCON, :FAXCON, :ATIVOCON, :RESPONSAVELCON, :CNPJCON, :INSCCON, ' +
+          ':ESTCON, :OBS_AUTORIZACAOCON, :DIA_REFERENCIACON, :DESCONTOCON)');
+        end
+        else
+        begin
+          commandtext.Add('UPDATE CONVENIO SET NOME_CON = :NOMECON, END_CON = :ENDCON, BAI_CON = :BAICON, CID_CON = :CIDCON, EST_CON = :ESTCON, CEP_CON = :CEPCON, TEL_CON = :TELCON, ' +
+          'FAX_CON = :FAXCON, ATIVO_CON = :ATIVOCON, RESPONSAVEL_CON = :RESPONSAVELCON, CNPJ_CON = :CNPJCON, INSC_CON = :INSCCON, ' +
+          'OBS_AUTORIZACAO_CON = :OBS_AUTORIZACAOCON, DIA_REFERENCIA_CON = :DIA_REFERENCIACON, DESCONTO_CON = :DESCONTOCON WHERE COD_CON = :CODCON');
         end;
+
+        Parambyname('codcon').AsInteger               := strtoint(cod_con.Text);
+        Parambyname('nomecon').AsString               := edtnome.Text;
+
+        if edtend.Text = '' then
+          Parambyname('endcon').Value                := null
+        else
+          Parambyname('endcon').AsString             := edtend.Text;
+        if edtbai.Text = '' then
+          Parambyname('baicon').Value                := null
+        else
+          Parambyname('baicon').AsString             := edtbai.Text;
+        if edtcid.Text = '' then
+          Parambyname('cidcon').Value                := null
+        else
+          Parambyname('cidcon').AsString             := edtcid.Text;
+
+        Parambyname('estcon').AsString                := comboest.Text;
+        Parambyname('cepcon').AsString                := edtcep.Text;
+        Parambyname('telcon').AsString                := edttel.Text;
+        Parambyname('faxcon').AsString                := edtfax.Text;
+        Parambyname('ativocon').AsString              := copy(comboativo.Text, 1, 1);
+
+        if edtresp.Text = '' then
+          Parambyname('responsavelcon').Value        := null
+        else
+          Parambyname('responsavelcon').AsString     := edtresp.Text;
+
+        Parambyname('cnpjcon').AsString               := edtcnpj.Text;
+        Parambyname('insccon').AsString               := edtinsc.Text;
+
+        if MemoTermo.Text = '' then
+          Parambyname('obs_autorizacaocon').Value    := null
+        else
+          Parambyname('obs_autorizacaocon').AsString := MemoTermo.Text;
+
+        if ComboDia.Text = '' then
+          Parambyname('dia_referenciacon').Value     := null
+        else
+          Parambyname('dia_referenciacon').AsInteger := strtoint(ComboDia.Text);
+
+        if edtdesconto.Text = '0' then
+          Parambyname('descontocon').Value           := null
+        else
+          Parambyname('descontocon').AsFloat         := strtofloat(edtdesconto.Text);
+        open;
+      end;
+
       IBTRCon.Commit;
       Botoes('G');
     except
@@ -293,15 +300,15 @@ end;
 procedure TFrmCadConvenio.BtnExcluirClick(Sender: TObject);
 begin
   inherited;
-if FormPrincipal.Label1.Caption ='N'then
-begin
-ShowMessage('O usuário conectado não possui autorização para Excluir Registro. Contate o Administrador do Sistema para obter acesso!!! !!!');
-End else
-if FormPrincipal.Label1.Caption ='S'then
-begin
-  excluir(FrmCadConvenio, 'convenio', cod_con, IBSQLCon, IBTRCon);
-  Botoes('E');
-end;
+  if FormPrincipal.Label1.Caption = 'N' then
+    ShowMessage('O usuário conectado não possui autorização para Excluir '+
+    'Registro. Contate o Administrador do Sistema para obter acesso!!! !!!')
+  else
+  if FormPrincipal.Label1.Caption ='S'then
+  begin
+    excluir(FrmCadConvenio, 'convenio', cod_con, IBSQLCon, IBTRCon);
+    Botoes('E');
+  end;
 end;
 
 procedure TFrmCadConvenio.BtnConsultarClick(Sender: TObject);
@@ -314,7 +321,7 @@ end;
 
 procedure TFrmCadConvenio.BtnSairClick(Sender: TObject);
 begin
-CLOSE;
+  CLOSE;
 end;
 
 end.

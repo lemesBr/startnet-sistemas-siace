@@ -106,7 +106,9 @@ var
 implementation
 
 uses ModulodeDados, Ubibli1, Principal, UConsLocaisEstoque, Produtos, ConsProdutos;
-var  iOrdem : integer;
+
+var
+  iOrdem: integer;
 
 {$R *.dfm}
 
@@ -114,126 +116,139 @@ function TFrmTransfLocaisEstoque.BuscaEstoqueLocal(const iCodPro, iEmpresa, iLoc
 begin
    if dm.IBTransaction.Active then
       dm.IBTransaction.Commit;
-   dm.IBTransaction.StartTransaction;
-   try
-     try
-       with dm.QConsulta do
-          begin
-             close;
-             sql.Clear;
-             sql.add('SELECT SUM(ESTOQUE) ESTOQUE ' +
-                     'FROM ESTOQUE   ' +
-                     'WHERE COD_PRO = :CODPRO AND CODIGO_LOCAL_ESTOQUE = :LOCAL AND COD_EMP = :CODEMP');
-             Parambyname('codpro').AsInteger := iCodPro;
-             Parambyname('codemp').AsInteger := iEmpresa;
-             Parambyname('local').AsInteger  := iLocal;
-             open;
-             result:= fieldbyname('estoque').AsCurrency;
-          end;
-       dm.IBTransaction.Commit;
-     except
-       dm.IBTransaction.Rollback;
-       showmessage('Erro ao buscar o estoque do produto');
-     end;
-   finally
-     dm.QConsulta.Close;
-   end;
+
+  dm.IBTransaction.StartTransaction;
+  try
+    try
+      with dm.QConsulta do
+      begin
+        close;
+        sql.Clear;
+        sql.add('SELECT SUM(ESTOQUE) ESTOQUE ' +
+        'FROM ESTOQUE   ' +
+        'WHERE COD_PRO = :CODPRO AND CODIGO_LOCAL_ESTOQUE = :LOCAL AND COD_EMP = :CODEMP');
+        Parambyname('codpro').AsInteger := iCodPro;
+        Parambyname('codemp').AsInteger := iEmpresa;
+        Parambyname('local').AsInteger  := iLocal;
+        open;
+        result:= fieldbyname('estoque').AsCurrency;
+      end;
+      dm.IBTransaction.Commit;
+    except
+      dm.IBTransaction.Rollback;
+      showmessage('Erro ao buscar o estoque do produto');
+    end;
+  finally
+    dm.QConsulta.Close;
+  end;
 end;
 
 procedure TFrmTransfLocaisEstoque.BuscaLocaisDefault;
 begin
-   EdtCodOrigem.Text:= inttostr(dm.RetornaIntegerTabela('default_local_origem', 'configuracoes', 'cod_empresa', iEmp));
-   EdtCodOrigemExit(self);
+  EdtCodOrigem.Text:= inttostr(dm.RetornaIntegerTabela('default_local_origem',
+   'configuracoes', 'cod_empresa', iEmp));
+  EdtCodOrigemExit(self);
 
-   EdtCodDestino.Text:= inttostr(dm.RetornaIntegerTabela('default_local_destino', 'configuracoes', 'cod_empresa', iEmp));
-   EdtCodDestinoExit(self);
+  EdtCodDestino.Text:= inttostr(dm.RetornaIntegerTabela('default_local_destino',
+   'configuracoes', 'cod_empresa', iEmp));
+  EdtCodDestinoExit(self);
 end;
 
 procedure TFrmTransfLocaisEstoque.Botoes(acao : string);
 begin
-   {  (N)OVO
-      (G)RAVAR
-      (C)ANCELAR
-      (A)LTERAR
-      (E)EXCLUIR
-      (P)ESQUISAR/CONSULTAR  }
+  {
+    (N)OVO
+    (G)RAVAR
+    (C)ANCELAR
+    (A)LTERAR
+    (E)EXCLUIR
+    (P)ESQUISAR/CONSULTAR
+  }
 
-   if (acao = 'N') or (acao = 'A') then
-      begin
-          btnNovo.Enabled      := false;
-          BtnGravar.Enabled    := true;
-          BtnAlterar.Enabled   := false;
-          if acao = 'N' then
-             begin
-                Limpaedit(FrmTransfLocaisEstoque);
-                btnExcluir.Enabled   := false;
-                btnCancelar.Enabled  := true;
-             end
-          else
-             begin
-                btnExcluir.Enabled   := true;
-                btnCancelar.Enabled  := false;
-             end;
-          BtnConsultar.Enabled := false;
-      end
-   else
-      begin
-         if not (acao = 'G') then
-            Limpaedit(FrmTransfLocaisEstoque);
-         btnNovo.Enabled      := true;
-         BtnGravar.Enabled    := false;
-         btnCancelar.Enabled  := false;
-         if (acao = 'C') or (acao = 'E') then
-            begin
-               btnalterar.Enabled:= false;
-               BtnConsultar.Enabled := true;
-            end
-         else
-            btnalterar.Enabled:= true;
-         if acao = 'G' then
-            btnExcluir.Enabled:= true
-         else
-            BtnExcluir.Enabled:= false;
-      end;
+  if (acao = 'N') or (acao = 'A') then
+  begin
+    btnNovo.Enabled      := false;
+    BtnSalvar.Enabled    := true;
+    BtnEditar.Enabled   := false;
+
+    if acao = 'N' then
+    begin
+      Limpaedit(FrmTransfLocaisEstoque);
+      btnExcluir.Enabled   := false;
+      btnCancelar.Enabled  := true;
+    end
+    else
+    begin
+      btnExcluir.Enabled   := true;
+      btnCancelar.Enabled  := false;
+    end;
+
+    BtnLocalizar.Enabled := false;
+  end
+  else
+  begin
+    if not (acao = 'G') then
+      Limpaedit(FrmTransfLocaisEstoque);
+
+    btnNovo.Enabled      := true;
+    BtnSalvar.Enabled    := false;
+    btnCancelar.Enabled  := false;
+
+    if (acao = 'C') or (acao = 'E') then
+    begin
+      btnEditar.Enabled:= false;
+      BtnLOcalizar.Enabled := true;
+    end
+    else
+      btnEditar.Enabled:= true;
+
+    if acao = 'G' then
+      btnExcluir.Enabled:= true
+    else
+      BtnExcluir.Enabled:= false;
+  end;
 end;
 
 function TFrmTransfLocaisEstoque.Ordem : integer;
 begin
-   if dm.IBTransaction.Active then
-      dm.IBTransaction.Commit;
-   dm.IBTransaction.StartTransaction;
-   with QOrdem do
-      begin
-         close;
-         Parambyname('codigo').AsInteger:= strtoint(EdtCodigo.Text);
-         Open;
-         result:= QOrdemORDEM.AsInteger + 1;
-      end;
-   dm.IBTransaction.Commit;
-   QOrdem.Close;
+  if dm.IBTransaction.Active then
+    dm.IBTransaction.Commit;
+  dm.IBTransaction.StartTransaction;
+
+  with QOrdem do
+  begin
+    close;
+    Parambyname('codigo').AsInteger:= strtoint(EdtCodigo.Text);
+    Open;
+    result:= QOrdemORDEM.AsInteger + 1;
+  end;
+
+  dm.IBTransaction.Commit;
+  QOrdem.Close;
 end;
 
 procedure TFrmTransfLocaisEstoque.BuscaItens;
 begin
-   if IBTRTransf.Active then
-      IBTRTransf.Commit;
-   IBTRTransf.StartTransaction;
-   with QBuscaItens do
-      begin
-         close;
-         Parambyname('codigo').AsInteger:= strtoint(EdtCodigo.Text);
-         open;
-         last;
-      end;
+  if IBTRTransf.Active then
+    IBTRTransf.Commit;
+
+  IBTRTransf.StartTransaction;
+  with QBuscaItens do
+  begin
+    close;
+    Parambyname('codigo').AsInteger:= strtoint(EdtCodigo.Text);
+    open;
+    last;
+  end;
 end;
 
 procedure TFrmTransfLocaisEstoque.LimpaItens;
 begin
-   EdtCodPro.Clear;
-   EdtNomePro.Clear;
-   EdtQuant.Text:= '1';
-   EdtEstoqueOrigem.Clear;
-   EdtEstoqueDestino.Clear;
+  EdtCodPro.Clear;
+  EdtNomePro.Clear;
+  EdtQuant.Text:= '1';
+  EdtEstoqueOrigem.Clear;
+  EdtEstoqueDestino.Clear;
 end;
 
 procedure TFrmTransfLocaisEstoque.EdtCodOrigemEnter(Sender: TObject);
@@ -275,31 +290,28 @@ end;
 procedure TFrmTransfLocaisEstoque.EdtCodOrigemExit(Sender: TObject);
 begin
   inherited;
- { if ToolBar1.Focused then
-     exit;  }
-
-  EdtNomeOrigem.Text:= consulta('locais_estoque', EdtCodOrigem, 'codigo', 'descricao', dm.IBTransaction, dm.qConsulta);
+  EdtNomeOrigem.Text:= consulta('locais_estoque', EdtCodOrigem, 'codigo',
+  'descricao', dm.IBTransaction, dm.qConsulta);
   if trim(EdtNomeOrigem.Text) = '' then
-     begin
-        showmessage('Local de Estoque não Cadastrado');
-        EdtCodOrigem.SetFocus;
-        exit;
-     end;
+  begin
+    showmessage('Local de Estoque não Cadastrado');
+    EdtCodOrigem.SetFocus;
+    exit;
+  end;
 end;
 
 procedure TFrmTransfLocaisEstoque.EdtCodDestinoExit(Sender: TObject);
 begin
   inherited;
- { if ToolBar1.Focused then
-     exit; }
+  EdtNomeDestino.Text:= consulta('locais_estoque', EdtCodDestino, 'codigo',
+   'descricao', dm.IBTransaction, dm.qConsulta);
 
-  EdtNomeDestino.Text:= consulta('locais_estoque', EdtCodDestino, 'codigo', 'descricao', dm.IBTransaction, dm.qConsulta);
   if trim(EdtNomeDestino.Text) = '' then
-     begin
-        showmessage('Local de Estoque não Cadastrado');
-        EdtCodDestino.SetFocus;
-        exit;
-     end;
+  begin
+    showmessage('Local de Estoque não Cadastrado');
+    EdtCodDestino.SetFocus;
+    exit;
+  end;
 end;
 
 procedure TFrmTransfLocaisEstoque.BtnConsOrigemClick(Sender: TObject);
@@ -322,7 +334,6 @@ procedure TFrmTransfLocaisEstoque.BtnAddProClick(Sender: TObject);
 begin
   inherited;
   Application.CreateForm(TFormProdutos, FormProdutos);
-//  FrmCadProduto.tag:= 0;
   FormProdutos.showmodal;
 end;
 
@@ -330,7 +341,6 @@ procedure TFrmTransfLocaisEstoque.BtnConsProClick(Sender: TObject);
 begin
   inherited;
   Application.CreateForm(TFormConsProdutos, FormConsProdutos);
-  //FormConsProdutos.Tag := 32;
   FormConsProdutos.showmodal;
 end;
 
@@ -347,47 +357,51 @@ begin
   bAux:= false;
 
   if (DBGrid1.Focused){ or (ToolBar1.Focused) }then
-     begin
-        exit;
-        abort;
-     end;
+  begin
+    exit;
+    abort;
+  end;
 
   if dm.IBTransaction.Active then
      dm.IBTransaction.Commit;
+
   dm.IBTransaction.StartTransaction;
   try
     try
       with dm.QConsulta do
-         begin
-            close;
-            sql.Clear;
-            if Length(Trim(EdtCodPro.text)) > 7 then
-               begin
-                  sql.Add('SELECT COD_PRO, NOME_PRO  ' +
-                          'FROM PRODUTO WHERE CODIGO_BARRA_PRO = ' + #39 + trim(EdtCodPro.Text) + #39);
-               end
-            else
-               begin
-                  sql.Add('SELECT COD_PRO, NOME_PRO ' +
-                          'FROM PRODUTO WHERE COD_PRO = :CODPRO');
-                  Parambyname('codpro').AsInteger:= strtoint(EdtCodPro.text);
-               end;
-            Open;
-            if not (fieldbyname('cod_pro').IsNull) then
-               begin
-                  bAux:= true;
-                  EdtCodPro.Text  := fieldbyname('cod_pro').AsString;
-                  EdtNomePro.Text := fieldbyname('nome_pro').AsString;
-                  EdtQuant.SetFocus;
-               end
-            else
-               begin
-                  bAux:= false;
-                  showmessage('Produto não Cadastrado');
-                  edtnomepro.Clear;
-                  edtcodpro.SetFocus;
-               end;
-         end;
+      begin
+        close;
+        sql.Clear;
+
+        if Length(Trim(EdtCodPro.text)) > 7 then
+        begin
+          sql.Add('SELECT COD_PRO, NOME_PRO  ' +
+          'FROM PRODUTO WHERE CODIGO_BARRA_PRO = ' + #39 + trim(EdtCodPro.Text) + #39);
+        end
+        else
+        begin
+          sql.Add('SELECT COD_PRO, NOME_PRO ' +
+          'FROM PRODUTO WHERE COD_PRO = :CODPRO');
+          Parambyname('codpro').AsInteger:= strtoint(EdtCodPro.text);
+        end;
+
+        Open;
+        if not (fieldbyname('cod_pro').IsNull) then
+        begin
+          bAux:= true;
+          EdtCodPro.Text  := fieldbyname('cod_pro').AsString;
+          EdtNomePro.Text := fieldbyname('nome_pro').AsString;
+          EdtQuant.SetFocus;
+        end
+        else
+        begin
+          bAux:= false;
+          showmessage('Produto não Cadastrado');
+          edtnomepro.Clear;
+          edtcodpro.SetFocus;
+        end;
+      end;
+
       dm.IBTransaction.Commit;
     except
       bAux:= false;
@@ -401,10 +415,12 @@ begin
   end;
 
   if bAux then
-     begin
-        EdtEstoqueOrigem.Text  := currtostr(BuscaEstoqueLocal(strtoint(EdtCodPro.Text), iEmp, strtoint(EdtCodOrigem.Text)));
-        EdtEstoqueDestino.Text := currtostr(BuscaEstoqueLocal(strtoint(EdtCodPro.Text), iEmp, strtoint(EdtCodDestino.Text)));
-     end;
+  begin
+    EdtEstoqueOrigem.Text:= currtostr(BuscaEstoqueLocal(strtoint(EdtCodPro.Text),
+     iEmp, strtoint(EdtCodOrigem.Text)));
+    EdtEstoqueDestino.Text:= currtostr(BuscaEstoqueLocal(strtoint(EdtCodPro.Text),
+     iEmp, strtoint(EdtCodDestino.Text)));
+  end;
 end;
 
 procedure TFrmTransfLocaisEstoque.EdtCodProKeyDown(Sender: TObject;
@@ -412,30 +428,20 @@ procedure TFrmTransfLocaisEstoque.EdtCodProKeyDown(Sender: TObject;
 begin
   inherited;
   if key = vk_f2 then
-     BtnConsPro.Click
+    BtnConsPro.Click
   else
-     if key = vk_f3 then
-        BtnAddPro.Click;
+    if key = vk_f3 then
+  BtnAddPro.Click;
 end;
 
 procedure TFrmTransfLocaisEstoque.BtnNovoClick(Sender: TObject);
 begin
   inherited;
-  //ToolBar1.SetFocus;
 
   if IBTRTransf.Active then
      IBTRTransf.Commit;
   QBuscaItens.Close;
   LimpaItens;
-
- { if not DM.Acesso('M014','I') then
-     begin
-        Application.MessageBox('Você não tem permissão para efetuar esta operação.', 'Aviso', mb_ApplModal + mb_iconInformation + mb_OK + mb_DefButton1);
-        panel3.Enabled:= false;
-        panel4.Enabled:= false;
-        Abort;
-        Exit;
-     end; }
   Botoes('N');
   panel2.Enabled     := true;
   panel4.Enabled     := false;
@@ -447,7 +453,7 @@ end;
 procedure TFrmTransfLocaisEstoque.BtnSairClick(Sender: TObject);
 begin
   inherited;
-Close;
+  Close;
 end;
 
 procedure TFrmTransfLocaisEstoque.FormShow(Sender: TObject);
@@ -457,66 +463,53 @@ begin
   panel4.Enabled:= false;
 
   if tag = 0 then
-     begin
-       { if not DM.Acesso('M014','I') then
-           begin
-             Application.MessageBox('Você não tem permissão para efetuar esta operação.', 'Aviso', mb_ApplModal + mb_iconInformation + mb_OK + mb_DefButton1);
-             Botoes('C');
-           end
-        else }
-           begin
-             Botoes('N');
-             panel2.Enabled      := true;
-             Edtdata.Text        := datetostr(date);
-             BuscaLocaisDefault;
-             Edtdata.SetFocus;
-           end;
-     end
+  begin
+    Botoes('N');
+    panel2.Enabled      := true;
+    Edtdata.Text        := datetostr(date);
+    BuscaLocaisDefault;
+    Edtdata.SetFocus;
+  end
   else
-     if tag = 1 then
-        Botoes('G');
+  if tag = 1 then
+    Botoes('G');
 end;
 
 procedure TFrmTransfLocaisEstoque.BtnGravarClick(Sender: TObject);
 begin
   inherited;
-   { if (not DM.Acesso('M014','I')) then
-     begin
-        Application.MessageBox('Você não tem permissão para efetuar esta operação.', 'Aviso', mb_ApplModal + mb_iconInformation + mb_OK + mb_DefButton1);
-        Abort;
-        Exit;
-     end;}
-
   if (trim(EdtCodOrigem.Text) = '') or (trim(EdtCodDestino.Text) = '') then
-     begin
-        ShowMessage('Verifique os campos obrigatórios');
-        EdtCodOrigem.SetFocus;
-        exit;
-     end;
+  begin
+    ShowMessage('Verifique os campos obrigatórios');
+    EdtCodOrigem.SetFocus;
+    exit;
+  end;
 
   if trim(EdtCodOrigem.Text) = trim(EdtCodDestino.Text) then
-     begin
-        ShowMessage('Local de Estoque de Origem igual o de Destino');
-        EdtCodOrigem.SetFocus;
-        exit;
-     end;
+  begin
+    ShowMessage('Local de Estoque de Origem igual o de Destino');
+    EdtCodOrigem.SetFocus;
+    exit;
+  end;
 
   if IBTRTransf.Active then
      IBTRTransf.Commit;
+
   IBTRTransf.StartTransaction;
   try
     try
       with QInsert do
-         begin
-            close;
-            Parambyname('data').AsDate              := strtodate(EdtData.Text);
-            Parambyname('codigo_origem').AsInteger  := strtoint(EdtCodOrigem.Text);
-            Parambyname('codigo_destino').AsInteger := strtoint(EdtCodDestino.Text);
-            Parambyname('cod_usu').AsInteger        := iCodUsu;
-            Parambyname('cod_emp').AsInteger        := iEmp;
-            Open;
-            EdtCodigo.Text:= QInsertCODIGO.AsString;
-         end;
+      begin
+        close;
+        Parambyname('data').AsDate              := strtodate(EdtData.Text);
+        Parambyname('codigo_origem').AsInteger  := strtoint(EdtCodOrigem.Text);
+        Parambyname('codigo_destino').AsInteger := strtoint(EdtCodDestino.Text);
+        Parambyname('cod_usu').AsInteger        := iCodUsu;
+        Parambyname('cod_emp').AsInteger        := iEmp;
+        Open;
+        EdtCodigo.Text:= QInsertCODIGO.AsString;
+      end;
+
       IBTRTransf.Commit;
       Botoes('G');
       panel2.Enabled:= false;
@@ -536,97 +529,91 @@ end;
 procedure TFrmTransfLocaisEstoque.BtnCancelarClick(Sender: TObject);
 begin
   inherited;
- // ToolBar1.SetFocus;
-
   if not panel2.Enabled then
      showmessage('Lançamento gravado')
   else
-     begin
-        Botoes('C');
-        panel2.Enabled:= false;
-        panel4.Enabled:= false;
-     end;
+  begin
+    Botoes('C');
+    panel2.Enabled:= false;
+    panel4.Enabled:= false;
+  end;
 end;
 
 procedure TFrmTransfLocaisEstoque.BtnExcluirClick(Sender: TObject);
 begin
   inherited;
-  {ToolBar1.SetFocus;
-  if not DM.Acesso('M014','E') then
-     begin
-        Application.MessageBox('Você não tem permissão para efetuar esta operação.', 'Aviso', mb_ApplModal + mb_iconInformation + mb_OK + mb_DefButton1);
-        Abort;
-        Exit;
-     end;  }
-
-  if Application.MessageBox('Confirma a Exclusão do Lançamento?', 'Atenção', mb_applmodal+mb_iconquestion+mb_yesno+mb_defbutton1) = 6 then
-     begin
-        if IBTRTransf.Active then
-           IBTRTransf.Commit;
-        QBuscaItens.Close;
-        IBTRTransf.StartTransaction;
-        try
-          try
-            with IBSQLTransf do
-               begin
-                  close;
-                  sql.Clear;
-                  sql.Add('DELETE FROM TRANSFERENCIA_LOCAL_ESTOQUE WHERE CODIGO = :CODIGO');
-                  Parambyname('codigo').AsInteger:= strtoint(EdtCodigo.Text);
-                  ExecSQL;
-               end;
-            IBTRTransf.Commit;
-            panel2.Enabled:= false;
-            panel4.Enabled:= false;
-            Botoes('E');
-          except
-            IBTRTransf.Rollback;
-            showmessage('Erro ao Excluir o Lançamento');
-          end;
-        finally
-          IBSQLTransf.Close;
+  if Application.MessageBox('Confirma a Exclusão do Lançamento?', 'Atenção',
+   mb_applmodal+mb_iconquestion+mb_yesno+mb_defbutton1) = 6 then
+  begin
+    if IBTRTransf.Active then
+      IBTRTransf.Commit;
+    QBuscaItens.Close;
+    IBTRTransf.StartTransaction;
+    try
+      try
+        with IBSQLTransf do
+        begin
+          close;
+          sql.Clear;
+          sql.Add('DELETE FROM TRANSFERENCIA_LOCAL_ESTOQUE WHERE CODIGO = :CODIGO');
+          Parambyname('codigo').AsInteger:= strtoint(EdtCodigo.Text);
+          ExecSQL;
         end;
-     end;
+
+        IBTRTransf.Commit;
+        panel2.Enabled:= false;
+        panel4.Enabled:= false;
+        Botoes('E');
+      except
+        IBTRTransf.Rollback;
+        showmessage('Erro ao Excluir o Lançamento');
+      end;
+    finally
+      IBSQLTransf.Close;
+    end;
+  end;
 end;
 
 procedure TFrmTransfLocaisEstoque.BtnGravaClick(Sender: TObject);
 begin
   inherited;
   if trim(EdtCodPro.Text) = '' then
-     begin
-        EdtCodPro.SetFocus;
-        exit;
-     end;
+  begin
+    EdtCodPro.SetFocus;
+    exit;
+  end;
 
   if strtocurr(edtquant.Text) = 0 then
-     begin
-        showmessage('Digite a quantidade');
-        edtquant.SetFocus;
-        exit;
-     end;
+  begin
+    showmessage('Digite a quantidade');
+    edtquant.SetFocus;
+    exit;
+  end;
 
   if IBTRTransf.Active then
      IBTRTransf.Commit;
+
   IBTRTransf.StartTransaction;
   try
     try
       with IBSQLTransf do
-         begin
-            close;
-            sql.Clear;
-            sql.Text:= 'INSERT INTO ITENS_TRANSF_LOCAIS_ESTOQUE (CODIGO, ORDEM, COD_PRO, QUANT, COD_EMP, ' +
-                       'CODIGO_LOCAL_ORIGEM, CODIGO_LOCAL_DESTINO) ' +
-                       'VALUES(:COD, :ORDEM, :CODPRO, :QUANT, :CODEMP, :ORIGEM, :DESTINO)';
+      begin
+        close;
+        sql.Clear;
+        sql.Text:= 'INSERT INTO ITENS_TRANSF_LOCAIS_ESTOQUE (CODIGO, ORDEM, COD_PRO, QUANT, COD_EMP, ' +
+        'CODIGO_LOCAL_ORIGEM, CODIGO_LOCAL_DESTINO) ' +
+        'VALUES(:COD, :ORDEM, :CODPRO, :QUANT, :CODEMP, :ORIGEM, :DESTINO)';
 
-            parambyname('cod').AsInteger     := strtoint(EdtCodigo.Text);
-            Parambyname('ordem').AsInteger   := ordem;
-            parambyname('codpro').AsInteger  := strtoint(EdtCodPro.Text);
-            parambyname('quant').AsCurrency  := StrToCurr(EdtQuant.Text);
-            Parambyname('codemp').AsInteger  := iEmp;
-            Parambyname('origem').AsInteger  := strtoint(EdtCodOrigem.Text);
-            Parambyname('destino').AsInteger := strtoint(EdtCodDestino.Text);
-            open;
-         end;
+        parambyname('cod').AsInteger     := strtoint(EdtCodigo.Text);
+        Parambyname('ordem').AsInteger   := ordem;
+        parambyname('codpro').AsInteger  := strtoint(EdtCodPro.Text);
+        parambyname('quant').AsCurrency  := StrToCurr(EdtQuant.Text);
+        Parambyname('codemp').AsInteger  := iEmp;
+        Parambyname('origem').AsInteger  := strtoint(EdtCodOrigem.Text);
+        Parambyname('destino').AsInteger := strtoint(EdtCodDestino.Text);
+        open;
+      end;
+
       IBTRTransf.Commit;
     except
       IBTRTransf.Rollback;
@@ -644,37 +631,41 @@ procedure TFrmTransfLocaisEstoque.BtnExcluiClick(Sender: TObject);
 var iAuxOrdem : integer;
 begin
   inherited;
-  if Application.MessageBox('Confirma a Exclusão do Item?', 'Atenção', mb_applmodal+mb_iconquestion+mb_yesno+mb_defbutton1) = 6 then
-     begin
-        iAuxOrdem:= QBuscaItensORDEM.AsInteger;
+  if Application.MessageBox('Confirma a Exclusão do Item?', 'Atenção',
+  mb_applmodal+mb_iconquestion+mb_yesno+mb_defbutton1) = 6 then
+  begin
+    iAuxOrdem:= QBuscaItensORDEM.AsInteger;
 
-        if IBTRTransf.Active then
-           IBTRTransf.Commit;
-        QBuscaItens.Close;
-        IBTRTransf.StartTransaction;
-        try
-          try
-            with IBSQLTransf do
-               begin
-                  close;
-                  sql.Clear;
-                  sql.Add('DELETE FROM ITENS_TRANSF_LOCAIS_ESTOQUE ' +
-                          'WHERE CODIGO = :COD AND ORDEM = :ORDEM');
-                  Parambyname('cod').AsInteger   := strtoint(EdtCodigo.text);
-                  Parambyname('ordem').AsInteger := iAuxOrdem;
-                  ExecSQL;
-               end;
-            IBTRTransf.Commit;
-          except
-            IBTRTransf.Rollback;
-            showmessage('Erro ao Excluir o Item');
-          end;
-        finally
-          IBSQLTransf.Close;
-          LimpaItens;
-          BuscaItens;
+    if IBTRTransf.Active then
+      IBTRTransf.Commit;
+
+    QBuscaItens.Close;
+    IBTRTransf.StartTransaction;
+
+    try
+      try
+        with IBSQLTransf do
+        begin
+          close;
+          sql.Clear;
+          sql.Add('DELETE FROM ITENS_TRANSF_LOCAIS_ESTOQUE ' +
+          'WHERE CODIGO = :COD AND ORDEM = :ORDEM');
+          Parambyname('cod').AsInteger   := strtoint(EdtCodigo.text);
+          Parambyname('ordem').AsInteger := iAuxOrdem;
+          ExecSQL;
         end;
-     end;
+
+        IBTRTransf.Commit;
+      except
+        IBTRTransf.Rollback;
+        showmessage('Erro ao Excluir o Item');
+      end;
+    finally
+      IBSQLTransf.Close;
+      LimpaItens;
+      BuscaItens;
+    end;
+  end;
 end;
 
 end.

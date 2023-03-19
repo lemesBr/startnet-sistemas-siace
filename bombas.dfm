@@ -12,8 +12,8 @@ inherited FormBombas: TFormBombas
   inherited Panel1: TAdvPanel
     FullHeight = 200
     object GroupBox1: TGroupBox
-      Left = 16
-      Top = 8
+      Left = 88
+      Top = 4
       Width = 601
       Height = 193
       Anchors = [akLeft, akTop, akRight]
@@ -202,6 +202,37 @@ inherited FormBombas: TFormBombas
   end
   inherited Panel2: TAdvPanel
     FullHeight = 51
+    inherited btnLocalizar: TAdvGlowButton
+      OnClick = BtnConsultarClick
+      ExplicitLeft = 676
+      ExplicitTop = 2
+      ExplicitHeight = 47
+    end
+    inherited btnSalvar: TAdvGlowButton
+      OnClick = BtnGravarClick
+      ExplicitLeft = 402
+      ExplicitTop = 2
+      ExplicitHeight = 47
+    end
+    inherited btnexcluir: TAdvGlowButton
+      OnClick = BtnExcluirClick
+      ExplicitLeft = 302
+      ExplicitTop = 2
+    end
+    inherited btnCancelar: TAdvGlowButton
+      OnClick = BtnCancelarClick
+      ExplicitLeft = 202
+    end
+    inherited btnEditar: TAdvGlowButton
+      OnClick = BtnAlterarClick
+      ExplicitLeft = 102
+    end
+    inherited btnNovo: TAdvGlowButton
+      OnClick = btnNovoClick
+      ExplicitLeft = 2
+      ExplicitTop = 2
+      ExplicitHeight = 47
+    end
   end
   object MsgErro: TsuiMessageDialog
     Position = poScreenCenter

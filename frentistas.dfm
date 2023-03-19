@@ -3,33 +3,37 @@ inherited FormFrentista: TFormFrentista
   Top = 348
   Caption = 'Cadastro de Frentistas'
   ClientHeight = 240
+  ClientWidth = 662
   OldCreateOrder = True
   OnClose = FormClose
   OnCloseQuery = FormCloseQuery
   OnShow = FormShow
+  ExplicitWidth = 668
+  ExplicitHeight = 269
   PixelsPerInch = 96
   TextHeight = 13
   inherited Panel1: TAdvPanel
+    Width = 662
     Height = 189
+    ExplicitWidth = 662
     ExplicitHeight = 189
     FullHeight = 189
     object Pnldados: TPanel
       Left = 0
       Top = 0
-      Width = 656
+      Width = 662
       Height = 189
       Align = alClient
       Caption = 'Panel1'
       Enabled = False
       TabOrder = 0
-      ExplicitWidth = 668
       DesignSize = (
-        656
+        662
         189)
       object GroupBox1: TGroupBox
         Left = 16
         Top = 8
-        Width = 585
+        Width = 591
         Height = 164
         Anchors = [akLeft, akTop, akRight, akBottom]
         Font.Charset = DEFAULT_CHARSET
@@ -40,7 +44,7 @@ inherited FormFrentista: TFormFrentista
         ParentFont = False
         TabOrder = 0
         DesignSize = (
-          585
+          591
           164)
         object Label2: TLabel
           Left = 16
@@ -56,7 +60,7 @@ inherited FormFrentista: TFormFrentista
           ParentFont = False
         end
         object Label6: TLabel
-          Left = 489
+          Left = 495
           Top = 19
           Width = 79
           Height = 16
@@ -68,6 +72,7 @@ inherited FormFrentista: TFormFrentista
           Font.Name = 'MS Sans Serif'
           Font.Style = []
           ParentFont = False
+          ExplicitLeft = 489
         end
         object Label1: TLabel
           Left = 16
@@ -77,7 +82,7 @@ inherited FormFrentista: TFormFrentista
           Caption = 'Descri'#231#227'o:'
         end
         object DBEdit3: TDBEdit
-          Left = 489
+          Left = 495
           Top = 36
           Width = 81
           Height = 24
@@ -90,7 +95,7 @@ inherited FormFrentista: TFormFrentista
         object DBEdit2: TDBEdit
           Left = 16
           Top = 36
-          Width = 458
+          Width = 464
           Height = 24
           Anchors = [akLeft, akTop, akRight]
           CharCase = ecUpperCase
@@ -101,7 +106,7 @@ inherited FormFrentista: TFormFrentista
         object DBEdit1: TDBEdit
           Left = 16
           Top = 88
-          Width = 554
+          Width = 560
           Height = 24
           Anchors = [akLeft, akTop, akRight]
           CharCase = ecUpperCase
@@ -126,8 +131,31 @@ inherited FormFrentista: TFormFrentista
   end
   inherited Panel2: TAdvPanel
     Top = 189
+    Width = 662
     ExplicitTop = 189
+    ExplicitWidth = 662
     FullHeight = 51
+    inherited btnLocalizar: TAdvGlowButton
+      Left = 560
+      OnClick = BtnConsultarClick
+      ExplicitLeft = 560
+    end
+    inherited btnSalvar: TAdvGlowButton
+      OnClick = BtnGravarClick
+    end
+    inherited btnexcluir: TAdvGlowButton
+      OnClick = BtnExcluirClick
+    end
+    inherited btnCancelar: TAdvGlowButton
+      OnClick = BtnCancelarClick
+    end
+    inherited btnEditar: TAdvGlowButton
+      OnClick = BtnAlterarClick
+      ExplicitLeft = 102
+    end
+    inherited btnNovo: TAdvGlowButton
+      OnClick = btnNovoClick
+    end
   end
   object MsgErro: TsuiMessageDialog
     Position = poScreenCenter

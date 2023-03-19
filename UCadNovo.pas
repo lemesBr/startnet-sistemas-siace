@@ -11,13 +11,12 @@ type
   TFrmCadastroNovo = class(TForm)
     Panel1: TAdvPanel;
     Panel2: TAdvPanel;
+    btnLocalizar: TAdvGlowButton;
+    btnSalvar: TAdvGlowButton;
+    btnexcluir: TAdvGlowButton;
+    btnCancelar: TAdvGlowButton;
+    btnEditar: TAdvGlowButton;
     btnNovo: TAdvGlowButton;
-    BtnAlterar: TAdvGlowButton;
-    BtnExcluir: TAdvGlowButton;
-    BtnConsultar: TAdvGlowButton;
-    BtnSair: TAdvGlowButton;
-    BtnGravar: TAdvGlowButton;
-    BtnCancelar: TAdvGlowButton;
     procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure FormKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
@@ -38,43 +37,42 @@ uses Principal;
 
 procedure TFrmCadastroNovo.FormKeyPress(Sender: TObject; var Key: Char);
 begin
-   if key = #13 then
-      begin
-         key:= #0;
-         SelectNext(ActiveControl, true, true);
-      end;
+  if key = #13 then
+  begin
+    key:= #0;
+    SelectNext(ActiveControl, true, true);
+  end;
 end;
 
 procedure TFrmCadastroNovo.FormKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
- case key of
-     vk_escape : BtnSair.Click;
-     vk_f2: begin
-               if (BtnConsultar.Enabled) and (BtnNovo.Enabled) then
-                  BtnConsultar.Click;
-            end;
-     vk_f5: begin
-               if btnnovo.Enabled then
-                  btnnovo.Click;
-            end;
-     vk_f6: begin
-               if btngravar.Enabled then
-                  btngravar.Click;
-            end;
-     vk_f7: begin
-               if btncancelar.Enabled then
-                  btncancelar.Click;
-            end;
-     vk_f8: begin
-               if btnalterar.Enabled then
-                  btnalterar.Click;
-            end;
-     vk_f9: begin
-               if btnexcluir.Enabled then
-                  btnexcluir.Click;
-            end;
-   end;
+  case key of
+    vk_f2:begin
+      if (btnLocalizar.Enabled) and (BtnNovo.Enabled) then
+        btnLocalizar.Click;
+    end;
+    vk_f5: begin
+      if btnnovo.Enabled then
+        btnnovo.Click;
+    end;
+    vk_f6: begin
+      if btnSalvar.Enabled then
+        btnSalvar.Click;
+    end;
+    vk_f7: begin
+      if btncancelar.Enabled then
+        btncancelar.Click;
+    end;
+    vk_f8: begin
+      if btnEditar.Enabled then
+        btnEditar.Click;
+    end;
+    vk_f9: begin
+      if btnexcluir.Enabled then
+        btnexcluir.Click;
+    end;
+  end;
 end;
 
 end.

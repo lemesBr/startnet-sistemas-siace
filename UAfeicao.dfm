@@ -330,13 +330,28 @@ inherited FormAfericao: TFormAfericao
   inherited Panel2: TAdvPanel
     Top = 145
     ExplicitTop = 145
+    ExplicitWidth = 778
     FullHeight = 51
+    inherited btnLocalizar: TAdvGlowButton
+      OnClick = BtnConsultarClick
+      ExplicitLeft = 676
+    end
+    inherited btnSalvar: TAdvGlowButton
+      OnClick = BtnGravarClick
+    end
+    inherited btnexcluir: TAdvGlowButton
+      OnClick = BtnExcluirClick
+    end
+    inherited btnCancelar: TAdvGlowButton
+      OnClick = BtnCancelarClick
+    end
+    inherited btnEditar: TAdvGlowButton
+      OnClick = BtnAlterarClick
+    end
     inherited btnNovo: TAdvGlowButton
       OnClick = btnNovoClick
-    end
-    inherited BtnConsultar: TAdvGlowButton
-      Left = 473
-      ExplicitLeft = 473
+      ExplicitLeft = -4
+      ExplicitHeight = 47
     end
   end
 end

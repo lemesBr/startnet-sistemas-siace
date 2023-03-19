@@ -14,7 +14,7 @@ inherited FrmCadLocaisEstoque: TFrmCadLocaisEstoque
   inherited Panel1: TAdvPanel
     Width = 659
     Height = 110
-    ExplicitWidth = 620
+    ExplicitWidth = 659
     ExplicitHeight = 110
     FullHeight = 110
     object Label1: TLabel
@@ -62,42 +62,40 @@ inherited FrmCadLocaisEstoque: TFrmCadLocaisEstoque
     Top = 110
     Width = 659
     ExplicitTop = 110
-    ExplicitWidth = 620
+    ExplicitWidth = 659
     FullHeight = 51
-    inherited BtnSair: TAdvGlowButton
-      ImageIndex = 8
-      Images = FormPrincipal.sAlphaImageList2
-      Picture.Data = {}
+    inherited btnLocalizar: TAdvGlowButton
+      Left = 557
+      OnClick = BtnConsultarClick
+      ExplicitLeft = 557
+      ExplicitTop = 2
+      ExplicitHeight = 47
+    end
+    inherited btnSalvar: TAdvGlowButton
+      ImageIndex = 11
+      OnClick = BtnGravarClick
+      ExplicitLeft = 402
+      ExplicitTop = 2
+      ExplicitHeight = 47
+    end
+    inherited btnexcluir: TAdvGlowButton
+      OnClick = BtnExcluirClick
+      ExplicitLeft = 302
+      ExplicitTop = 2
+    end
+    inherited btnCancelar: TAdvGlowButton
+      OnClick = BtnCancelarClick
+      ExplicitLeft = 202
+    end
+    inherited btnEditar: TAdvGlowButton
+      OnClick = BtnAlterarClick
+      ExplicitLeft = 102
     end
     inherited btnNovo: TAdvGlowButton
-      ImageIndex = 0
-      Images = FormPrincipal.sAlphaImageList2
-      Picture.Data = {}
-    end
-    inherited BtnGravar: TAdvGlowButton
-      ImageIndex = 11
-      Images = FormPrincipal.sAlphaImageList2
-      Picture.Data = {}
-    end
-    inherited BtnExcluir: TAdvGlowButton
-      ImageIndex = 3
-      Images = FormPrincipal.sAlphaImageList2
-      Picture.Data = {}
-    end
-    inherited BtnConsultar: TAdvGlowButton
-      ImageIndex = 20
-      Images = FormPrincipal.sAlphaImageList2
-      Picture.Data = {}
-    end
-    inherited BtnCancelar: TAdvGlowButton
-      ImageIndex = 12
-      Images = FormPrincipal.sAlphaImageList2
-      Picture.Data = {}
-    end
-    inherited BtnAlterar: TAdvGlowButton
-      ImageIndex = 1
-      Images = FormPrincipal.sAlphaImageList2
-      Picture.Data = {}
+      OnClick = BtnNovoClick
+      ExplicitLeft = 2
+      ExplicitTop = 2
+      ExplicitHeight = 47
     end
   end
   object IBSQLLE: TFDCommand

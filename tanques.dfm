@@ -178,7 +178,7 @@ inherited FormTanques: TFormTanques
         Left = 122
         Top = 33
         Width = 110
-        Height = 24
+        Height = 22
         Alignment = taCenter
         CharCase = ecUpperCase
         ClickKey = 120
@@ -209,6 +209,38 @@ inherited FormTanques: TFormTanques
     ExplicitTop = 182
     ExplicitWidth = 624
     FullHeight = 51
+    inherited btnLocalizar: TAdvGlowButton
+      Left = 522
+      OnClick = BtnConsultarClick
+      ExplicitLeft = 522
+      ExplicitTop = 2
+      ExplicitHeight = 47
+    end
+    inherited btnSalvar: TAdvGlowButton
+      OnClick = BtnGravarClick
+      ExplicitLeft = 402
+      ExplicitTop = 2
+      ExplicitHeight = 47
+    end
+    inherited btnexcluir: TAdvGlowButton
+      OnClick = BtnExcluirClick
+      ExplicitLeft = 302
+      ExplicitTop = 2
+    end
+    inherited btnCancelar: TAdvGlowButton
+      OnClick = BtnCancelarClick
+      ExplicitLeft = 202
+    end
+    inherited btnEditar: TAdvGlowButton
+      OnClick = BtnAlterarClick
+      ExplicitLeft = 102
+    end
+    inherited btnNovo: TAdvGlowButton
+      OnClick = btnNovoClick
+      ExplicitLeft = 2
+      ExplicitTop = 2
+      ExplicitHeight = 47
+    end
   end
   object MsgErro: TsuiMessageDialog
     Position = poScreenCenter

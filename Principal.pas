@@ -1534,7 +1534,7 @@ begin
 
   try
     X := TIniFile.Create(ExtractFilePath(Application.ExeName)+'siace.ini');
-    Image1.Picture.LoadFromFile(X.ReadString('Papel de parede','Caminho',''));
+    //Image1.Picture.LoadFromFile(X.ReadString('Papel de parede','Caminho',''));
     Ladoalado1.Checked := X.ReadBool('Papel de parede','Lado a lado',Ladoalado1.Checked);
     Image1.Stretch := Ladoalado1.Checked;
     X.Free;

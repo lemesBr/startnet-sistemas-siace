@@ -49,11 +49,11 @@ type
     procedure FormShow(Sender: TObject);
     procedure BtnNovoClick(Sender: TObject);
     procedure BtnCancelarClick(Sender: TObject);
-    procedure BtnAlterarClick(Sender: TObject);
+    procedure BtnEditarClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure BtnGravarClick(Sender: TObject);
+    procedure BtnSalvarClick(Sender: TObject);
     procedure BtnExcluirClick(Sender: TObject);
-    procedure BtnConsultarClick(Sender: TObject);
+    procedure BtnLocalizarClick(Sender: TObject);
     procedure EdtCodBandeiraEnter(Sender: TObject);
     procedure EdtCodBandeiraKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
@@ -75,64 +75,74 @@ var
   FrmLancCTRADM: TFrmLancCTRADM;
 
 implementation
-Uses ModulodeDados, Ubibli1, UCadAdmCartaoCredito, UConsAdmCartaoCredito, UConsCTRAdm,
+
+uses ModulodeDados, Ubibli1, UCadAdmCartaoCredito, UConsAdmCartaoCredito, UConsCTRAdm,
      UConsBandeiraCartao, ConsultaPedidoDireto, ConsClientes;
-var  bGrava   : boolean;
-     iQtdParc : integer;
-     FDia : array[1..7] of string = ('Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado');
+
+var
+  bGrava   : boolean;
+  iQtdParc : integer;
+  FDia : array[1..7] of string = ('Domingo', 'Segunda', 'Terça', 'Quarta',
+  'Quinta', 'Sexta', 'Sábado');
 
 {$R *.dfm}
 
 procedure TFrmLancCTRADM.Botoes(acao : string);
 begin
-   {  (N)OVO
-      (G)RAVAR
-      (C)ANCELAR
-      (A)LTERAR
-      (E)EXCLUIR
-      (P)ESQUISAR/CONSULTAR  }
+  {
+    (N)OVO
+    (G)RAVAR
+    (C)ANCELAR
+    (A)LTERAR
+    (E)EXCLUIR
+    (P)ESQUISAR/CONSULTAR
+  }
 
-   if (acao = 'N') or (acao = 'A') then
-      begin
-          EDedit(FrmLancCTRADM, true);
-          btnNovo.Enabled      := false;
-          BtnGravar.Enabled    := true;
-          btnCancelar.Enabled  := true;
-          BtnAlterar.Enabled   := false;
-          if acao = 'N' then
-             begin
-                Limpaedit(FrmLancCTRADM);
-                btnExcluir.Enabled:= false
-             end
-          else
-              btnExcluir.Enabled := true;
-          BtnConsultar.Enabled   := false;
-      end
-   else
-      begin
-         if not (acao = 'G') then
-            Limpaedit(FrmLancCTRADM);
-         EDedit(FrmLancCTRADM, false);
-         btnNovo.Enabled      := true;
-         BtnGravar.Enabled    := false;
-         btnCancelar.Enabled  := false;
-         if (acao = 'C') or (acao = 'E') then
-            btnalterar.Enabled:= false
-         else
-            btnalterar.Enabled:= true;
-         if acao = 'G' then
-            btnExcluir.Enabled:= true
-         else
-            BtnExcluir.Enabled:= false;
-         BtnConsultar.Enabled := true;
-      end;
+  if (acao = 'N') or (acao = 'A') then
+  begin
+    EDedit(FrmLancCTRADM, true);
+    btnNovo.Enabled      := false;
+    BtnSalvar.Enabled    := true;
+    btnCancelar.Enabled  := true;
+    BtnEditar.Enabled   := false;
+
+    if acao = 'N' then
+    begin
+      Limpaedit(FrmLancCTRADM);
+      btnExcluir.Enabled:= false
+    end
+    else
+      btnExcluir.Enabled := true;
+
+    BtnLocalizar.Enabled   := false;
+  end
+  else
+  begin
+    if not (acao = 'G') then
+      Limpaedit(FrmLancCTRADM);
+
+    EDedit(FrmLancCTRADM, false);
+    btnNovo.Enabled      := true;
+    BtnSalvar.Enabled    := false;
+    btnCancelar.Enabled  := false;
+
+    if (acao = 'C') or (acao = 'E') then
+      btnEditar.Enabled:= false
+    else
+      btnEditar.Enabled:= true;
+
+    if acao = 'G' then
+      btnExcluir.Enabled:= true
+    else
+      BtnExcluir.Enabled:= false;
+
+    BtnLocalizar.Enabled := true;
+  end;
 end;
 
 procedure TFrmLancCTRADM.EdtEmissaoExit(Sender: TObject);
 begin
   inherited;
-  {if ToolBar1.Focused then
-     exit;  }
   try
     strtodate(EdtEmissao.Text);
   except
@@ -144,15 +154,8 @@ end;
 procedure TFrmLancCTRADM.EdtVencExit(Sender: TObject);
 begin
   inherited;
- { if ToolBar1.Focused then
-     exit;}
   try
     strtodate(EdtVenc.Text);
-    {LData.Caption:= FDia[dayofWeek(strtodate(EdtVenc.text))];
-    if DayOfWeek(strtodate(EdtVenc.text)) in [1,7] then
-       LData.Font.Color:= clRed
-    else
-       LData.Font.Color:= clNavy;}
   except
     showmessage('Data Inválida');
     EdtVenc.SetFocus;
@@ -178,41 +181,27 @@ procedure TFrmLancCTRADM.FormShow(Sender: TObject);
 begin
   inherited;
   if tag = 0 then
-     begin
-       { bGrava:= true;
-        if not DM.Acesso('M023','I') then
-           begin
-             Application.MessageBox('Você não tem permissão para efetuar esta operação.', 'Aviso', mb_ApplModal + mb_iconInformation + mb_OK + mb_DefButton1);
-             Botoes('C');
-           end
-        else }
-           begin
-             Botoes('N');
-             EdtEmissao.Text      := datetostr(date);
-             edtvenc.Text         := datetostr(date);
-             EdtCodVenda.Enabled  := true;
-             BtnConsVenda.Enabled := true;
-             EdtEmissao.SetFocus;
-           end;
-           BtnConsultar.Enabled := True;
-     end
+  begin
+    Botoes('N');
+    EdtEmissao.Text      := datetostr(date);
+    edtvenc.Text         := datetostr(date);
+    EdtCodVenda.Enabled  := true;
+    BtnConsVenda.Enabled := true;
+    EdtEmissao.SetFocus;
+
+    BtnLocalizar.Enabled := True;
+  end
   else
-     if tag = 1 then
-        Botoes('G');
-        BtnConsultar.Enabled := True;
+  if tag = 1 then
+    Botoes('G');
+
+  BtnLocalizar.Enabled := True;
 end;
 
 procedure TFrmLancCTRADM.BtnNovoClick(Sender: TObject);
 begin
   inherited;
   bGrava:= true;
-
- { if not DM.Acesso('M023','I') then
-     begin
-        Application.MessageBox('Você não tem permissão para efetuar esta operação.', 'Aviso', mb_ApplModal + mb_iconInformation + mb_OK + mb_DefButton1);
-        Abort;
-        Exit;
-     end; }
   Botoes('N');
   EdtEmissao.Text      := datetostr(date);
   edtvenc.Text         := datetostr(date);
@@ -224,19 +213,12 @@ end;
 procedure TFrmLancCTRADM.BtnCancelarClick(Sender: TObject);
 begin
   inherited;
- // ToolBar1.SetFocus;
   Botoes('C');
 end;
 
-procedure TFrmLancCTRADM.BtnAlterarClick(Sender: TObject);
+procedure TFrmLancCTRADM.BtnEditarClick(Sender: TObject);
 begin
   inherited;
-  {if not DM.Acesso('M023','A') then
-     begin
-        Application.MessageBox('Você não tem permissão para efetuar esta operação.', 'Aviso', mb_ApplModal + mb_iconInformation + mb_OK + mb_DefButton1);
-        Abort;
-        Exit;
-     end;}
   bGrava:= false;
   Botoes('A');
   EdtCodVenda.Enabled  := false;
@@ -250,156 +232,149 @@ begin
   inherited;
   if IBTRCartao.Active then
      IBTRCartao.Commit;
+
   IBSQLCartao.Close;
   Action:= caFree;
 end;
 
-procedure TFrmLancCTRADM.BtnGravarClick(Sender: TObject);
+procedure TFrmLancCTRADM.BtnSalvarClick(Sender: TObject);
 begin
   inherited;
- { if (bGrava) and (not DM.Acesso('M023','I')) then
-     begin
-        Application.MessageBox('Você não tem permissão para efetuar esta operação.', 'Aviso', mb_ApplModal + mb_iconInformation + mb_OK + mb_DefButton1);
-        Abort;
-        Exit;
-     end;  }
-
   if strtodate(EdtVenc.Text) < strtodate(EdtEmissao.Text) then
-     begin
-        showmessage('O vencimento não pode ser menor que a data de emissão');
-        exit;
-     end;
+  begin
+    showmessage('O vencimento não pode ser menor que a data de emissão');
+    exit;
+  end;
 
   if edtvalor.Text = '0' then
-     begin
-        showmessage('Digite o Valor');
-        edtvalor.SetFocus;
-        exit;
-     end;
+  begin
+    showmessage('Digite o Valor');
+    edtvalor.SetFocus;
+    exit;
+  end;
 
   if bGrava then
-     begin
-        if IBTRCartao.Active then
-           IBTRCartao.Commit;
-        IBTRCartao.StartTransaction;
-        try
-          try
-            with QInsert do
-               begin
-                  close;
-                  Parambyname('codigo_bandeira').AsInteger := strtoint(EdtCodBandeira.Text);
-                  Parambyname('documento').AsString        := trim(EdtNumDoc.Text);
-                  Parambyname('emissao').AsDate            := strtodate(EdtEmissao.Text);
-                  Parambyname('vencimento').AsDate         := strtodate(EdtVenc.Text);
-                  Parambyname('codcai').AsInteger          := iCaixa;
-                  Parambyname('codemp').AsInteger          := iEmp;
+  begin
+    if IBTRCartao.Active then
+      IBTRCartao.Commit;
 
-                  if trim(EdtCodVenda.Text) <> '' then
-                     Parambyname('codven').AsInteger       := strtoint(EdtCodVenda.Text)
-                  else
-                     Parambyname('codven').Value           := null;
+    IBTRCartao.StartTransaction;
+    try
+      try
+        with QInsert do
+        begin
+          close;
+          Parambyname('codigo_bandeira').AsInteger := strtoint(EdtCodBandeira.Text);
+          Parambyname('documento').AsString        := trim(EdtNumDoc.Text);
+          Parambyname('emissao').AsDate            := strtodate(EdtEmissao.Text);
+          Parambyname('vencimento').AsDate         := strtodate(EdtVenc.Text);
+          Parambyname('codcai').AsInteger          := iCaixa;
+          Parambyname('codemp').AsInteger          := iEmp;
 
-                  Parambyname('valor').AsCurrency          := strtocurr(EdtValor.Text);
-                  Parambyname('taxa').AsCurrency           := strtocurr(EdtTaxa.Text);
-                  Parambyname('codcli').AsInteger          := strtoint(EdtCodCli.Text);
-                  Parambyname('parcela').AsInteger         := strtoint(EdtParcela.Text);
-                  open;
-                  EdtCodigo.Text:= QInsertCODIGO.AsString;
-               end;
-            IBTRCartao.Commit;
-            Botoes('G');
-          except
-            IBTRCartao.Rollback;
-            showmessage('Erro ao gravar o Lançamento');
-          end;
-        finally
-          QInsert.Close;
+          if trim(EdtCodVenda.Text) <> '' then
+             Parambyname('codven').AsInteger       := strtoint(EdtCodVenda.Text)
+          else
+             Parambyname('codven').Value           := null;
+
+          Parambyname('valor').AsCurrency          := strtocurr(EdtValor.Text);
+          Parambyname('taxa').AsCurrency           := strtocurr(EdtTaxa.Text);
+          Parambyname('codcli').AsInteger          := strtoint(EdtCodCli.Text);
+          Parambyname('parcela').AsInteger         := strtoint(EdtParcela.Text);
+          open;
+          EdtCodigo.Text:= QInsertCODIGO.AsString;
         end;
-     end
+
+        IBTRCartao.Commit;
+        Botoes('G');
+      except
+        IBTRCartao.Rollback;
+        showmessage('Erro ao gravar o Lançamento');
+      end;
+    finally
+      QInsert.Close;
+    end;
+  end
   else
-     begin
-        if IBTRCartao.Active then
-           IBTRCartao.Commit;
-        IBTRCartao.StartTransaction;
-        try
-          try
-            with IBSQLCartao do
-              begin
-                 close;
-                 sql.Clear;
-                 sql.Add('UPDATE CONTAS_RECEBER_ADM_CARTAO SET ' +
-                                 'CODIGO_BANDEIRA = :2, ' +
-                                 'DOCUMENTO       = :3, ' +
-                                 'EMISSAO         = :4, ' +
-                                 'VENCIMENTO      = :5, ' +
-                                 'VALOR           = :6, ' +
-                                 'TAXA            = :7, ' +
-                                 'COD_CLI         = :8  ' +
-                         'WHERE CODIGO = :1');
+  begin
+    if IBTRCartao.Active then
+       IBTRCartao.Commit;
 
-                 Parambyname('1').AsInteger  := strtoint(EdtCodigo.Text);
-                 Parambyname('2').AsInteger  := strtoint(EdtCodBandeira.Text);
-                 Parambyname('3').AsString   := trim(EdtNumDoc.Text);
-                 Parambyname('4').Asdate     := strtodate(EdtEmissao.Text);
-                 Parambyname('5').AsDate     := strtodate(EdtVenc.Text);
-                 Parambyname('6').AsCurrency := StrToCurr(edtvalor.Text);
-                 Parambyname('7').AsCurrency := StrToCurr(EdtTaxa.Text);
-                 Parambyname('8').AsInteger  := strtoint(EdtCodCli.Text); 
-                 ExecQuery;
-              end;
-            IBTRCartao.Commit;
-            Botoes('G');
-          except
-            IBTRCartao.Rollback;
-            showmessage('Erro ao Gravar o Lançamento');
-          end;
-        finally
-          IBSQLCartao.Close;
+    IBTRCartao.StartTransaction;
+    try
+      try
+        with IBSQLCartao do
+        begin
+          close;
+          sql.Clear;
+          sql.Add('UPDATE CONTAS_RECEBER_ADM_CARTAO SET ' +
+                         'CODIGO_BANDEIRA = :2, ' +
+                         'DOCUMENTO       = :3, ' +
+                         'EMISSAO         = :4, ' +
+                         'VENCIMENTO      = :5, ' +
+                         'VALOR           = :6, ' +
+                         'TAXA            = :7, ' +
+                         'COD_CLI         = :8  ' +
+                 'WHERE CODIGO = :1');
+
+          Parambyname('1').AsInteger  := strtoint(EdtCodigo.Text);
+          Parambyname('2').AsInteger  := strtoint(EdtCodBandeira.Text);
+          Parambyname('3').AsString   := trim(EdtNumDoc.Text);
+          Parambyname('4').Asdate     := strtodate(EdtEmissao.Text);
+          Parambyname('5').AsDate     := strtodate(EdtVenc.Text);
+          Parambyname('6').AsCurrency := StrToCurr(edtvalor.Text);
+          Parambyname('7').AsCurrency := StrToCurr(EdtTaxa.Text);
+          Parambyname('8').AsInteger  := strtoint(EdtCodCli.Text);
+          ExecQuery;
         end;
-     end;
+
+        IBTRCartao.Commit;
+        Botoes('G');
+      except
+        IBTRCartao.Rollback;
+        showmessage('Erro ao Gravar o Lançamento');
+      end;
+    finally
+      IBSQLCartao.Close;
+    end;
+  end;
 end;
 
 procedure TFrmLancCTRADM.BtnExcluirClick(Sender: TObject);
 begin
   inherited;
-  {ToolBar1.SetFocus;
-  if not DM.Acesso('M023','E') then
-     begin
-        Application.MessageBox('Você não tem permissão para efetuar esta operação.', 'Aviso', mb_ApplModal + mb_iconInformation + mb_OK + mb_DefButton1);
-        Abort;
-        Exit;
-     end; }
+  if application.MessageBox('Confirma a Exclusão do Lançamento?', 'Exclusão',
+  mb_applmodal + mb_iconquestion + mb_yesno + mb_defbutton2) = 6 then
+  begin
+    if IBTRCartao.Active then
+       IBTRCartao.Commit;
 
-  if application.MessageBox('Confirma a Exclusão do Lançamento?', 'Exclusão', mb_applmodal + mb_iconquestion + mb_yesno + mb_defbutton2) = 6 then
-     begin
-        if IBTRCartao.Active then
-           IBTRCartao.Commit;
-        IBTRCartao.StartTransaction;
-        try
-          try
-            with IBSQLCartao do
-               begin
-                  close;
-                  sql.Clear;
-                  sql.Add('DELETE FROM CONTAS_RECEBER_ADM_CARTAO WHERE CODIGO = :1');
-                  Parambyname('1').AsInteger:= strtoint(EdtCodigo.text);
-                  ExecQuery;
-               end;
-            IBTRCartao.Commit;
-            Limpaedit(FrmLancCTRADM);
-            ededit(FrmLancCTRADM, false);
-            Botoes('E');
-          except
-            IBTRCartao.Rollback;
-            showmessage('Erro ao excluir o Lançamento');
-          end;
-        finally
-          IBSQLCartao.Close;
+    IBTRCartao.StartTransaction;
+    try
+      try
+        with IBSQLCartao do
+        begin
+          close;
+          sql.Clear;
+          sql.Add('DELETE FROM CONTAS_RECEBER_ADM_CARTAO WHERE CODIGO = :1');
+          Parambyname('1').AsInteger:= strtoint(EdtCodigo.text);
+          ExecQuery;
         end;
-     end;
+
+        IBTRCartao.Commit;
+        Limpaedit(FrmLancCTRADM);
+        ededit(FrmLancCTRADM, false);
+        Botoes('E');
+      except
+        IBTRCartao.Rollback;
+        showmessage('Erro ao excluir o Lançamento');
+      end;
+    finally
+      IBSQLCartao.Close;
+    end;
+  end;
 end;
 
-procedure TFrmLancCTRADM.BtnConsultarClick(Sender: TObject);
+procedure TFrmLancCTRADM.BtnLocalizarClick(Sender: TObject);
 begin
   inherited;
   Application.CreateForm(TFrmConsCTRAdm, FrmConsCTRAdm);
@@ -424,48 +399,49 @@ end;
 procedure TFrmLancCTRADM.EdtCodBandeiraExit(Sender: TObject);
 begin
   inherited;
- { if ToolBar1.Focused then
-     exit;  }
-
   if trim(EdtCodBandeira.Text) = '' then
      exit;
 
   if dm.IBTransaction.Active then
      dm.IBTransaction.Commit;
+
   dm.IBTransaction.StartTransaction;
   try
     try
       with dm.QConsulta do
-         begin
-            close;
-            sql.Clear;
-            sql.Text:= 'SELECT * ' +
-                       'FROM BANDEIRAS_CARTAO ' +
-                       'WHERE CODIGO = :CODIGO';
-            Parambyname('codigo').AsInteger:= strtoint(EdtCodBandeira.Text);
-            open;
-            if not fieldbyname('codigo').IsNull then
-               begin
-                  EdtNomeBandeira.Text:= fieldbyname('descricao').AsString;
-                  if trim(fieldbyname('TIPO_CARTAO').AsString) = 'C' then
-                     begin
-                        EdtVenc.Text := datetostr(strtodate(EdtEmissao.Text) + fieldbyname('DIAS_CREDITO').AsInteger);
-                        EdtTaxa.Text := fieldbyname('TAXA_CREDITO').AsString;
-                     end
-                  else
-                     begin
-                        EdtTaxa.Text := fieldbyname('TAXA_DEBITO').AsString;
-                        EdtVenc.Text := datetostr(strtodate(EdtEmissao.Text) + fieldbyname('DIAS_DEBITO').AsInteger);
-                     end;
-               end
-            else
-               begin
-                  EdtNomeBandeira.Clear;
-                  EdtTaxa.Clear;
-                  EdtCodBandeira.SetFocus;
-                  showmessage('Bandeira não cadastrada');
-               end;
-         end;
+      begin
+        close;
+        sql.Clear;
+        sql.Text:= 'SELECT * ' +
+               'FROM BANDEIRAS_CARTAO ' +
+               'WHERE CODIGO = :CODIGO';
+        Parambyname('codigo').AsInteger:= strtoint(EdtCodBandeira.Text);
+        open;
+
+        if not fieldbyname('codigo').IsNull then
+        begin
+          EdtNomeBandeira.Text:= fieldbyname('descricao').AsString;
+
+          if trim(fieldbyname('TIPO_CARTAO').AsString) = 'C' then
+          begin
+            EdtVenc.Text := datetostr(strtodate(EdtEmissao.Text) + fieldbyname('DIAS_CREDITO').AsInteger);
+            EdtTaxa.Text := fieldbyname('TAXA_CREDITO').AsString;
+          end
+          else
+          begin
+            EdtTaxa.Text := fieldbyname('TAXA_DEBITO').AsString;
+            EdtVenc.Text := datetostr(strtodate(EdtEmissao.Text) + fieldbyname('DIAS_DEBITO').AsInteger);
+          end;
+        end
+        else
+        begin
+          EdtNomeBandeira.Clear;
+          EdtTaxa.Clear;
+          EdtCodBandeira.SetFocus;
+          showmessage('Bandeira não cadastrada');
+        end;
+      end;
+
       dm.IBTransaction.Commit;
     except
       dm.IBTransaction.Rollback;
@@ -494,15 +470,14 @@ end;
 procedure TFrmLancCTRADM.EdtCodCliExit(Sender: TObject);
 begin
   inherited;
-  {if ToolBar1.Focused then
-     exit; }
+  EdtNomeCli.Text:= dm.RetornaStringTabela('nome_rs', 'clientes', 'codigo',
+  strtoint(EdtCodCli.Text));
 
-  EdtNomeCli.Text:= dm.RetornaStringTabela('nome_rs', 'clientes', 'codigo', strtoint(EdtCodCli.Text));
   if trim(EdtNomeCli.Text) = '' then
-     begin
-        showmessage('Cliente não cadastrado');
-        EdtCodCli.SetFocus;
-     end;
+  begin
+    showmessage('Cliente não cadastrado');
+    EdtCodCli.SetFocus;
+  end;
 end;
 
 procedure TFrmLancCTRADM.EdtCodCliKeyDown(Sender: TObject; var Key: Word;
@@ -510,14 +485,13 @@ procedure TFrmLancCTRADM.EdtCodCliKeyDown(Sender: TObject; var Key: Word;
 begin
   inherited;
   if key = vk_f2 then
-     BtnConsCli.Click;
+    BtnConsCli.Click;
 end;
 
 procedure TFrmLancCTRADM.BtnConsCliClick(Sender: TObject);
 begin
   inherited;
   Application.CreateForm(TFormConsClientes, FormConsClientes);
- // FormConsClientes.Tag:= 41;
   FormConsClientes.ShowModal;
   EdtCodCli.Text := dm.SDS_ClientesCODIGO.Text;
   EdtNomeCli.Text := DM.SDS_ClientesNOME_RS.Text;
@@ -527,7 +501,6 @@ procedure TFrmLancCTRADM.BtnConsVendaClick(Sender: TObject);
 begin
   inherited;
   Application.CreateForm(TFOrmConsultaPedidoDireto, FOrmConsultaPedidoDireto);
- //FOrmConsultaPedidoDireto.Tag:= 5;
   FOrmConsultaPedidoDireto.showmodal;
   EdtCodVenda.Text := dm.sds_vendasCODIGO.Text;
 end;

@@ -63,217 +63,214 @@ uses ModuledadosPostos, Principal, ModulodeDados, consBomba;
 
 Procedure TFormBombas.AtualizaManutencao;
 begin
-//DBNavigator.Enabled:= (DMP.sds_frentista.State = dsBrowse);
-BTNNOVO.Enabled:= (DMP.SDS_BOMBA.State = dsBrowse);
-BTNEXCLUIR.Enabled:= (DMP.SDS_BOMBA.State  = dsBrowse);
-BtnConsultar.Enabled:= (DMP.SDS_BOMBA.State  = dsBrowse);
-BtnGravar.Enabled:= (DMP.SDS_BOMBA.State  in [dsInsert, dsEdit]);
-BTNCANCELAR.Enabled:= (DMP.SDS_BOMBA.State  in [dsInsert, dsEdit]);
-BtnAlterar.Enabled:= (DMP.SDS_BOMBA.State  = dsBrowse);
+  BTNNOVO.Enabled:= (DMP.SDS_BOMBA.State = dsBrowse);
+  BTNEXCLUIR.Enabled:= (DMP.SDS_BOMBA.State  = dsBrowse);
+  BtnLocalizar.Enabled:= (DMP.SDS_BOMBA.State  = dsBrowse);
+  BtnSalvar.Enabled:= (DMP.SDS_BOMBA.State  in [dsInsert, dsEdit]);
+  BTNCANCELAR.Enabled:= (DMP.SDS_BOMBA.State  in [dsInsert, dsEdit]);
+  BtnEditar.Enabled:= (DMP.SDS_BOMBA.State  = dsBrowse);
 end;
-
 
 procedure TFormBombas.HabilitaPanel;
 begin
-Panel1.Enabled:= True;
+  Panel1.Enabled:= True;
 end;
 
 procedure TFormBombas.DesabilitaPanel;
 begin
-Panel1.Enabled:= False;
-
+  Panel1.Enabled:= False;
 end;
 
 procedure TFormBombas.HabilitaNovo;
 begin
-BTNNOVO.Enabled:=TRUE;
-BtnAlterar.Enabled:=FALSE;
-BTNCANCELAR.Enabled:=FALSE;
-BtnGravar.Enabled:=FALSE;
-BTNEXCLUIR.Enabled:=FALSE;
-BtnConsultar.Enabled:= False;
+  BTNNOVO.Enabled:=TRUE;
+  BtnEditar.Enabled:=FALSE;
+  BTNCANCELAR.Enabled:=FALSE;
+  BtnSalvar.Enabled:=FALSE;
+  BTNEXCLUIR.Enabled:=FALSE;
+  BtnLocalizar.Enabled:= False;
 end;
 
 procedure TFormBombas.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   inherited;
-Action := caFree;
-FormBombas := nil;
+  Action := caFree;
+  FormBombas := nil;
 end;
 
 procedure TFormBombas.FormCloseQuery(Sender: TObject;
-  var CanClose: Boolean);
+var
+  CanClose: Boolean);
 begin
   inherited;
-if DMP.SDS_BOMBA.State in [dsInsert, dsEdit, dsSetKey] then
+  if DMP.SDS_BOMBA.State in [dsInsert, dsEdit, dsSetKey] then
   begin
-  MsgInformacao.Text:= 'Antes de Sair Você Deve Salvar ou Cancelar o Registro !!!';
-  MsgInformacao.ShowModal;
-  CanClose := False;
+    MsgInformacao.Text:= 'Antes de Sair Você Deve Salvar ou Cancelar o Registro !!!';
+    MsgInformacao.ShowModal;
+    CanClose := False;
   end;
 end;
 
 procedure TFormBombas.BtnSairClick(Sender: TObject);
 begin
   inherited;
-Close;
+  Close;
 end;
 
 procedure TFormBombas.btnNovoClick(Sender: TObject);
 begin
   inherited;
-if FormPrincipal.Label3.Caption ='N'then
-begin
-MsgInformacao.Text:= 'O usuário conectado não possui autorização para Inserir Registro. Contate o Administrador do Sistema para obter acesso!!! !!!';
-MsgInformacao.ShowModal;
-End;
-if FormPrincipal.Label3.Caption ='S'then
-begin
-Try
+  if FormPrincipal.Label3.Caption = 'N' then
+  begin
+    MsgInformacao.Text:= 'O usuário conectado não possui autorização para ' +
+    'Inserir Registro. Contate o Administrador do Sistema para obter acesso!!! !!!';
+    MsgInformacao.ShowModal;
+  end;
 
-   dm.ProxCod.Close;
-   dm.ProxCod.SQL.Clear;
-   dm.ProxCod.SQL.Add('select max(COD_BOMBA) as N_CODIGO FROM BOMBA');
-   DM.ProxCod.Open;
+  if FormPrincipal.Label3.Caption = 'S' then
+  begin
+    try
+      dm.ProxCod.Close;
+      dm.ProxCod.SQL.Clear;
+      dm.ProxCod.SQL.Add('select max(COD_BOMBA) as N_CODIGO FROM BOMBA');
+      DM.ProxCod.Open;
 
-   DMp.SDS_BOMBA.Insert;
-   DMp.SDS_BOMBACOD_BOMBA.ASINTEGER := DM.ProxCodN_CODIGO.ASINTEGER + 1;
+      DMp.SDS_BOMBA.Insert;
+      DMp.SDS_BOMBACOD_BOMBA.ASINTEGER := DM.ProxCodN_CODIGO.ASINTEGER + 1;
 
-   HabilitaPanel;
-   AtualizaManutencao;
-   DBComboBox1.SetFocus;
+      HabilitaPanel;
+      AtualizaManutencao;
+      DBComboBox1.SetFocus;
 
-   Except
-   MsgErro.Text:= 'Ocorreu um Erro. Reinicie o Sistema e tente novamente !!!';
-   MsgErro.ShowModal;
-   end;
-end;
+    Except
+      MsgErro.Text:= 'Ocorreu um Erro. Reinicie o Sistema e tente novamente !!!';
+      MsgErro.ShowModal;
+    end;
+  end;
 end;
 
 procedure TFormBombas.BtnAlterarClick(Sender: TObject);
 begin
   inherited;
-if FormPrincipal.Label2.Caption ='N'then
-begin
-MsgInformacao.Text:= 'O usuário conectado não possui autorização para Editar Registro. Contate o Administrador do Sistema para obter acesso!!! !!!';
-MsgInformacao.ShowModal;
-End;
-if FormPrincipal.Label2.Caption ='S'then
-begin
-Try
-     DMP.SDS_BOMBA.Edit;
-     AtualizaManutencao;
-     HabilitaPanel;
-     DBComboBox1.SetFocus;
-   Except
-   MsgErro.Text:= 'Ocorreu um Erro. Reinicie o Sistema e tente novamente !!!';
-   MsgErro.ShowModal;
-   end;
 
-end;
+  if FormPrincipal.Label2.Caption = 'N' then
+  begin
+    MsgInformacao.Text:= 'O usuário conectado não possui autorização para '+
+    'Editar Registro. Contate o Administrador do Sistema para obter acesso!!! !!!';
+    MsgInformacao.ShowModal;
+  end;
+
+  if FormPrincipal.Label2.Caption ='S'then
+  begin
+    try
+      DMP.SDS_BOMBA.Edit;
+      AtualizaManutencao;
+      HabilitaPanel;
+      DBComboBox1.SetFocus;
+    Except
+      MsgErro.Text:= 'Ocorreu um Erro. Reinicie o Sistema e tente novamente !!!';
+      MsgErro.ShowModal;
+    end;
+  end;
 end;
 
 procedure TFormBombas.BtnCancelarClick(Sender: TObject);
 begin
   inherited;
-Try
-     DMP.SDS_BOMBA.Cancel;
- if DMP.SDS_BOMBA.RecordCount = 0 then HabilitaNovo else AtualizaManutencao;
-     DesabilitaPanel;
-   Except
-   MsgErro.Text:= 'Ocorreu um Erro. Reinicie o Sistema e tente novamente !!!';
-   MsgErro.ShowModal;
-   end;
+  try
+    DMP.SDS_BOMBA.Cancel;
+    if DMP.SDS_BOMBA.RecordCount = 0 then HabilitaNovo else AtualizaManutencao;
+    DesabilitaPanel;
+  except
+    MsgErro.Text:= 'Ocorreu um Erro. Reinicie o Sistema e tente novamente !!!';
+    MsgErro.ShowModal;
+  end;
 end;
 
 procedure TFormBombas.BtnExcluirClick(Sender: TObject);
 begin
   inherited;
-if FormPrincipal.Label1.Caption ='N'then
-begin
-MsgInformacao.Text:= 'O usuário conectado não possui autorização para Excluir Registro. Contate o Administrador do Sistema para obter acesso!!! !!!';
-MsgInformacao.ShowModal;
-End;
-if FormPrincipal.Label1.Caption ='S'then
-begin
-if MsgConfirmacao.ShowModal = mryes then
-begin
-Try
- Begin
-    DMp.SDS_BOMBA.Delete;
-    DMp.SDS_BOMBA.ApplyUpdates(0);
- end;
- if DMp.SDS_BOMBA.RecordCount = 0 then HabilitaNovo else AtualizaManutencao;
-       Except
-      MsgErro.Text:= 'Ocorreu um Erro. Reinicie o Sistema e tente novamente !!!';
-      MsgErro.ShowModal;
-end;
-end;
-end;
+  if FormPrincipal.Label1.Caption = 'N' then
+  begin
+    MsgInformacao.Text:= 'O usuário conectado não possui autorização para'+
+    ' Excluir Registro. Contate o Administrador do Sistema para obter acesso!!! !!!';
+    MsgInformacao.ShowModal;
+  end;
+
+  if FormPrincipal.Label1.Caption ='S'then
+  begin
+    if MsgConfirmacao.ShowModal = mryes then
+    begin
+      try
+        DMp.SDS_BOMBA.Delete;
+
+        if DMp.SDS_BOMBA.RecordCount = 0 then
+          HabilitaNovo
+        else
+          AtualizaManutencao;
+      except
+        MsgErro.Text:= 'Ocorreu um Erro. Reinicie o Sistema e tente novamente !!!';
+        MsgErro.ShowModal;
+      end;
+    end;
+  end;
 end;
 
 procedure TFormBombas.BtnGravarClick(Sender: TObject);
 begin
   inherited;
-Try
-      begin
+  try
+    DMp.SDS_BOMBA.Edit;
+    DMp.SDS_BOMBAID_BOMBA.ASINTEGER:=DMP.SDS_BOMBACOD_BOMBA.ASINTEGER;
 
-      DMp.SDS_BOMBA.Edit;
-      DMp.SDS_BOMBAID_BOMBA.ASINTEGER :=DMP.SDS_BOMBACOD_BOMBA.ASINTEGER;
+    if CheckBox1.Checked = True then
+      DMP.SDS_BOMBAAUTO_AUTORIZA.Text := '1'
+    else
+    if CheckBox1.Checked = false then
+      DMP.SDS_BOMBAAUTO_AUTORIZA.Text := '0';
 
-      if CheckBox1.Checked = True then
-      begin
-        DMP.SDS_BOMBAAUTO_AUTORIZA.Text := '1';
-      end else
-         if CheckBox1.Checked = false then
-      begin
-        DMP.SDS_BOMBAAUTO_AUTORIZA.Text := '0';
-      end;
-      
-          DMP.SDS_BOMBA.Post;
-          DMP.SDS_BOMBA.ApplyUpdates(0);
-          AtualizaManutencao;
-          DesabilitaPanel;
-      end;
-   Except
-   MsgErro.Text:= 'Ocorreu um Erro. Reinicie o Sistema e tente novamente !!!';
-   MsgErro.ShowModal;
-   end;
+    DMP.SDS_BOMBA.Post;
+    AtualizaManutencao;
+    DesabilitaPanel;
+  except
+    MsgErro.Text:= 'Ocorreu um Erro. Reinicie o Sistema e tente novamente !!!';
+    MsgErro.ShowModal;
+  end;
 end;
 
 procedure TFormBombas.FormKeyPress(Sender: TObject; var Key: Char);
 begin
   inherited;
-if key=#27 then close;
+  if key=#27 then close;
 
-    If Key = #13 then
-    Begin
-      Key := #0;
-      Perform(WM_NextDlgCtl, 0, 0);
-    End;
+  if Key = #13 then
+  Begin
+    Key := #0;
+    Perform(WM_NextDlgCtl, 0, 0);
+  End;
 end;
 
 procedure TFormBombas.BtnConsultarClick(Sender: TObject);
 begin
   inherited;
-   Application.CreateForm(TFormConsBomba, FormConsBomba);
-   FormConsBomba.showmodal;
+  Application.CreateForm(TFormConsBomba, FormConsBomba);
+  FormConsBomba.showmodal;
 end;
 
 procedure TFormBombas.FormShow(Sender: TObject);
 begin
   inherited;
-DMP.SDS_BOMBA.Active := False;
-DMP.SDS_BOMBA.Active := True;
-dmp.sds_frentista.Active := False;
-dmp.sds_frentista.Active := True;
+  DMP.SDS_BOMBA.Active := False;
+  DMP.SDS_BOMBA.Active := True;
+  dmp.sds_frentista.Active := False;
+  dmp.sds_frentista.Active := True;
 end;
 
 procedure TFormBombas.DBComboBox1Exit(Sender: TObject);
 begin
   inherited;
-      DMp.SDS_BOMBA.Edit;
-      DMp.SDS_BOMBAID_BOMBA.ASINTEGER :=DMP.SDS_BOMBACOD_BOMBA.ASINTEGER;
+  DMp.SDS_BOMBA.Edit;
+  DMp.SDS_BOMBAID_BOMBA.ASINTEGER :=DMP.SDS_BOMBACOD_BOMBA.ASINTEGER;
 end;
 
 end.

@@ -7,8 +7,8 @@ inherited FrmLancCTRADM: TFrmLancCTRADM
   OldCreateOrder = True
   OnClose = FormClose
   OnShow = FormShow
-  ExplicitWidth = 320
-  ExplicitHeight = 240
+  ExplicitWidth = 622
+  ExplicitHeight = 295
   PixelsPerInch = 96
   TextHeight = 13
   inherited Panel1: TAdvPanel
@@ -388,20 +388,36 @@ inherited FrmLancCTRADM: TFrmLancCTRADM
     ExplicitTop = 215
     ExplicitWidth = 616
     FullHeight = 51
+    inherited btnLocalizar: TAdvGlowButton
+      Left = 514
+      OnClick = BtnLocalizarClick
+    end
+    inherited btnSalvar: TAdvGlowButton
+      OnClick = btnSalvarClick
+    end
+    inherited btnexcluir: TAdvGlowButton
+      OnClick = btnexcluirClick
+    end
+    inherited btnCancelar: TAdvGlowButton
+      OnClick = btnCancelarClick
+    end
+    inherited btnEditar: TAdvGlowButton
+      OnClick = btnEditarClick
+    end
+    inherited btnNovo: TAdvGlowButton
+      OnClick = btnNovoClick
+    end
   end
   object IBSQLCartao: TIBSQL
-    Database = DM.IBDatabase
     Transaction = IBTRCartao
     Left = 280
     Top = 176
   end
   object IBTRCartao: TIBTransaction
-    DefaultDatabase = DM.IBDatabase
     Left = 368
     Top = 176
   end
   object QInsert: TIBQuery
-    Database = DM.IBDatabase
     Transaction = IBTRCartao
     BufferChunks = 1000
     CachedUpdates = False

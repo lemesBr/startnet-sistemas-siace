@@ -573,65 +573,29 @@ inherited FrmTransfLocaisEstoque: TFrmTransfLocaisEstoque
     ExplicitTop = 436
     ExplicitWidth = 662
     FullHeight = 51
-    inherited BtnSair: TAdvGlowButton
-      Left = 575
-      Top = 2
-      ImageIndex = 8
-      Images = FormPrincipal.sAlphaImageList2
-      Picture.Data = {}
-      OnClick = BtnSairClick
-      ExplicitLeft = 575
+    inherited btnLocalizar: TAdvGlowButton
+      Left = 560
+    end
+    inherited btnSalvar: TAdvGlowButton
+      OnClick = BtnGravarClick
+      ExplicitLeft = 402
       ExplicitTop = 2
+    end
+    inherited btnexcluir: TAdvGlowButton
+      OnClick = BtnExcluirClick
+      ExplicitLeft = 302
+      ExplicitTop = 2
+    end
+    inherited btnCancelar: TAdvGlowButton
+      ImageIndex = 2
+      OnClick = BtnCancelarClick
+    end
+    inherited btnEditar: TAdvGlowButton
+      OnClick = nil
+      ExplicitLeft = 102
     end
     inherited btnNovo: TAdvGlowButton
-      ImageIndex = 0
-      Images = FormPrincipal.sAlphaImageList2
-      Picture.Data = {}
       OnClick = btnNovoClick
-    end
-    inherited BtnGravar: TAdvGlowButton
-      Left = 383
-      Top = 4
-      ImageIndex = 10
-      Images = FormPrincipal.sAlphaImageList2
-      Picture.Data = {}
-      OnClick = BtnGravarClick
-      ExplicitLeft = 383
-      ExplicitTop = 4
-    end
-    inherited BtnExcluir: TAdvGlowButton
-      Left = 287
-      Top = 4
-      ImageIndex = 3
-      Images = FormPrincipal.sAlphaImageList2
-      Picture.Data = {}
-      OnClick = BtnExcluirClick
-      ExplicitLeft = 287
-      ExplicitTop = 4
-    end
-    inherited BtnConsultar: TAdvGlowButton
-      Top = 4
-      ImageIndex = 20
-      Images = FormPrincipal.sAlphaImageList2
-      Picture.Data = {}
-      ExplicitTop = 4
-    end
-    inherited BtnCancelar: TAdvGlowButton
-      Top = 2
-      ImageIndex = 2
-      Images = FormPrincipal.sAlphaImageList2
-      Picture.Data = {}
-      OnClick = BtnCancelarClick
-      ExplicitTop = 2
-    end
-    inherited BtnAlterar: TAdvGlowButton
-      Left = 95
-      Top = 6
-      ImageIndex = 1
-      Images = FormPrincipal.sAlphaImageList2
-      Picture.Data = {}
-      ExplicitLeft = 95
-      ExplicitTop = 6
     end
   end
   object QOrdem: TFDQuery

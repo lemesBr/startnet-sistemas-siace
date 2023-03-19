@@ -1863,6 +1863,7 @@
                 <Platform value="Win64">False</Platform>
             </Platforms>
             <Deployment Version="3">
+                <DeployFile LocalName="SIACE.exe" Configuration="Debug" Class="ProjectOutput"/>
                 <DeployFile LocalName="D:\siace\imagens\SiaceNuvens.png" Configuration="Debug" Class="UWP_DelphiLogo150">
                     <Platform Name="Win32">
                         <RemoteDir>Assets\</RemoteDir>
@@ -1870,7 +1871,6 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="SIACE.exe" Configuration="Debug" Class="ProjectOutput"/>
                 <DeployFile LocalName="..\SIACE.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>SIACE.exe</RemoteName>
