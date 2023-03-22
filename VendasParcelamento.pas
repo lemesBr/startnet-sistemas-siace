@@ -13,7 +13,8 @@ uses
   frxDesgn, FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error,
   FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt,
   FireDAC.Comp.DataSet, FireDAC.Comp.Client, AdvGlassButton, AdvShapeButton,
-  RxToolEdit, RxCurrEdit, AdvGlowButton, Data.DBXFirebird;
+  RxToolEdit, RxCurrEdit, AdvGlowButton, Data.DBXFirebird, mPostoRegistro,
+  svcAuth;
 
 type
   TFormParcelamento = class(TForm)
@@ -2103,7 +2104,8 @@ end;
 
 procedure TFormParcelamento.suiButton2Click(Sender: TObject);
 var
-I, e, Contador : INTEGER;
+  I, e, Contador : INTEGER;
+  vPostoRegistro: TPostoRegistro;
 begin
 
 
@@ -4381,6 +4383,15 @@ begin
          Button1Click(Sender);
          end;
     //  close;
+
+    try
+      vPostoRegistro:= TPostoRegistro.find(TAuth.PostoRegistroId);
+      vPostoRegistro.IdVenda:= n_venda;
+      vPostoRegistro.Status:= 'F';
+      vPostoRegistro.save;
+    finally
+      FreeAndNil(vPostoRegistro);
+    end;
   end;
 END;
 

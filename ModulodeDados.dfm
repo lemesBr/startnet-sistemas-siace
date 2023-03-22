@@ -9313,7 +9313,6 @@ object DM: TDM
     ResourceOptions.AutoReconnect = True
     UpdateOptions.AssignedValues = [uvUpdateChngFields, uvUpdateMode, uvLockMode, uvLockWait, uvRefreshMode, uvCheckRequired, uvCheckReadOnly, uvCheckUpdatable]
     UpdateOptions.CheckUpdatable = False
-    Connected = True
     LoginPrompt = False
     Transaction = FDTransaction1
     UpdateTransaction = FDTransaction1

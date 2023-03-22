@@ -3050,6 +3050,11 @@ object formVendas: TformVendas
   object ActionList1: TActionList
     Left = 324
     Top = 152
+    object act_PostoRegistros: TAction
+      Caption = 'Registros de Postos'
+      ShortCut = 117
+      OnExecute = act_PostoRegistrosExecute
+    end
   end
   object SPC_ORC_ITENS: TSQLStoredProc
     MaxBlobSize = -1

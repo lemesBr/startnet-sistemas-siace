@@ -1,4 +1,4 @@
-program SIACE;
+ï»¿program SIACE;
 
 uses
   System.SysUtils,
@@ -592,7 +592,16 @@ uses
   uclassCBR_RETORNO in 'uclassCBR_RETORNO.pas',
   uManifesto in 'uManifesto.pas' {FrmManifesto},
   uGeraSP in 'uGeraSP.pas' {FrmSpedSP},
-  udadosSped in 'udadosSped.pas' {DadosSped: TDataModule};
+  udadosSped in 'udadosSped.pas' {DadosSped: TDataModule},
+  ufrmBase in 'source\forms\ufrmBase.pas' {frmBase},
+  ufrmRegistrosPostoList in 'source\forms\modulo-posto\ufrmRegistrosPostoList.pas' {frmRegistrosPostoList},
+  mConnection in 'source\models\mConnection.pas',
+  svcLibrary in 'source\services\svcLibrary.pas',
+  mBase in 'source\models\mBase.pas',
+  mPostoRegistro in 'source\models\mPostoRegistro.pas',
+  svcAuth in 'source\services\svcAuth.pas',
+  mUser in 'source\models\mUser.pas',
+  mPostoBico in 'source\models\mPostoBico.pas';
 
 {$R *.res}
 
@@ -602,19 +611,6 @@ var
   qrSQL: TFDQuery;
   DataSped: Integer;
 begin
- { if TBiblioteca.ProcessoExiste('SiaceUpdate.exe') = True then
-  begin
-    Application.Terminate;
-    Abort;
-  end;     }
-
-   { if FileExists(PathSystem + '\capicom.dll') and
-    FileExists(PathSystem + '\libeay32.dll') and
-    FileExists(PathSystem + '\msxml5.dll') and
-    FileExists(PathSystem + '\msxml5r.dll') and
-    FileExists(PathSystem + '\ssleay32.dll')  then else
-    ShellExecute(0, 'runas', PChar(LocalDoExe + '\DLLs\InstalarDLL.exe'), nil, nil, SW_SHOWNORMAL);
-     }
 
   FormSplash := TFormSplash.Create(Application);
   try
@@ -634,19 +630,19 @@ begin
     FormSplash.Update;
     Sleep(200);
 
-    //VerificarRegistro; //Executa o procedimento para verificar se o programa está registrado...
+    //VerificarRegistro; //Executa o procedimento para verificar se o programa estï¿½ registrado...
     FormSplash.lblTitle.Caption := 'Criando alias...';
     FormSplash.Gauge.Progress:= 60;
     FormSplash.Update;
     Sleep(250);
 
     //CriarAlias; //Cria o alias automaticamente...
-    FormSplash.lblTitle.Caption := 'Iniciando formulário principal...';
+    FormSplash.lblTitle.Caption := 'Iniciando formulï¿½rio principal...';
     FormSplash.Gauge.Progress:= 80;
     FormSplash.Update;
     Sleep(300);
 
-    FormSplash.lblTitle.Caption := 'Verificando usuário...';
+    FormSplash.lblTitle.Caption := 'Verificando usuï¿½rio...';
     FormSplash.Gauge.Progress:= 86;
     FormSplash.Update;
     Sleep(100);
@@ -656,7 +652,7 @@ begin
     FormSplash.Update;
     Sleep(100);
 
-    FormSplash.lblTitle.Caption := 'Licenciado para uso Próprio...';
+    FormSplash.lblTitle.Caption := 'Licenciado para uso Prï¿½prio...';
     FormSplash.Gauge.Progress:= 93;
     FormSplash.Update;
     Sleep(100);
@@ -672,109 +668,34 @@ begin
     FormSplash.Update;
     Sleep(150);
 
-    FormSplash.lblTitle.Caption := 'Verificando Atualizações';
+    FormSplash.lblTitle.Caption := 'Verificando Atualizaï¿½ï¿½es';
     FormSplash.Gauge.Progress:= 100;
     FormSplash.Update;
     Sleep(300);
 
-//    if UpperCase(trim(TBiblioteca.LerIni('Siace.ini', 'DADOS', 'DATABASE'))) = UpperCase('C:\siace\siace.gdb') then
-//    begin
-//      updateAtual:= TBiblioteca.GetBuildInfo('C:\siace\SIACE.exe');
-//      updateDrop:= TBiblioteca.VerificarVersaoDropBox;
-//
-//      if updateAtual < updateDrop then
-//      begin
-//        if Application.MESSAGEBOX('Existe uma nova atualização essencial para o bom funcionamento do sistema.' +
-//           'Caso este seja o SERVIDOR, não será possivel obter acesso de outra maquina.',
-//         'Atualização Obrigatória!', MB_ICONQUESTION + MB_YESNO + MB_DEFBUTTON1) = ID_YES then
-//        begin
-//          ShellExecute(HWND_DESKTOP,'open', PChar('C:\siace\SiaceUpdate.exe'), nil, nil, SW_SHOWNORMAL);
-//          Application.Terminate;
-//        end;
-//      end;
-//    end;
-
     FormSplash.Refresh;
     FormSplash.Hide;
-
-    // TStyleManager.TrySetStyle('Sky');
 
     Application.Title := 'SIACE - Sistemas / StartNet Provedor';
     Application.ProcessMessages;
 
     Application.CreateForm(TDM, DM);
-
- //   UpperCase(trim(TBiblioteca.LerIni('Siace.ini', 'DADOS', 'DATABASE'))) <> UpperCase('C:\siace\siace.gdb') then
-//    begin
-//      qrSQL:= TFDQuery.Create(nil);
-//      qrSQL.Connection:= DM.Coneccao;
-//      qrSQL.SQL.Add('SELECT FIRST 1 * FROM VERSAO_SIACE WHERE STATUS = ''S'' ORDER BY NUMERO DESC');
-//      qrSQL.Open;
-//
-//      if not qrSQL.IsEmpty then
-//      begin
-//        updateAtual:= TBiblioteca.GetBuildInfo('C:\siace\SIACE.exe');
-//        updateDrop:= qrSQL.FieldByName('NUMERO').AsString;
-//
-//        if updateAtual < updateDrop then
-//        begin
-//          if Application.MESSAGEBOX('Existe uma nova atualização essencial para o bom funcionamento do sistema.' +
-//             'Caso este seja o SERVIDOR, não será possivel obter acesso de outra maquina.',
-//           'Atualização Obrigatória!', MB_ICONQUESTION + MB_YESNO + MB_DEFBUTTON1) = ID_YES then
-//          begin
-//            ShellExecute(HWND_DESKTOP,'open', PChar('C:\siace\SiaceUpdate.exe'), nil, nil, SW_SHOWNORMAL);
-//            Application.Terminate;
-//          end;
-//        end;
-//      end;
-//
-//      FreeAndNil(qrSQL);
-//    end;
-
-  {  if uppercase(trim(tbiblioteca.lerini('SIACE.INI', 'DADOS', 'SPED'))) = 'TRUE' then
-    begin
-    //  if uppercase(trim(tbiblioteca.lerini('SIACE.INI', 'DADOS', 'DATABASE'))) = uppercase('C:\StartNet_Sistemas\STARTNET.FDB') then
-      begin
-        datasped:= strtointdef(formatdatetime('dd',now),0);
-        if datasped > 3 then
-        begin
-          try
-            try
-              qrsql:= TFDquery.create(nil);
-              qrsql.connection:= dm.coneccao;
-              qrsql.sql.add('select count(*) as sped from efd where referencia = :referencia');
-              qrsql.parambyname('referencia').asstring:= formatdatetime('yyyymm',now);
-              qrsql.open;
-
-              if qrsql.fieldbyname('sped').asinteger = 0 then
-                shellexecute(hwnd_desktop,'open', pchar('C:\StartNet_Sistemas\SiaceSped.exe'), nil, nil, sw_shownormal);
-            except
-              shellexecute(hwnd_desktop,'open', pchar('C:\StartNet_Sistemas\SiaceSped.exe'), nil, nil, sw_shownormal);
-           end;
-          finally
-            freeandnil(qrsql);
-          end;
-        end;
-      end;
-    end; }
-
-
-  Application.MainFormOnTaskbar := True;
-  Application.CreateForm(TDMR, DMR);
-  Application.CreateForm(TDMC2, DMC2);
-  Application.CreateForm(TDMB, DMB);
-  Application.CreateForm(TDMC3, DMC3);
-  Application.CreateForm(TDMC4, DMC4);
-  Application.CreateForm(TDMC5, DMC5);
-  Application.CreateForm(TDMOS, DMOS);
-  Application.CreateForm(TDMCOB, DMCOB);
-  Application.CreateForm(TDM1, DM1);
-  Application.CreateForm(TDMP, DMP);
-  Application.CreateForm(TDMMovimentacao, DMMovimentacao);
-  Application.CreateForm(TDMC, DMC);
-  Application.CreateForm(TDadosSped, DadosSped);
-  Application.CreateForm(TFormPrincipal, FormPrincipal);
-  Application.Run;
+    Application.MainFormOnTaskbar := True;
+    Application.CreateForm(TDMR, DMR);
+    Application.CreateForm(TDMC2, DMC2);
+    Application.CreateForm(TDMB, DMB);
+    Application.CreateForm(TDMC3, DMC3);
+    Application.CreateForm(TDMC4, DMC4);
+    Application.CreateForm(TDMC5, DMC5);
+    Application.CreateForm(TDMOS, DMOS);
+    Application.CreateForm(TDMCOB, DMCOB);
+    Application.CreateForm(TDM1, DM1);
+    Application.CreateForm(TDMP, DMP);
+    Application.CreateForm(TDMMovimentacao, DMMovimentacao);
+    Application.CreateForm(TDMC, DMC);
+    Application.CreateForm(TDadosSped, DadosSped);
+    Application.CreateForm(TFormPrincipal, FormPrincipal);
+    Application.Run;
   finally
     FormSplash.Free;
   end;

@@ -16,7 +16,8 @@ uses
   sTooledit, sDBDateEdit, sDBEdit, sRadioButton, sGroupBox, sDBRadioGroup,
   sBitBtn, sPanel, FireDAC.Stan.Async, FireDAC.DApt, System.Actions, RxCurrEdit,
   RpRenderText, RpRenderRTF, RpRenderHTML, RpDefine, RpRender, RpRenderPDF,
-  XDBLists, RxDBCurrEdit, AdvGlowButton, Data.DBXFirebird;
+  XDBLists, RxDBCurrEdit, AdvGlowButton, Data.DBXFirebird, svcAuth,
+  mPostoRegistro, svcLibrary;
 
 type
   TformVendas = class(TForm)
@@ -476,6 +477,7 @@ type
     QBuscaItens1ALIC_IMP: TFMTBCDField;
     sds_pagto_chCOD_EMPRESA: TIntegerField;
     Sds_orcamentosSTATUS: TStringField;
+    act_PostoRegistros: TAction;
     procedure FormShow(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure InserirClick(Sender: TObject);
@@ -612,6 +614,7 @@ type
     procedure CheckBox4Click(Sender: TObject);
     procedure E1Click(Sender: TObject);
     procedure dbgridOrderChanged(Sender: TObject);
+    procedure act_PostoRegistrosExecute(Sender: TObject);
 
   private
     { Private declarations }
@@ -667,7 +670,7 @@ uses Acesso, ModulodeDadosConsultas, ModulodeDados, Principal,
   lancNotasFiscais, PEDIDO80COL, clientesaddorc, CRCrediario,
   ProdutosFalta, debitos, gerNFE, HistoricoCliente, RelOrca80col, Ubibli1,
   UnitProcBicoEnc_Temp, DocsFiscais, Logoff, xloc_cfop,
-  FrmConsultaPreVenda, FrmApagarOrcamentoCondicional;
+  FrmConsultaPreVenda, FrmApagarOrcamentoCondicional, ufrmRegistrosPostoList;
 
 {$R *.dfm}
 function ExatoCurrency(Value: Currency; Decimal: Integer): Currency;
@@ -3436,8 +3439,7 @@ end; }
        end ELSE
         If not DM.SDS_PRODUTOS_C.locate('CODIGO_BARRAS', (Sds_Pedidos_itensCODIGO_PRODUTO.Text),[])=True then
        begin
-        ShowMessage('Código do produto não localizado');
-        comboedit1.setfocus;
+        ComboEdit1ButtonClick(ComboEdit1);
        end;
        exit
        end;
@@ -3506,8 +3508,7 @@ end; }
       end;
       If not DM.SDS_PRODUTOS_C.locate('PROCURA', scodigo,[])=True then
       begin
-        ShowMessage('Código do produto não localizado');
-        comboedit1.setfocus;
+        ComboEdit1ButtonClick(ComboEdit1);
       end;
      end;
 
@@ -5329,6 +5330,40 @@ DBGrid1.SetFocus;
 DBGRID1.COLUMNS.Grid.Fields[0].FocusControl;
 end;
 
+procedure TformVendas.act_PostoRegistrosExecute(Sender: TObject);
+var
+  Key: Char;
+  keyWord: Word;
+  vPostoRegistro: TPostoRegistro;
+begin
+  if Sds_pedidos_itens.State in [dsInsert, dsEdit] then
+    exit;
+
+  try
+    frmRegistrosPostoList:= TfrmRegistrosPostoList.Create(nil);
+    frmRegistrosPostoList.ShowModal;
+
+    if TAuth.PostoRegistroId <> '' then
+    begin
+      vPostoRegistro:= TPostoRegistro.find(TAuth.PostoRegistroId);
+      Inserir.Click;
+      dbgrid.SetFocus;
+      ComboEdit1.Text:= IntToStr(vPostoRegistro.bico.IdProduto);
+      Key:= #13;
+      KeyWord:= Word(#13);
+      ComboEdit1.OnKeyPress(ComboEdit1, Key);
+      Sds_pedidos_itensQUANTIDADE.Text := Tlibrary.ExtendedToString(vPostoRegistro.TotalDeLitro);
+      DBGRID.COLUMNS.Grid.Fields[3].FocusControl;
+      dbgridKeyDown(dbGrid, KeyWord, []);
+      DBGRID.COLUMNS.Grid.Fields[6].FocusControl;
+      dbgridKeyDown(dbGrid, KeyWord, []);
+    end;
+  finally
+    FreeAndNil(vPostoRegistro);
+    FreeAndNil(frmRegistrosPostoList);
+  end;
+end;
+
 procedure TformVendas.AlterarOrClick(Sender: TObject);
 VAR
   ORC: string;
@@ -5947,11 +5982,10 @@ begin
 if Key = VK_RETURN then
 begin
 
- if ComboEdit1.Text = '' then
- begin
-   ShowMessage('Digite a descrição ou codigo do produto!!!!');
-   ComboEdit1.SetFocus;
- end;
+   if ComboEdit1.Text = '' then
+   begin
+     ComboEdit1ButtonClick(ComboEdit1);
+   end;
 
 
   { Sds_pedidos_itens.Edit;
