@@ -12,7 +12,8 @@ uses
   FireDAC.Comp.DataSet, FireDAC.Comp.Client, System.Actions, Vcl.ActnList,
   System.ImageList, Vcl.ImgList, acAlphaImageList, ACBrBase, ACBrCalculadora,
   Vcl.ExtDlgs, sDialogs, Vcl.AppEvnts, Vcl.StdCtrls, Vcl.Buttons, AdvGlowButton,
-  sLabel, AdvToolBar, acPNG, IniFiles, Registry, ShellAPI, IdStackWindows;
+  sLabel, AdvToolBar, acPNG, IniFiles, Registry, ShellAPI, IdStackWindows,
+  svcLibrary;
 
 
 type
@@ -538,6 +539,7 @@ type
     N86: TMenuItem;
     c14: TMenuItem;
     G3: TMenuItem;
+    postoCartoes: TMenuItem;
     Procedure Retorno_Impressora;
     Procedure Analisa_iRetorno();
 //    procedure MudarComEnter(var Msg: TMsg; var Handled: Boolean);
@@ -885,6 +887,7 @@ type
     procedure P6Click(Sender: TObject);
     procedure c14Click(Sender: TObject);
     procedure G3Click(Sender: TObject);
+    procedure postoCartoesClick(Sender: TObject);
   //  procedure TrimAppMemorySize(Sender: TObject);
   
 
@@ -1026,7 +1029,9 @@ uses Z_RotinasGerais, clientes, Acesso, ModulodeDados, Unidades,
   FrmRelNotaFiscal, FormRelatorioEstoqueProduto, FrmRelatorioEstoque,
   frmRelatorioValeFuncionario, FrmNCM, IdStack, frmCompraMadeira,
   frmOrigemFlorestal, frmPatios, Biblioteca, Unit2, boletos,
-  ufrmRETORNOmanutencao, uManifesto, uGeraSP;
+  ufrmRETORNOmanutencao, uManifesto, uGeraSP, ufrmPostoCartoesList,
+  ufrmPostoFrentistasList, ufrmPostoTanqueList, ufrmPostoBombaList,
+  ufrmPostoBicoList;
 
 
 {$R *.dfm}
@@ -5299,6 +5304,11 @@ if FormMemFiscalRed=nil   then
 end;
 end;
 
+procedure TFormPrincipal.postoCartoesClick(Sender: TObject);
+begin
+  TLibrary.showForm(TfrmPostoCartoesList);
+end;
+
 procedure TFormPrincipal.DataHoraImpressora2Click(Sender: TObject);
 var DAta, Hora: String;
     iConta: integer;
@@ -5702,26 +5712,34 @@ end;
 
 procedure TFormPrincipal.Frentistas1Click(Sender: TObject);
 begin
-  Application.CreateForm(TFormFrentista, FormFrentista);
-  FormFrentista.showmodal;
+  { TODO : Deixei o comentario somente para detalhar qual tela puxava frentista}
+//  Application.CreateForm(TFormFrentista, FormFrentista);
+//  FormFrentista.showmodal;
+  TLibrary.showForm(TfrmPostoFrentistasList);
 end;
 
 procedure TFormPrincipal.anque1Click(Sender: TObject);
 begin
-   Application.CreateForm(TFormTanques, FormTanques);
-   FormTanques.showmodal;
+  { TODO : Deixei o comentario somente para detalhar qual tela puxava tanque }
+//   Application.CreateForm(TFormTanques, FormTanques);
+//   FormTanques.showmodal;
+  TLibrary.showForm(TfrmPostoTanqueList);
 end;
 
 procedure TFormPrincipal.Bombas1Click(Sender: TObject);
 begin
-   Application.CreateForm(TFormBombas, FormBombas);
-   FormBombas.showmodal;
+  { TODO : Deixei o comentario somente para detalhar qual tela puxava bomba }
+//   Application.CreateForm(TFormBombas, FormBombas);
+//   FormBombas.showmodal;
+  TLibrary.showForm(TfrmPostoBombaList);
 end;
 
 procedure TFormPrincipal.Bicos1Click(Sender: TObject);
 begin
-    Application.CreateForm(TFormBicos, FormBicos);
-   FormBicos.showmodal;
+  { TODO : Deixei o comentario somente para detalhar qual tela puxava bico }
+//    Application.CreateForm(TFormBicos, FormBicos);
+//   FormBicos.showmodal;
+  TLibrary.showForm(TfrmPostoBicoList);
 end;
 
 procedure TFormPrincipal.FarmciaPopular1Click(Sender: TObject);

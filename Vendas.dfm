@@ -51,6 +51,10 @@ object formVendas: TformVendas
       object TOrcamentos: TRzTabSheet
         ImageIndex = 27
         Caption = 'Or'#231'amentos/Condicional'
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object Panel5: TsPanel
           Left = 0
           Top = 0
@@ -1252,6 +1256,10 @@ object formVendas: TformVendas
       object TVendas: TRzTabSheet
         ImageIndex = 18
         Caption = 'Vendas'
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object Panel2: TsPanel
           Left = 0
           Top = 0

@@ -14,6 +14,11 @@ type
   public
     { public declarations }
     class var PostoRegistroId: String;
+    class var PostoCartaoId: String;
+    class var PostoFrentistaId: String;
+    class var PostoTanqueId: String;
+    class var PostoBombaId: String;
+    class var PostoBicoId: String;
 
     //Login e autenticação de dados de usuário
     class function Authenticate(usuario, senha: string): Boolean; overload;

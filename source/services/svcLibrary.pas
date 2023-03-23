@@ -25,7 +25,7 @@ type
     class function TruncateValue(Value: Extended; Decimal: integer): Extended;
     class function getIniValue(vPath, vSection, vIdent: String): String;
     class procedure setIniValue(vPath, vSection, vIdent, vDefault: String);
-    class procedure showForm(formClass: TFormClass);
+    class procedure showForm(formClass: TFormClass; vTag: Integer = 0);
   end;
 
 implementation
@@ -177,12 +177,13 @@ begin
   end;
 end;
 
-class procedure TLibrary.showForm(formClass: TFormClass);
+class procedure TLibrary.showForm(formClass: TFormClass; vTag: Integer);
 var
   vForm: TForm;
 begin
   try
     vForm:= formClass.Create(nil);
+    vForm.tag:= vTag;
     vForm.ShowModal;
   finally
     FreeAndNil(vForm);

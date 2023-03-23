@@ -148,13 +148,13 @@ end;
 
 function TBase.save: Boolean;
 begin
-  if ((self.FID = EmptyStr)
-    and validateFields(True)) then
+  Result:= False;
+  if ((self.FID = EmptyStr) and validateFields(True)) then
     Result:= Self.store
   else
   begin
     if (self.FID <> EmptyStr) and validateFields(False) then
-    Result:= Self.update;
+      Result:= Self.update;
   end;
 end;
 

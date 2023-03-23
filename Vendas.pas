@@ -5348,7 +5348,7 @@ begin
       vPostoRegistro:= TPostoRegistro.find(TAuth.PostoRegistroId);
       Inserir.Click;
       dbgrid.SetFocus;
-      ComboEdit1.Text:= IntToStr(vPostoRegistro.bico.IdProduto);
+      //ComboEdit1.Text:= IntToStr(vPostoRegistro.bico.IdProduto);
       Key:= #13;
       KeyWord:= Word(#13);
       ComboEdit1.OnKeyPress(ComboEdit1, Key);

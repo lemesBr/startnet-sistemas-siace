@@ -4,14 +4,19 @@ interface
 
 uses
   mBase, Generics.Collections, SysUtils, FireDAC.Comp.Client, Vcl.Dialogs,
-  Data.DB, System.Generics.Collections, svcLibrary;
+  Data.DB, System.Generics.Collections, svcLibrary, mPostoTanque;
 
 type
   TPostoBico = class(TBase)
   private
     { private declarations }
-    FID_PRODUTO: Integer;
+    FID_TANQUE: String;
     FCODIGO_BICO: String;
+    FPOSICAO: String;
+    FDESCRICAO: String;
+    FTANQUE: TPostoTanque;
+
+    function getTanque: TPostoTanque;
   protected
     { protected declarations }
     function store(): Boolean; override;
@@ -28,6 +33,9 @@ type
     //Busca de dados passando parametro
     class function find(vId: String): TPostoBico;
 
+    //Busca de dados passando parametro
+    class function findByBombaId(vIdBomba: String): TObjectList<TPostoBico>;
+
     //Busca de dados passando parametro codigo bico
     class function findCodigoBico(vCodigoBico: String): TPostoBico;
 
@@ -36,8 +44,12 @@ type
     //Lista todos os cadastro numa TFDMemTable
     class procedure list(search: string; DataSet: TFDMemTable); overload;
 
-    property IdProduto: Integer  read FID_PRODUTO write FID_PRODUTO;
-    property CodigoBico: String  read FCODIGO_BICO write FCODIGO_BICO;
+    property IdTanque: String read FID_TANQUE write FID_TANQUE;
+    property CodigoBico: String read FCODIGO_BICO write FCODIGO_BICO;
+    property Posicao: String read FPOSICAO write FPOSICAO;
+    property Descricao: String read FDESCRICAO write FDESCRICAO;
+
+    property Tanque: TPostoTanque read getTanque;
   end;
 
 implementation
@@ -48,10 +60,14 @@ procedure TPostoBico.checkFieldTypes(query: TFDQuery);
 begin
   if query.Params.FindParam('ID') <> nil then
     query.Params.ParamByName('ID').DataType:= ftString;
-  if query.Params.FindParam('ID_PRODUTO') <> nil then
-    query.Params.ParamByName('ID_PRODUTO').DataType:= ftInteger;
+  if query.Params.FindParam('ID_TANQUE') <> nil then
+    query.Params.ParamByName('ID_TANQUE').DataType:= ftString;
   if query.Params.FindParam('CODIGO_BICO') <> nil then
     query.Params.ParamByName('CODIGO_BICO').DataType:= ftString;
+  if query.Params.FindParam('POSICAO') <> nil then
+    query.Params.ParamByName('POSICAO').DataType:= ftString;
+  if query.Params.FindParam('DESCRICAO') <> nil then
+    query.Params.ParamByName('DESCRICAO').DataType:= ftString;
   query.Prepare();
 end;
 
@@ -62,6 +78,7 @@ end;
 
 destructor TPostoBico.Destroy;
 begin
+  if Assigned(FTANQUE) then FreeAndNil(FTANQUE);
   inherited;
 end;
 
@@ -83,14 +100,53 @@ begin
       begin
         Result:= TPostoBico.Create;
         Result.Id:= vFDQuery.FieldByName('ID').AsString;
+        Result.IdTanque:= vFDQuery.FieldByName('ID_TANQUE').AsString;
         Result.CodigoBico:= vFDQuery.FieldByName('CODIGO_BICO').AsString;
-        Result.IdProduto:= vFDQuery.FieldByName('ID_PRODUTO').AsInteger;
+        Result.Posicao:= vFDQuery.FieldByName('POSICAO').AsString;
+        Result.Descricao:= vFDQuery.FieldByName('DESCRICAO').AsString;
       end;
     except
       Result:= nil;
     end;
   finally
     FreeAndNil(vFDQuery);
+  end;
+end;
+
+class function TPostoBico.findByBombaId(
+  vIdBomba: String): TObjectList<TPostoBico>;
+const
+  FSql: string =
+  'SELECT PB.ID FROM POSTO_BOMBA_BICOS PBB ' +
+  'LEFT JOIN POSTO_BICOS PB ON (PB.ID = PBB.ID_BICO) ' +
+  'WHERE PBB.ID_BOMBA = :ID_BOMBA';
+var
+  FDQuery: TFDQuery;
+begin
+  try
+    FDQuery:= Self.createQuery;
+    try
+      FDQuery.SQL.Add(FSql);
+      FDQuery.Params.ParamByName('ID_BOMBA').DataType:= ftFixedWideChar;
+      FDQuery.Prepare;
+      FDQuery.Params.ParamByName('ID_BOMBA').AsString:= vIdBomba;
+      FDQuery.Open();
+      if FDQuery.RecordCount = 0 then Result:= nil
+      else
+      begin
+        Result:= TObjectList<TPostoBico>.Create;
+        FDQuery.First;
+        while not FDQuery.Eof do
+        begin
+          Result.Add(TPostoBico.find(FDQuery.FieldByName('ID').AsString));
+          FDQuery.Next;
+        end;
+      end;
+    except
+      Result:= nil;
+    end;
+  finally
+    FreeAndNil(FDQuery);
   end;
 end;
 
@@ -112,8 +168,10 @@ begin
       begin
         Result:= TPostoBico.Create;
         Result.Id:= vFDQuery.FieldByName('ID').AsString;
+        Result.IdTanque:= vFDQuery.FieldByName('ID_TANQUE').AsString;
         Result.CodigoBico:= vFDQuery.FieldByName('CODIGO_BICO').AsString;
-        Result.IdProduto:= vFDQuery.FieldByName('ID_PRODUTO').AsInteger;
+        Result.Posicao:= vFDQuery.FieldByName('POSICAO').AsString;
+        Result.Descricao:= vFDQuery.FieldByName('DESCRICAO').AsString;
       end;
     except
       Result:= nil;
@@ -121,6 +179,18 @@ begin
   finally
     FreeAndNil(vFDQuery);
   end;
+end;
+
+function TPostoBico.getTanque: TPostoTanque;
+begin
+  if not Assigned(Self.FTANQUE) then
+    Self.FTANQUE:= TPostoTanque.find(Self.IdTanque)
+  else if Self.FTANQUE.id <> Self.IdTanque then
+  begin
+    FreeAndNil(FTANQUE);
+    Self.FTANQUE:= TPostoTanque.find(Self.IdTanque);
+  end;
+  Result:= Self.FTANQUE;
 end;
 
 class procedure TPostoBico.list(search: string; DataSet: TFDMemTable);
@@ -138,8 +208,10 @@ begin
     begin
       DataSet.Append;
       DataSet.FieldByName('ID').AsString:= vList.Items[I].Id;
+      DataSet.FieldByName('ID_TANQUE').AsString:= vList.Items[I].IdTanque;
       DataSet.FieldByName('CODIGO_BICO').AsString:= vList.Items[I].CodigoBico;
-      DataSet.FieldByName('ID_PRODUTO').AsCurrency:= vList.Items[I].IdProduto;
+      DataSet.FieldByName('POSICAO').AsString:= vList.Items[I].Posicao;
+      DataSet.FieldByName('DESCRICAO').AsString:= vList.Items[I].Descricao;
       DataSet.Post;
     end;
     FreeAndNil(vList);
@@ -196,6 +268,7 @@ var
 begin
   Result:= True;
   try
+    StartConfiguration;
     Self.StartTransaction();
     vFDQuery:= Self.createQuery;
 
@@ -206,8 +279,10 @@ begin
       Self.Id:= Self.generateId;
 
       vFDQuery.Params.ParamByName('ID').AsString:= Self.Id;
+      vFDQuery.Params.ParamByName('ID_TANQUE').AsString:= Self.IdTanque;
       vFDQuery.Params.ParamByName('CODIGO_BICO').AsString:= Self.CodigoBico;
-      vFDQuery.Params.ParamByName('ID_PRODUTO').AsInteger:= Self.IdProduto;
+      vFDQuery.Params.ParamByName('POSICAO').AsString:= Self.CodigoBico;
+      vFDQuery.Params.ParamByName('DESCRICAO').AsString:= Self.CodigoBico;
       vFDQuery.ExecSQL();
 
       Self.Commit();
@@ -229,6 +304,7 @@ var
 begin
   Result:= True;
   try
+    StartConfiguration;
     Self.StartTransaction();
     vFDQuery:= Self.createQuery;
 
@@ -237,8 +313,10 @@ begin
       checkFieldTypes(vFDQuery);
 
       vFDQuery.Params.ParamByName('ID').AsString:= Self.Id;
+      vFDQuery.Params.ParamByName('ID_TANQUE').AsString:= Self.IdTanque;
       vFDQuery.Params.ParamByName('CODIGO_BICO').asString:= Self.CodigoBico;
-      vFDQuery.Params.ParamByName('VALOR_POR_LITRO').AsCurrency:= Self.IdProduto;
+      vFDQuery.Params.ParamByName('POSICAO').asString:= Self.Posicao;
+      vFDQuery.Params.ParamByName('DESCRICAO').asString:= Self.Descricao;
       vFDQuery.ExecSQL();
 
       Self.Commit();
