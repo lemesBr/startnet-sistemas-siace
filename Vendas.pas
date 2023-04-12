@@ -16,8 +16,7 @@ uses
   sTooledit, sDBDateEdit, sDBEdit, sRadioButton, sGroupBox, sDBRadioGroup,
   sBitBtn, sPanel, FireDAC.Stan.Async, FireDAC.DApt, System.Actions, RxCurrEdit,
   RpRenderText, RpRenderRTF, RpRenderHTML, RpDefine, RpRender, RpRenderPDF,
-  XDBLists, RxDBCurrEdit, AdvGlowButton, Data.DBXFirebird, svcAuth,
-  mPostoRegistro, svcLibrary;
+  XDBLists, RxDBCurrEdit, AdvGlowButton, Data.DBXFirebird;
 
 type
   TformVendas = class(TForm)
@@ -670,7 +669,7 @@ uses Acesso, ModulodeDadosConsultas, ModulodeDados, Principal,
   lancNotasFiscais, PEDIDO80COL, clientesaddorc, CRCrediario,
   ProdutosFalta, debitos, gerNFE, HistoricoCliente, RelOrca80col, Ubibli1,
   UnitProcBicoEnc_Temp, DocsFiscais, Logoff, xloc_cfop,
-  FrmConsultaPreVenda, FrmApagarOrcamentoCondicional, ufrmRegistrosPostoList;
+  FrmConsultaPreVenda, FrmApagarOrcamentoCondicional;
 
 {$R *.dfm}
 function ExatoCurrency(Value: Currency; Decimal: Integer): Currency;
@@ -5334,34 +5333,34 @@ procedure TformVendas.act_PostoRegistrosExecute(Sender: TObject);
 var
   Key: Char;
   keyWord: Word;
-  vPostoRegistro: TPostoRegistro;
+  //vPostoRegistro: TPostoRegistro;
 begin
-  if Sds_pedidos_itens.State in [dsInsert, dsEdit] then
-    exit;
-
-  try
-    frmRegistrosPostoList:= TfrmRegistrosPostoList.Create(nil);
-    frmRegistrosPostoList.ShowModal;
-
-    if TAuth.PostoRegistroId <> '' then
-    begin
-      vPostoRegistro:= TPostoRegistro.find(TAuth.PostoRegistroId);
-      Inserir.Click;
-      dbgrid.SetFocus;
-      //ComboEdit1.Text:= IntToStr(vPostoRegistro.bico.IdProduto);
-      Key:= #13;
-      KeyWord:= Word(#13);
-      ComboEdit1.OnKeyPress(ComboEdit1, Key);
-      Sds_pedidos_itensQUANTIDADE.Text := Tlibrary.ExtendedToString(vPostoRegistro.TotalDeLitro);
-      DBGRID.COLUMNS.Grid.Fields[3].FocusControl;
-      dbgridKeyDown(dbGrid, KeyWord, []);
-      DBGRID.COLUMNS.Grid.Fields[6].FocusControl;
-      dbgridKeyDown(dbGrid, KeyWord, []);
-    end;
-  finally
-    FreeAndNil(vPostoRegistro);
-    FreeAndNil(frmRegistrosPostoList);
-  end;
+//  if Sds_pedidos_itens.State in [dsInsert, dsEdit] then
+//    exit;
+//
+//  try
+//    frmRegistrosPostoList:= TfrmRegistrosPostoList.Create(nil);
+//    frmRegistrosPostoList.ShowModal;
+//
+//    if TAuth.PostoRegistroId <> '' then
+//    begin
+//      vPostoRegistro:= TPostoRegistro.find(TAuth.PostoRegistroId);
+//      Inserir.Click;
+//      dbgrid.SetFocus;
+//      //ComboEdit1.Text:= IntToStr(vPostoRegistro.bico.IdProduto);
+//      Key:= #13;
+//      KeyWord:= Word(#13);
+//      ComboEdit1.OnKeyPress(ComboEdit1, Key);
+//      Sds_pedidos_itensQUANTIDADE.Text := Tlibrary.ExtendedToString(vPostoRegistro.TotalDeLitro);
+//      DBGRID.COLUMNS.Grid.Fields[3].FocusControl;
+//      dbgridKeyDown(dbGrid, KeyWord, []);
+//      DBGRID.COLUMNS.Grid.Fields[6].FocusControl;
+//      dbgridKeyDown(dbGrid, KeyWord, []);
+//    end;
+//  finally
+//    FreeAndNil(vPostoRegistro);
+//    FreeAndNil(frmRegistrosPostoList);
+//  end;
 end;
 
 procedure TformVendas.AlterarOrClick(Sender: TObject);

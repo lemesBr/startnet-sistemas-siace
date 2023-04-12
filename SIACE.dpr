@@ -592,34 +592,7 @@ uses
   uclassCBR_RETORNO in 'uclassCBR_RETORNO.pas',
   uManifesto in 'uManifesto.pas' {FrmManifesto},
   uGeraSP in 'uGeraSP.pas' {FrmSpedSP},
-  udadosSped in 'udadosSped.pas' {DadosSped: TDataModule},
-  ufrmBase in 'source\forms\ufrmBase.pas' {frmBase},
-  ufrmRegistrosPostoList in 'source\forms\modulo-posto\ufrmRegistrosPostoList.pas' {frmRegistrosPostoList},
-  mConnection in 'source\models\mConnection.pas',
-  svcLibrary in 'source\services\svcLibrary.pas',
-  mBase in 'source\models\mBase.pas',
-  mPostoRegistro in 'source\models\mPostoRegistro.pas',
-  svcAuth in 'source\services\svcAuth.pas',
-  mUser in 'source\models\mUser.pas',
-  mPostoBico in 'source\models\mPostoBico.pas',
-  mPostoCartao in 'source\models\mPostoCartao.pas',
-  ufrmBaseList in 'source\forms\ufrmBaseList.pas' {frmBaseList},
-  ufrmBaseCreatedEdit in 'source\forms\ufrmBaseCreatedEdit.pas' {frmBaseCreatedEdit},
-  ufrmPostoCartoesList in 'source\forms\modulo-posto\ufrmPostoCartoesList.pas' {frmPostoCartoesList},
-  ufrmPostoCartoesCreatedEdit in 'source\forms\modulo-posto\ufrmPostoCartoesCreatedEdit.pas' {frmPostoCartoesCreatedEdit},
-  mPostoFrentista in 'source\models\mPostoFrentista.pas',
-  ufrmPostoFrentistasCreatedEdit in 'source\forms\modulo-posto\ufrmPostoFrentistasCreatedEdit.pas' {frmPostoFrentistasCreatedEdit},
-  ufrmPostoFrentistasList in 'source\forms\modulo-posto\ufrmPostoFrentistasList.pas' {frmPostoFrentistasList},
-  CustomEditHelper in 'source\services\CustomEditHelper.pas',
-  mPostoTanque in 'source\models\mPostoTanque.pas',
-  mProduto in 'source\models\mProduto.pas',
-  ufrmPostoTanqueCreatedEdit in 'source\forms\modulo-posto\ufrmPostoTanqueCreatedEdit.pas' {frmPostoTanqueCreatedEdit},
-  ufrmPostoTanqueList in 'source\forms\modulo-posto\ufrmPostoTanqueList.pas' {frmPostoTanqueList},
-  mPostoBomba in 'source\models\mPostoBomba.pas',
-  ufrmPostoBombaCreatedEdit in 'source\forms\modulo-posto\ufrmPostoBombaCreatedEdit.pas' {frmPostoBombaCreatedEdit},
-  ufrmPostoBombaList in 'source\forms\modulo-posto\ufrmPostoBombaList.pas' {frmPostoBombaList},
-  ufrmPostoBicoCreatedEdit in 'source\forms\modulo-posto\ufrmPostoBicoCreatedEdit.pas' {frmPostoBicoCreatedEdit},
-  ufrmPostoBicoList in 'source\forms\modulo-posto\ufrmPostoBicoList.pas' {frmPostoBicoList};
+  udadosSped in 'udadosSped.pas' {DadosSped: TDataModule};
 
 {$R *.res}
 
@@ -713,11 +686,6 @@ begin
     Application.CreateForm(TDMC, DMC);
     Application.CreateForm(TDadosSped, DadosSped);
     Application.CreateForm(TFormPrincipal, FormPrincipal);
-    Application.CreateForm(TfrmBaseCreatedEdit, frmBaseCreatedEdit);
-    Application.CreateForm(TfrmPostoCartoesList, frmPostoCartoesList);
-    Application.CreateForm(TfrmPostoCartoesCreatedEdit, frmPostoCartoesCreatedEdit);
-    Application.CreateForm(TfrmPostoFrentistasList, frmPostoFrentistasList);
-    Application.CreateForm(TfrmPostoTanqueList, frmPostoTanqueList);
     Application.run;
   finally
     FormSplash.Free;

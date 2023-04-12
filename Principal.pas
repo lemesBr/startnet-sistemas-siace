@@ -12,8 +12,7 @@ uses
   FireDAC.Comp.DataSet, FireDAC.Comp.Client, System.Actions, Vcl.ActnList,
   System.ImageList, Vcl.ImgList, acAlphaImageList, ACBrBase, ACBrCalculadora,
   Vcl.ExtDlgs, sDialogs, Vcl.AppEvnts, Vcl.StdCtrls, Vcl.Buttons, AdvGlowButton,
-  sLabel, AdvToolBar, acPNG, IniFiles, Registry, ShellAPI, IdStackWindows,
-  svcLibrary;
+  sLabel, AdvToolBar, acPNG, IniFiles, Registry, ShellAPI, IdStackWindows;
 
 
 type
@@ -776,10 +775,6 @@ type
     procedure s142Click(Sender: TObject);
     Function AddAChild(MyFormCompClass: TComponentClass; var Reference): boolean;
     procedure LanamentodeChequesEmtidos1Click(Sender: TObject);
-    procedure Frentistas1Click(Sender: TObject);
-    procedure anque1Click(Sender: TObject);
-    procedure Bombas1Click(Sender: TObject);
-    procedure Bicos1Click(Sender: TObject);
     procedure ConfiguraDataHora;
     procedure WMWinIniChange(var Message: TMessage); message WM_WININICHANGE;
     function RegistryManipula(Key, SubKey, Conteudo: String): Boolean;
@@ -887,7 +882,6 @@ type
     procedure P6Click(Sender: TObject);
     procedure c14Click(Sender: TObject);
     procedure G3Click(Sender: TObject);
-    procedure postoCartoesClick(Sender: TObject);
   //  procedure TrimAppMemorySize(Sender: TObject);
   
 
@@ -1029,9 +1023,7 @@ uses Z_RotinasGerais, clientes, Acesso, ModulodeDados, Unidades,
   FrmRelNotaFiscal, FormRelatorioEstoqueProduto, FrmRelatorioEstoque,
   frmRelatorioValeFuncionario, FrmNCM, IdStack, frmCompraMadeira,
   frmOrigemFlorestal, frmPatios, Biblioteca, Unit2, boletos,
-  ufrmRETORNOmanutencao, uManifesto, uGeraSP, ufrmPostoCartoesList,
-  ufrmPostoFrentistasList, ufrmPostoTanqueList, ufrmPostoBombaList,
-  ufrmPostoBicoList;
+  ufrmRETORNOmanutencao, uManifesto, uGeraSP;
 
 
 {$R *.dfm}
@@ -5304,11 +5296,6 @@ if FormMemFiscalRed=nil   then
 end;
 end;
 
-procedure TFormPrincipal.postoCartoesClick(Sender: TObject);
-begin
-  TLibrary.showForm(TfrmPostoCartoesList);
-end;
-
 procedure TFormPrincipal.DataHoraImpressora2Click(Sender: TObject);
 var DAta, Hora: String;
     iConta: integer;
@@ -5708,38 +5695,6 @@ begin
   { Application.CreateForm(TForm_Cheques, Form_Cheques);
    Form_Cheques.showmodal;  }
    AddAChild(TForm_Cheques, Form_Cheques) ;
-end;
-
-procedure TFormPrincipal.Frentistas1Click(Sender: TObject);
-begin
-  { TODO : Deixei o comentario somente para detalhar qual tela puxava frentista}
-//  Application.CreateForm(TFormFrentista, FormFrentista);
-//  FormFrentista.showmodal;
-  TLibrary.showForm(TfrmPostoFrentistasList);
-end;
-
-procedure TFormPrincipal.anque1Click(Sender: TObject);
-begin
-  { TODO : Deixei o comentario somente para detalhar qual tela puxava tanque }
-//   Application.CreateForm(TFormTanques, FormTanques);
-//   FormTanques.showmodal;
-  TLibrary.showForm(TfrmPostoTanqueList);
-end;
-
-procedure TFormPrincipal.Bombas1Click(Sender: TObject);
-begin
-  { TODO : Deixei o comentario somente para detalhar qual tela puxava bomba }
-//   Application.CreateForm(TFormBombas, FormBombas);
-//   FormBombas.showmodal;
-  TLibrary.showForm(TfrmPostoBombaList);
-end;
-
-procedure TFormPrincipal.Bicos1Click(Sender: TObject);
-begin
-  { TODO : Deixei o comentario somente para detalhar qual tela puxava bico }
-//    Application.CreateForm(TFormBicos, FormBicos);
-//   FormBicos.showmodal;
-  TLibrary.showForm(TfrmPostoBicoList);
 end;
 
 procedure TFormPrincipal.FarmciaPopular1Click(Sender: TObject);
